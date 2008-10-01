@@ -3,7 +3,7 @@
     <groupId>org.azeckoski</groupId>
     <artifactId>reflectutils</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9.6-SNAPSHOT</version>
     <name>Reflection Utilities</name>
     <url>http://code.google.com/p/reflectutils/</url>
     <inceptionYear>2006</inceptionYear>
@@ -91,10 +91,11 @@
                 <directory>${basedir}</directory>
                 <includes>
                     <include>*.txt</include>
-                    <include>src/**/*.java</include>
-                    <include>src/**/*.html</include>
-                    <include>src/**/*.xml</include>
-                    <include>src/**/*.properties</include>
+                    <include>src/main/**/*.java</include>
+                    <include>src/main/**/*.html</include>
+                    <include>src/main/**/*.xml</include>
+                    <include>src/main/**/*.properties</include>
+                    <include>src/test/**/*.java</include>
                 </includes>
             </resource>
         </resources>
@@ -132,15 +133,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
+                    <overview>${basedir}/src/main/java/overview.html</overview>
                     <debug>true</debug>
                     <links>
-                        <link> http://java.sun.com/j2se/1.4.2/docs/api/ </link>
-                        <link>
-                            http://saffron.caret.cam.ac.uk/projects/ServletUtil/apidocs/ 
-                        </link>
-                        <link>
-                            http://saffron.caret.cam.ac.uk/projects/PonderUtilCore/apidocs/ 
-                        </link>
+                        <link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
+                        <link>http://commons.apache.org/beanutils/apidocs/</link>
                     </links>
                     <breakiterator>true</breakiterator>
                     <verbose>true</verbose>
