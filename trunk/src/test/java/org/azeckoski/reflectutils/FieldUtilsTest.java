@@ -1076,4 +1076,41 @@ public class FieldUtilsTest extends TestCase {
         assertEquals("AZ", fu.getFieldValue(tc, "map.user.name"));
     }
 
+    public void testNonVisibleFields() {
+        FieldUtils fu = FieldUtils.getInstance();
+        Object value = null;
+
+        TestPea tp = new TestPea();
+        // test getting
+        value = fu.getFieldValue(tp, "prot");
+        assertNotNull(value);
+        assertEquals("prot", value);
+
+        value = fu.getFieldValue(tp, "priv");
+        assertNotNull(value);
+        assertEquals("priv", value);
+
+        // test types
+        Class<?> type = fu.getFieldType(tp, "prot");
+        assertNotNull(type);
+        assertEquals(String.class, type);
+
+        type = fu.getFieldType(tp, "priv");
+        assertNotNull(type);
+        assertEquals(String.class, type);
+
+        // test setting
+        String newVal = "aaronz";
+        fu.setFieldValue(tp, "prot", newVal);
+        value = fu.getFieldValue(tp, "prot");
+        assertNotNull(value);
+        assertEquals("aaronz", value);
+
+        fu.setFieldValue(tp, "priv", newVal);
+        value = fu.getFieldValue(tp, "priv");
+        assertNotNull(value);
+        assertEquals("aaronz", value);
+
+    }
+
 }
