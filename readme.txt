@@ -1,4 +1,4 @@
-This is the reflection utilities for java 1.5 written by Aaron Zeckoski (aaronz@vt.edu)
+These are the reflection utilities for java 1.5 written by Aaron Zeckoski (aaronz@vt.edu)
 
 Building this project and putting it in your repository (maven2: http://maven.apache.org/):
 Maven2: run "mvn clean install" from the root source directory of this project
