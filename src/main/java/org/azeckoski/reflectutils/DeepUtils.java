@@ -26,6 +26,8 @@ import java.util.Map.Entry;
 
 import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
 import org.azeckoski.reflectutils.beanutils.FieldAdapter;
+import org.azeckoski.reflectutils.exceptions.FieldGetValueException;
+import org.azeckoski.reflectutils.exceptions.FieldSetValueException;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
 
@@ -410,6 +412,10 @@ public class DeepUtils {
                                     }
                                 } catch (FieldnameNotFoundException e) {
                                     // this is ok, field might not exist or might not be readable so we skip it
+                                } catch (FieldGetValueException e) {
+                                    // this is ok, field might not be readable (it should be though)
+                                } catch (FieldSetValueException e) {
+                                    // this is ok, field might not be writeable (should also not happen)
                                 } catch (IllegalArgumentException e) {
                                     // this is ok, failure should not stop the clone
                                 }
@@ -535,7 +541,7 @@ public class DeepUtils {
                 }
             } else {
                 // regular javabean
-                Map<String, Object> values = getFieldUtils().getFieldValues(orig);
+                Map<String, Object> values = getFieldUtils().getFieldValues(orig, FieldsFilter.READABLE, false);
                 for (Entry<String, Object> entry : values.entrySet()) {
                     String name = entry.getKey();
                     if (ClassFields.FIELD_CLASS.equals(name)) {
@@ -555,6 +561,10 @@ public class DeepUtils {
                         }
                     } catch (FieldnameNotFoundException e) {
                         // this is ok, field might not exist or might not be readable so we skip it
+                    } catch (FieldGetValueException e) {
+                        // this is ok, field might not be readable
+                    } catch (FieldSetValueException e) {
+                        // this is ok, field might not be writeable
                     } catch (IllegalArgumentException e) {
                         // this is ok, failure should not stop the clone
                     }

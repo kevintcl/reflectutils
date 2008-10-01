@@ -769,6 +769,38 @@ public class FieldUtilsTest extends TestCase {
         assertEquals(24, value);
     }
 
+    public void testGetFieldValueAsType() {
+        FieldUtils fu = FieldUtils.getInstance();
+        Object value = null;
+        String sval = null;
+
+        TestNesting tn = new TestNesting(8, "AZ", new String[] {"1", "B", "three"});
+        value = fu.getFieldValue(tn, "id");
+        assertNotNull(value);
+        assertEquals(8, value);
+
+        sval = fu.getFieldValue(tn, "id", String.class);
+        assertNotNull(sval);
+        assertEquals("8", sval);
+
+        value = fu.getFieldValue(tn, "testEntity.id");
+        assertNotNull(value);
+        assertEquals(new Long(3), value);
+
+        sval = fu.getFieldValue(tn, "testEntity.id", String.class);
+        assertNotNull(sval);
+        assertEquals("3", sval);
+
+        value = fu.getFieldValue(tn, "myArray");
+        assertNotNull(value);
+        assertTrue(value.getClass().isArray());
+        assertEquals(2, ((String[])value).length );
+
+        sval = fu.getFieldValue(tn, "myArray", String.class);
+        assertNotNull(sval);
+        assertEquals("A,B", sval);
+    }
+
     /**
      * Test method for {@link org.azeckoski.reflectutils.FieldUtils#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)}.
      */

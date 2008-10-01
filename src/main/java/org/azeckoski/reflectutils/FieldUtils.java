@@ -377,6 +377,7 @@ public class FieldUtils {
      * @param name the name of a field on this object
      * @return the value of the field
      * @throws FieldnameNotFoundException if this field name is invalid for this object
+     * @throws FieldGetValueException if the field is not readable or not visible
      * @throws IllegalArgumentException if there is a failure getting the value
      */
     @SuppressWarnings("unchecked")
@@ -407,6 +408,24 @@ public class FieldUtils {
     }
 
     /**
+     * Get the value of a field on an object as a specific type,
+     * name can be nested, indexed, or mapped
+     * @param obj any object
+     * @param name the name of a field on this object
+     * @param asType the type to return the value as (converts as needed)
+     * @return the value in the field as the type requested
+     * @throws FieldnameNotFoundException if this field name is invalid for this object
+     * @throws FieldGetValueException if the field is not readable or not visible
+     * @throws UnsupportedOperationException if the value cannot be converted to the type requested
+     * @throws IllegalArgumentException if there is a failure getting the value
+     */
+    public <T> T getFieldValue(Object obj, String name, Class<T> asType) {
+        Object o = getFieldValue(obj, name);
+        T value = getConversionUtils().convert(o, asType);
+        return value;
+    }
+
+    /**
      * Set the value of a field on an object (automatically auto converts),
      * name can be nested, indexed, or mapped
      * 
@@ -414,7 +433,8 @@ public class FieldUtils {
      * @param name the name of a field on this object
      * @param value the value to set the field to (must match target exactly)
      * @throws FieldnameNotFoundException if this field name is invalid for this object
-     * @throws IllegalArgumentException if there is a failure setting the value
+     * @throws FieldSetValueException if the field is not writeable or visible
+     * @throws IllegalArgumentException if there is a general failure setting the value
      */
     public void setFieldValue(Object obj, String name, Object value) {
         setFieldValue(obj, name, value, true);
@@ -430,8 +450,9 @@ public class FieldUtils {
      * @param autoConvert if true then the value will be converted to the target value type if it is possible,
      * otherwise the value must match the target type exactly
      * @throws FieldnameNotFoundException if this field name is invalid for this object
-     * @throws IllegalArgumentException if there is a failure setting the value
      * @throws UnsupportedOperationException if this value cannot be auto converted to the type specified
+     * @throws FieldSetValueException if the field is not writeable or visible
+     * @throws IllegalArgumentException if there is a general failure setting the value
      */
     @SuppressWarnings("unchecked")
     public void setFieldValue(Object obj, String name, Object value, boolean autoConvert) {
@@ -476,6 +497,7 @@ public class FieldUtils {
      * @param index the index to put the value into (will append to the end of the list if index < 0), must be within the bounds of the array
      * @param value any value, will be converted to the correct type for the array automatically
      * @throws IllegalArgumentException if there is a failure because of an invalid index or null arguments
+     * @throws FieldSetValueException if the field is not writeable or visible
      */
     @SuppressWarnings("unchecked")
     public void setIndexedValue(Object indexedObject, int index, Object value) {
@@ -831,7 +853,6 @@ public class FieldUtils {
      * @param obj any object
      * @param cp the analysis object which must match the given object (defines the field)
      * @return the value for the field
-     * @throws FieldGetValueException if there is failure
      * @throws IllegalArgumentException if inputs are invalid (null)
      * @throws FieldGetValueException if there is an internal failure getting the field
      */
@@ -1160,7 +1181,7 @@ public class FieldUtils {
      * @param obj any object
      * @param cp the analysis object which must match the given name and object
      * @param value the value for the field
-     * @throws FieldSetValueException if there is failure
+     * @throws FieldSetValueException if the field is not writeable or visible
      * @throws IllegalArgumentException if inputs are invalid (null)
      */
     protected void assignFieldValue(Object obj, ClassProperty cp, Object value) {
