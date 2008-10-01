@@ -10,10 +10,11 @@ ReflectUtils.getInstance().setFieldValue(thing, &quot;person.contactInfo.name&qu
 // the value of the name field which is on the object in the contactInfo field which is on the object in the person field on the thing object is set to &quot;aaronz&quot;</pre></ul><ul><li>Constructing classes </li><pre class="prettyprint">List l = ReflectUtils.getInstance().constructClass(List.class);
 Class&lt;?&gt; clazz = TestEntity.class;
 Object o = ReflectUtils.getInstance().constructClass(clazz);
-// o will be an instance of TestEntity</pre></ul><p><strong>TestEntity.class</strong> (comes directly from the test cases) </p><pre class="prettyprint">public class TestEntity {
+// o will be an instance of TestEntity</pre>
+</ul><p><strong>TestEntity.class</strong> (comes directly from the test cases) </p><pre class="prettyprint">public class TestEntity {
    private Long id = new Long(3);
    private String entityId = &quot;33&quot;;
-   @TestAnnote
+   \@TestAnnote
    private String extra = null;
    private Boolean bool = null;
    private String[] sArray = {&quot;1&quot;,&quot;2&quot;};
@@ -24,7 +25,7 @@ Object o = ReflectUtils.getInstance().constructClass(clazz);
    public String createEntity(Object entity) {
       return &quot;1&quot;;
    }
-   @TestAnnote
+   \@TestAnnote
    public String getEntityId() {
       return entityId;
    }
@@ -37,11 +38,11 @@ Object o = ReflectUtils.getInstance().constructClass(clazz);
    public void setId(Long id) {
       this.id = id;
    }
-   @TestAnnoteField1
+   \@TestAnnoteField1
    public String getExtra() {
       return extra;
    }
-   @TestAnnoteField2(&quot;TEST&quot;)
+   \@TestAnnoteField2(&quot;TEST&quot;)
    public void setExtra(String extra) {
       this.extra = extra;
    }
