@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="44" tokens="281">
+<file line="304" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="331" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            // Since we don't ordinarily have distinct Entry objects, we
+            // must pack elements using exportable SimpleEntry
+            Collection<Map.Entry<K,V>> c = new ArrayList<Map.Entry<K,V>>(size());
+            for (Iterator<Map.Entry<K,V>> i = iterator(); i.hasNext(); )
+                c.add(new SimpleEntry<K,V>(i.next()));
+            return c.toArray();
+        }
+        public <T> T[] toArray(T[] a) {
+            Collection<Map.Entry<K,V>> c = new ArrayList<Map.Entry<K,V>>(size());
+            for (Iterator<Map.Entry<K,V>> i = iterator(); i.hasNext(); )
+                c.add(new SimpleEntry<K,V>(i.next()));
+            return c.toArray(a);
+        }
+
+    }
+
+
+    /**
+     * This duplicates java.util.AbstractMap.SimpleEntry until this class
+     * is made accessible.
+     */
+    static final class SimpleEntry<K,V> implements Entry<K,V> {
+        K key;
+        V value;
+
+        public SimpleEntry(K key, V value) {
+            this.key   = key;
+            this.value = value;
+        }
+
+        public SimpleEntry(Entry<K,V> e) {
+            this.key   = e.getKey();
+            this.value = e.getValue();
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return fixNullOut(value);
+]]>
+</codefragment>
+</duplication>
+<duplication lines="61" tokens="279">
+<file line="51" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="53" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+    public ConcurrentOrderedMap(Map<K, V> map) {
+        this(map.size());
+        for (Entry<K, V> entry : map.entrySet()) {
+            this.put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    private String name = "entity";
+    public String getName() {
+        return name;
+    }
+    /**
+     * @param name the name to use when encoding this map of entities
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return a list of all the keys in this map in the order they were entered
+     */
+    public List<K> getKeys() {
+        return new ArrayList<K>(list);
+    }
+
+    /* (non-Javadoc)
+     * @see org.azeckoski.reflectutils.map.OrderedMap#getValues()
+     */
+    public List<V> getValues() {
+        return new ArrayList<V>( values() );
+    }
+
+    /**
+     * @return a list of all the entries in this map in the order they were created
+     */
+    public List<Entry<K, V>> getEntries() {
+        ArrayList<Entry<K, V>> entries = new ArrayList<Entry<K,V>>();
+        for (K key : list) {
+            Entry<K, V> entry = new SimpleEntry<K,V>(key, this.get(key));
+            entries.add(entry);
+        }
+        return entries;
+    }
+
+    /**
+     * Get an entry based on the position it is in the map (based on the order entries were created)
+     * @param position the position in the map (must be less that the size)
+     * @return the entry at that position
+     * @throws IllegalArgumentException if the position is greater than the map size
+     */
+    public Entry<K, V> getEntry(int position) {
+        if (position >= list.size()) {
+            throw new IllegalArgumentException("Value is too large for the map size: " + list.size());
+        }
+        K key = list.get(position);
+        Entry<K, V> entry = new SimpleEntry<K,V>(key, this.get(key));
+        return entry;
+    }
+
+    @Override
+    public V get(Object key) {
+]]>
+</codefragment>
+</duplication>
+<duplication lines="33" tokens="227">
+<file line="198" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="225" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+            ConcurrentOrderedMap.this.remove(lastReturned.getKey());
+        }
+
+        // shared methods
+        public boolean hasNext() {          return hasMore(); }
+        public boolean hasMoreElements() {  return hasMore(); }
+        public void remove() {              removeCurrent(); }
+
+    }
+
+    final class KeyIterator extends CoreIterator implements Iterator<K>, Enumeration<K> {
+        public K next() {                   return super.getNext().getKey(); }
+        public K nextElement() {            return next(); }
+    }
+
+    final class ValueIterator extends CoreIterator implements Iterator<V>, Enumeration<V> {
+        public V next() {                   return super.getNext().getValue(); }
+        public V nextElement() {            return next(); }
+    }
+
+    final class EntryIterator extends CoreIterator implements Iterator<Entry<K,V>>, Enumeration<Entry<K,V>> {
+        public Entry<K,V> next() {                   return super.getNext(); }
+        public Entry<K,V> nextElement() {            return next(); }
+    }
+
+    // All below copied from CHM
+
+    final class KeySet extends AbstractSet<K> {
+        public Iterator<K> iterator() {
+            return new KeyIterator();
+        }
+        public int size() {
+            return ConcurrentOrderedMap.this.size();
+]]>
+</codefragment>
+</duplication>
+<duplication lines="64" tokens="225">
+<file line="251" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java"/>
+<file line="343" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
+<codefragment>
+<![CDATA[
+        if (includeEOL) {
+            for (int i = 0; i < level; i++) {
+                sb.append(SPACES);
+            }
+        }
+    }
+
+    /**
+     * Escape a string for XML encoding: replace special characters with XML escapes:
+     * <pre>
+     * &amp; <small>(ampersand)</small> is replaced by &amp;amp;
+     * &lt; <small>(less than)</small> is replaced by &amp;lt;
+     * &gt; <small>(greater than)</small> is replaced by &amp;gt;
+     * &quot; <small>(double quote)</small> is replaced by &amp;quot;
+     * </pre>
+     * @param string The string to be escaped.
+     * @return The escaped string.
+     */
+    public static String escapeForXML(String string) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, len = string.length(); i < len; i++) {
+            char c = string.charAt(i);
+            switch (c) {
+            case AMP:
+                sb.append("&amp;");
+                break;
+            case LT:
+                sb.append("&lt;");
+                break;
+            case GT:
+                sb.append("&gt;");
+                break;
+            case QUOT:
+                sb.append("&quot;");
+                break;
+            default:
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Validates that a string contains no spaces and is non-null/non-empty
+     * Throw an exception if the string contains whitespace. 
+     * Whitespace is not allowed in tagNames and attributes.
+     * @param string any string
+     * @throws IllegalArgumentException
+     */
+    public static String validate(String string) {
+        if (string == null) {
+            throw new IllegalArgumentException("string is NULL");
+        }
+        int i, length = string.length();
+        if (length == 0) {
+            throw new IllegalArgumentException("Empty string.");
+        }
+        for (i = 0; i < length; i += 1) {
+            if (Character.isWhitespace(string.charAt(i))) {
+                throw new IllegalArgumentException("'" + string + "' contains a space character.");
+            }
+        }
+        return string;
+    }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="26" tokens="214">
+<file line="266" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="293" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            Collection<V> c = new ArrayList<V>();
+            for (Iterator<V> i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray();
+        }
+        public <T> T[] toArray(T[] a) {
+            Collection<V> c = new ArrayList<V>();
+            for (Iterator<V> i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray(a);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    final class EntrySet extends AbstractSet<Map.Entry<K,V>> {
+        public Iterator<Map.Entry<K,V>> iterator() {
+            return new EntryIterator();
+        }
+        public boolean contains(Object o) {
+            if (!(o instanceof Map.Entry))
+                return false;
+            Map.Entry<K,V> e = (Map.Entry<K,V>)o;
+            V v = ConcurrentOrderedMap.this.get(e.getKey());
+]]>
+</codefragment>
+</duplication>
+<duplication lines="22" tokens="157">
+<file line="239" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="266" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            Collection<K> c = new ArrayList<K>();
+            for (Iterator<K> i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray();
+        }
+        public <T> T[] toArray(T[] a) {
+            Collection<K> c = new ArrayList<K>();
+            for (Iterator<K> i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray(a);
+        }
+    }
+
+    final class Values extends AbstractCollection<V> {
+        public Iterator<V> iterator() {
+            return new ValueIterator();
+        }
+        public int size() {
+            return ConcurrentOrderedMap.this.size();
+]]>
+</codefragment>
+</duplication>
+<duplication lines="20" tokens="118">
+<file line="352" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="379" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+            this.value = value;
+            return oldValue;
+        }
+
+        @SuppressWarnings("unchecked")
+        public boolean equals(Object o) {
+            if (!(o instanceof Map.Entry))
+                return false;
+            Map.Entry e = (Map.Entry)o;
+            return eq(key, e.getKey()) 
+                && eq(value, e.getValue());
+        }
+
+        public int hashCode() {
+            return ((key   == null)   ? 0 :   key.hashCode()) ^
+                   ((value == null)   ? 0 : value.hashCode());
+        }
+
+        public String toString() {
+            return key + "=" + fixNullOut(value);
+]]>
+</codefragment>
+</duplication>
+<duplication lines="13" tokens="117">
+<file line="248" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="543" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<codefragment>
+<![CDATA[
+            while (getResolver().hasNested(name)) {
+                String next = getResolver().next(name);
+                Object nestedBean = null;
+                if (Map.class.isAssignableFrom(obj.getClass())) {
+                    nestedBean = getValueOfMap((Map) obj, next);
+                } else if (getResolver().isMapped(next)) {
+                    nestedBean = getMappedValue(obj, next);
+                } else if (getResolver().isIndexed(next)) {
+                    nestedBean = getIndexedValue(obj, next);
+                } else {
+                    nestedBean = getSimpleValue(obj, next);
+                }
+                if (nestedBean == null) {
+]]>
+</codefragment>
+</duplication>
+<duplication lines="21" tokens="113">
+<file line="141" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="169" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<codefragment>
+<![CDATA[
+    public Enumeration<V> elements() {
+        return new ValueIterator();
+    }
+
+    transient Set<K> keySet;
+    transient Set<Map.Entry<K,V>> entrySet;
+    transient Collection<V> values;
+
+    @Override
+    public Set<K> keySet() {
+        Set<K> ks = keySet;
+        return (ks != null) ? ks : (keySet = new KeySet());
+    }
+
+    @Override
+    public Collection<V> values() {
+        Collection<V> vs = values;
+        return (vs != null) ? vs : (values = new Values());
+    }
+
+    @SuppressWarnings("unchecked")
+]]>
+</codefragment>
+</duplication>
+<duplication lines="22" tokens="112">
+<file line="496" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="1011" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<codefragment>
+<![CDATA[
+                    } else {
+                        // this is a list
+                        List l = (List) indexedObject;
+                        try {
+                            // set value on list
+                            if (index < 0) {
+                                l.add(value);
+                            } else {
+                                if (index >= l.size()) {
+                                    // automatically expand the list
+                                    int start = l.size();
+                                    for (int i = start; i < (index+1); i++) {
+                                        l.add(i, null);
+                                    }
+                                }
+                                l.set(index, value);
+                            }
+                        } catch (Exception e) {
+                            // catching the general exception is correct here, translate the exception
+                            throw new IllegalArgumentException("Failed to set index ("+index+") for list of size ("+l.size()+") to value: " + value, e);
+                        }
+                    }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="20" tokens="101">
+<file line="504" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/JSONTranscoder.java"/>
+<file line="681" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
+<codefragment>
+<![CDATA[
+        Number num = null;
+        if (isFloatingPoint) {
+            if (length < 10) {
+                num = Float.valueOf(s);
+            } else if (length < 17) {
+                num = Double.valueOf(s);
+            } else {
+                num = new BigDecimal(s);
+            }
+        } else {
+            if (length < 10) {
+                num = Integer.valueOf(s);
+            } else if (length < 19) {
+                num = Long.valueOf(s);
+            } else {
+                num = new BigInteger(s);
+            }
+        }
+        return num;
+    }
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>

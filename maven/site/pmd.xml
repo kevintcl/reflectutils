@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.2" timestamp="2008-10-01T11:32:29.782">
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ArrayUtils.java">
+<violation beginline="15" endline="321" begincolumn="1" endcolumn="2" rule="UseSingleton" ruleset="Design Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="28" endline="321" begincolumn="25" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ArrayUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="39" endline="39" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="ArrayUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 7 times in this file; the first occurrence is on line 39
+</violation>
+<violation beginline="57" endline="57" begincolumn="9" endcolumn="24" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ArrayUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'newArray'
+</violation>
+<violation beginline="103" endline="103" begincolumn="9" endcolumn="24" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ArrayUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'newArray'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ClassData.java">
+<violation beginline="38" endline="291" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ClassData' has a Cyclomatic Complexity of 3 (Highest = 20).
+</violation>
+<violation beginline="58" endline="65" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassData" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="67" endline="67" begincolumn="9" endcolumn="44" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassData" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'getAllAnnotations' called during object construction
+</violation>
+<violation beginline="73" endline="73" begincolumn="9" endcolumn="83" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassData" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'getAllThings' called during object construction
+</violation>
+<violation beginline="132" endline="211" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassData" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getAllThings' has a Cyclomatic Complexity of 20.
+</violation>
+<violation beginline="132" endline="211" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassData" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method getAllThings() has an NPath complexity of 1200
+</violation>
+<violation beginline="149" endline="151" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassData" method="getAllThings" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="170" endline="172" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassData" method="getAllThings" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="192" endline="194" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassData" method="getAllThings" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ClassDataCacher.java">
+<violation beginline="60" endline="60" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="ClassDataCacher" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 6 times in this file; the first occurrence is on line 60
+</violation>
+<violation beginline="62" endline="62" begincolumn="9" endcolumn="39" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassDataCacher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setFieldFindMode' called during object construction
+</violation>
+<violation beginline="63" endline="63" begincolumn="9" endcolumn="43" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassDataCacher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setReflectionCache' called during object construction
+</violation>
+<violation beginline="78" endline="78" begincolumn="48" endcolumn="60" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassDataCacher" method="setFieldFindMode" variable="fieldFindMode" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'fieldFindMode'
+</violation>
+<violation beginline="136" endline="141" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassDataCacher" method="setReflectionCache" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ClassFields.java">
+<violation beginline="65" endline="1075" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveClassLength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="65" endline="1075" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ClassFields' has a Cyclomatic Complexity of 4 (Highest = 23).
+</violation>
+<violation beginline="65" endline="1075" begincolumn="29" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="99" endline="124" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'isFieldInFilter' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="113" endline="115" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="isFieldInFilter" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="281" endline="281" begincolumn="9" endcolumn="20" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="getFieldType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'type'
+</violation>
+<violation beginline="302" endline="302" begincolumn="9" endcolumn="17" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="getFieldAnnotations" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 's'
+</violation>
+<violation beginline="318" endline="318" begincolumn="9" endcolumn="17" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="getFieldAnnotation" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'a'
+</violation>
+<violation beginline="377" endline="377" begincolumn="9" endcolumn="18" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="getClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'cp'
+</violation>
+<violation beginline="419" endline="419" begincolumn="21" endcolumn="39" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" variable="includeStaticFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'includeStaticFields' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="447" endline="474" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The constructor 'ClassFields' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="472" endline="472" begincolumn="9" endcolumn="36" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="473" endline="473" begincolumn="9" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="498" endline="498" begincolumn="9" endcolumn="36" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="499" endline="499" begincolumn="9" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="555" endline="555" begincolumn="77" endcolumn="91" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" variable="useIntrospector" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'useIntrospector'
+</violation>
+<violation beginline="555" endline="555" begincolumn="77" endcolumn="91" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" variable="useIntrospector" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'useIntrospector'
+</violation>
+<violation beginline="555" endline="616" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The constructor 'ClassFields' has a Cyclomatic Complexity of 16.
+</violation>
+<violation beginline="585" endline="591" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="588" endline="588" begincolumn="21" endcolumn="41" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="601" endline="601" begincolumn="50" endcolumn="69" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="609" endline="609" begincolumn="21" endcolumn="40" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="611" endline="611" begincolumn="21" endcolumn="41" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="615" endline="615" begincolumn="9" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'isStatic' called during object construction
+</violation>
+<violation beginline="748" endline="791" begincolumn="13" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'checkPropertyMethods' has a Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="763" endline="789" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="checkPropertyMethods" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="805" endline="873" begincolumn="13" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'findProperties' has a Cyclomatic Complexity of 23.
+</violation>
+<violation beginline="805" endline="873" begincolumn="13" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method findProperties() has an NPath complexity of 390
+</violation>
+<violation beginline="831" endline="833" begincolumn="27" endcolumn="25" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="findProperties" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="837" endline="848" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="findProperties" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="940" endline="978" begincolumn="13" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassFields" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'populateAnnotationsFields' has a Cyclomatic Complexity of 13.
+</violation>
+<violation beginline="950" endline="952" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="populateAnnotationsFields" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="974" endline="976" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="populateAnnotationsFields" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="1057" endline="1059" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassFields" method="isGetClassMethod" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ClassLoaderUtils.java">
+<violation beginline="15" endline="124" begincolumn="1" endcolumn="2" rule="UseSingleton" ruleset="Design Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="74" endline="74" begincolumn="59" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassLoaderUtils" method="getSuperclasses" variable="clazz" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'clazz'
+</violation>
+<violation beginline="113" endline="119" begincolumn="13" endcolumn="13" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassLoaderUtils" method="getClassFromCollection" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ClassProperty.java">
+<violation beginline="41" endline="451" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ClassProperty' has a Cyclomatic Complexity of 2 (Highest = 12).
+</violation>
+<violation beginline="41" endline="451" begincolumn="28" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="110" endline="110" begincolumn="13" endcolumn="29" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setGetter' called during object construction
+</violation>
+<violation beginline="113" endline="113" begincolumn="13" endcolumn="29" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setSetter' called during object construction
+</violation>
+<violation beginline="118" endline="118" begincolumn="9" endcolumn="23" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setField' called during object construction
+</violation>
+<violation beginline="175" endline="177" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassProperty" method="isSettable" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="187" endline="189" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ClassProperty" method="isPublicSettable" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="292" endline="326" begincolumn="13" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'makeType' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="293" endline="309" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty" method="makeType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="296" endline="309" begincolumn="16" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty" method="makeType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="328" endline="333" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ClassProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'toString' has a Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="357" endline="357" begincolumn="13" endcolumn="39" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty$IndexedProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setIndexGetter' called during object construction
+</violation>
+<violation beginline="358" endline="358" begincolumn="13" endcolumn="39" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty$IndexedProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setIndexSetter' called during object construction
+</violation>
+<violation beginline="416" endline="416" begincolumn="13" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty$MappedProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setMapGetter' called during object construction
+</violation>
+<violation beginline="417" endline="417" begincolumn="13" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ClassProperty$MappedProperty" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setMapSetter' called during object construction
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ConstructorUtils.java">
+<violation beginline="49" endline="817" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ConstructorUtils' has a Cyclomatic Complexity of 4 (Highest = 23).
+</violation>
+<violation beginline="49" endline="817" begincolumn="31" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="82" endline="88" begincolumn="32" endcolumn="5" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="97" endline="103" begincolumn="32" endcolumn="5" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="106" endline="106" begincolumn="49" endcolumn="65" rule="BigIntegerInstantiation" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="makeImmutableDefaultsMap" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#BigIntegerInstantiation" priority="3">
+Don't create instances of already existing BigInteger and BigDecimal (ZERO, ONE, TEN)
+</violation>
+<violation beginline="125" endline="131" begincolumn="32" endcolumn="5" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="156" endline="162" begincolumn="32" endcolumn="5" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="187" endline="193" begincolumn="32" endcolumn="5" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="219" endline="219" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 4 times in this file; the first occurrence is on line 219
+</violation>
+<violation beginline="353" endline="353" begincolumn="64" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="353" endline="353" begincolumn="64" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="353" endline="353" begincolumn="64" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="353" endline="353" begincolumn="64" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="353" endline="353" begincolumn="64" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="353" endline="386" begincolumn="19" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getTypeFromInnerCollection' has a Cyclomatic Complexity of 11.
+</violation>
+<violation beginline="361" endline="361" begincolumn="25" endcolumn="30" rule="UseCollectionIsEmpty" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" method="getTypeFromInnerCollection" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseCollectionIsEmpty" priority="3">
+Substitute calls to size() == 0 (or size() != 0) with calls to isEmpty()
+</violation>
+<violation beginline="395" endline="395" begincolumn="63" endcolumn="66" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="407" endline="407" begincolumn="37" endcolumn="42" rule="ReplaceVectorWithList" ruleset="Migration Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceVectorWithList" priority="3">
+Consider replacing this Vector with the newer java.util.List
+</violation>
+<violation beginline="413" endline="413" begincolumn="37" endcolumn="42" rule="ReplaceVectorWithList" ruleset="Migration Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceVectorWithList" priority="3">
+Consider replacing this Vector with the newer java.util.List
+</violation>
+<violation beginline="418" endline="420" begincolumn="20" endcolumn="13" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="586" endline="586" begincolumn="42" endcolumn="45" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="586" endline="651" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'constructClass' has a Cyclomatic Complexity of 18.
+</violation>
+<violation beginline="586" endline="651" begincolumn="12" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method constructClass() has an NPath complexity of 450
+</violation>
+<violation beginline="602" endline="602" begincolumn="17" endcolumn="134" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="621" endline="621" begincolumn="25" endcolumn="148" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="621" endline="621" begincolumn="60" endcolumn="99" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Could not construct object for class (&quot; appears 5 times in this file; the first occurrence is on line 621
+</violation>
+<violation beginline="629" endline="631" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="631" endline="633" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="633" endline="635" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="635" endline="637" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="637" endline="639" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="664" endline="767" begincolumn="12" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="664" endline="767" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'constructClass' has a Cyclomatic Complexity of 23.
+</violation>
+<violation beginline="664" endline="767" begincolumn="12" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method constructClass() has an NPath complexity of 15560
+</violation>
+<violation beginline="682" endline="682" begincolumn="21" endcolumn="124" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConstructorUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ConversionUtils.java">
+<violation beginline="68" endline="490" begincolumn="30" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="86" endline="86" begincolumn="9" endcolumn="33" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setConverters' called during object construction
+</violation>
+<violation beginline="87" endline="87" begincolumn="9" endcolumn="35" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setVariableConverters' called during object construction
+</violation>
+<violation beginline="290" endline="312" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="308" endline="310" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="333" endline="345" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ConversionUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/DateUtils.java">
+<violation beginline="15" endline="40" begincolumn="1" endcolumn="2" rule="UseSingleton" ruleset="Design Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="34" endline="34" begincolumn="31" endcolumn="76" rule="SimpleDateFormatNeedsLocale" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DateUtils" method="makeDateISO8601" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimpleDateFormatNeedsLocale" priority="3">
+When instantiating a SimpleDateFormat object, specify a Locale
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/DeepUtils.java">
+<violation beginline="41" endline="618" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'DeepUtils' has a Cyclomatic Complexity of 7 (Highest = 40).
+</violation>
+<violation beginline="89" endline="89" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 4 times in this file; the first occurrence is on line 89
+</violation>
+<violation beginline="93" endline="93" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'clone'
+</violation>
+<violation beginline="142" endline="142" begincolumn="149" endcolumn="158" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="deepMap" variable="initialKey" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'initialKey'
+</violation>
+<violation beginline="180" endline="220" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'populate' has a Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="238" endline="266" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'populateFromParams' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="290" endline="426" begincolumn="15" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="290" endline="290" begincolumn="123" endcolumn="134" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepClone" variable="currentDepth" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'currentDepth'
+</violation>
+<violation beginline="290" endline="426" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'internalDeepClone' has a Cyclomatic Complexity of 38.
+</violation>
+<violation beginline="290" endline="426" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method internalDeepClone() has an NPath complexity of 222
+</violation>
+<violation beginline="371" endline="373" begincolumn="35" endcolumn="33" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepClone" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="411" endline="413" begincolumn="35" endcolumn="33" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepClone" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="413" endline="415" begincolumn="35" endcolumn="33" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepClone" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="444" endline="568" begincolumn="15" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="444" endline="444" begincolumn="44" endcolumn="47" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" variable="orig" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'orig'
+</violation>
+<violation beginline="444" endline="568" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'internalDeepCopy' has a Cyclomatic Complexity of 40.
+</violation>
+<violation beginline="444" endline="568" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="DeepUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method internalDeepCopy() has an NPath complexity of 1632
+</violation>
+<violation beginline="465" endline="465" begincolumn="17" endcolumn="137" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="477" endline="479" begincolumn="63" endcolumn="29" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="484" endline="486" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="493" endline="495" begincolumn="55" endcolumn="21" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="508" endline="510" begincolumn="55" endcolumn="21" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="524" endline="526" begincolumn="59" endcolumn="25" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="530" endline="532" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="532" endline="534" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="550" endline="552" begincolumn="59" endcolumn="25" rule="EmptyIfStmt" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="556" endline="558" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="558" endline="560" begincolumn="23" endcolumn="21" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="DeepUtils" method="internalDeepCopy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java">
+<violation beginline="49" endline="1254" begincolumn="8" endcolumn="1" rule="ExcessiveClassLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveClassLength" priority="3">
+Avoid really long classes.
+</violation>
+<violation beginline="49" endline="1254" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'FieldUtils' has a Cyclomatic Complexity of 6 (Highest = 27).
+</violation>
+<violation beginline="70" endline="70" begincolumn="9" endcolumn="29" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setResolver' called during object construction
+</violation>
+<violation beginline="72" endline="72" begincolumn="9" endcolumn="26" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'loadFieldAdapter' called during object construction
+</violation>
+<violation beginline="92" endline="96" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setResolver" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="113" endline="128" begincolumn="9" endcolumn="9" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="loadFieldAdapter" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="152" endline="152" begincolumn="9" endcolumn="18" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'cf'
+</violation>
+<violation beginline="161" endline="161" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 12 times in this file; the first occurrence is on line 161
+</violation>
+<violation beginline="164" endline="164" begincolumn="48" endcolumn="67" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;obj cannot be null&quot; appears 10 times in this file; the first occurrence is on line 164
+</violation>
+<violation beginline="180" endline="180" begincolumn="56" endcolumn="59" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldType" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="180" endline="180" begincolumn="43" endcolumn="46" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldType" variable="type" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'type'
+</violation>
+<violation beginline="180" endline="225" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getFieldType' has a Cyclomatic Complexity of 13.
+</violation>
+<violation beginline="180" endline="225" begincolumn="12" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method getFieldType() has an NPath complexity of 216
+</violation>
+<violation beginline="236" endline="236" begincolumn="53" endcolumn="56" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldType" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="236" endline="236" begincolumn="41" endcolumn="43" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldType" variable="obj" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'obj'
+</violation>
+<violation beginline="236" endline="294" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getFieldType' has a Cyclomatic Complexity of 16.
+</violation>
+<violation beginline="236" endline="294" begincolumn="12" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method getFieldType() has an NPath complexity of 1728
+</violation>
+<violation beginline="306" endline="306" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'types'
+</violation>
+<violation beginline="383" endline="383" begincolumn="52" endcolumn="55" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="383" endline="383" begincolumn="40" endcolumn="42" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldValue" variable="obj" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'obj'
+</violation>
+<violation beginline="388" endline="388" begincolumn="48" endcolumn="83" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getFieldValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;field name cannot be null or blank&quot; appears 8 times in this file; the first occurrence is on line 388
+</violation>
+<violation beginline="437" endline="437" begincolumn="50" endcolumn="53" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setFieldValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="437" endline="437" begincolumn="38" endcolumn="40" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setFieldValue" variable="obj" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'obj'
+</violation>
+<violation beginline="437" endline="437" begincolumn="63" endcolumn="67" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setFieldValue" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'value'
+</violation>
+<violation beginline="481" endline="522" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'setIndexedValue' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="494" endline="494" begincolumn="137" endcolumn="150" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) to value: &quot; appears 4 times in this file; the first occurrence is on line 494
+</violation>
+<violation beginline="494" endline="494" begincolumn="52" endcolumn="74" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Failed to set index (&quot; appears 4 times in this file; the first occurrence is on line 494
+</violation>
+<violation beginline="537" endline="586" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'unpackNestedName' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="628" endline="628" begincolumn="57" endcolumn="60" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="628" endline="718" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getIndexedValue' has a Cyclomatic Complexity of 18.
+</violation>
+<violation beginline="628" endline="718" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method getIndexedValue() has an NPath complexity of 1026
+</violation>
+<violation beginline="649" endline="649" begincolumn="83" endcolumn="95" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) on type (&quot; appears 4 times in this file; the first occurrence is on line 649
+</violation>
+<violation beginline="669" endline="669" begincolumn="56" endcolumn="69" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;This field (&quot; appears 4 times in this file; the first occurrence is on line 669
+</violation>
+<violation beginline="682" endline="682" begincolumn="79" endcolumn="88" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) from: &quot; appears 4 times in this file; the first occurrence is on line 682
+</violation>
+<violation beginline="682" endline="682" begincolumn="40" endcolumn="59" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) value for name (&quot; appears 4 times in this file; the first occurrence is on line 682
+</violation>
+<violation beginline="690" endline="714" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="701" endline="710" begincolumn="25" endcolumn="25" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="702" endline="702" begincolumn="64" endcolumn="72" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;Field (&quot; appears 4 times in this file; the first occurrence is on line 702
+</violation>
+<violation beginline="730" endline="730" begincolumn="56" endcolumn="59" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getMappedValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="730" endline="803" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getMappedValue' has a Cyclomatic Complexity of 15.
+</violation>
+<violation beginline="730" endline="803" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method getMappedValue() has an NPath complexity of 666
+</violation>
+<violation beginline="791" endline="799" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getMappedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="814" endline="814" begincolumn="52" endcolumn="55" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getValueOfMap" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="824" endline="824" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="getValueOfMap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'value'
+</violation>
+<violation beginline="906" endline="1036" begincolumn="15" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="906" endline="906" begincolumn="55" endcolumn="58" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setIndexedValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="906" endline="1036" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'setIndexedValue' has a Cyclomatic Complexity of 27.
+</violation>
+<violation beginline="906" endline="1036" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method setIndexedValue() has an NPath complexity of 4338
+</violation>
+<violation beginline="958" endline="958" begincolumn="79" endcolumn="86" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) on: &quot; appears 4 times in this file; the first occurrence is on line 958
+</violation>
+<violation beginline="1048" endline="1048" begincolumn="54" endcolumn="57" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setMappedValue" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="1048" endline="1048" begincolumn="67" endcolumn="71" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setMappedValue" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'value'
+</violation>
+<violation beginline="1048" endline="1134" begincolumn="15" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'setMappedValue' has a Cyclomatic Complexity of 18.
+</violation>
+<violation beginline="1048" endline="1134" begincolumn="15" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="FieldUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method setMappedValue() has an NPath complexity of 1368
+</violation>
+<violation beginline="1144" endline="1144" begincolumn="50" endcolumn="53" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="FieldUtils" method="setValueOfMap" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/ReflectUtils.java">
+<violation beginline="29" endline="29" begincolumn="1" endcolumn="72" rule="UnusedImports" ruleset="Import Statement Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException'
+</violation>
+<violation beginline="70" endline="762" begincolumn="27" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="95" endline="95" begincolumn="9" endcolumn="39" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setFieldFindMode' called during object construction
+</violation>
+<violation beginline="96" endline="96" begincolumn="9" endcolumn="43" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setReflectionCache' called during object construction
+</violation>
+<violation beginline="97" endline="97" begincolumn="9" endcolumn="29" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setResolver' called during object construction
+</violation>
+<violation beginline="98" endline="98" begincolumn="9" endcolumn="33" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setConverters' called during object construction
+</violation>
+<violation beginline="232" endline="232" begincolumn="55" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" method="getFieldValue" variable="fieldName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'fieldName'
+</violation>
+<violation beginline="330" endline="330" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" method="getFieldTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'types'
+</violation>
+<violation beginline="510" endline="510" begincolumn="9" endcolumn="23" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils" class="ReflectUtils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'convert'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/StringUtils.java">
+<violation beginline="15" endline="66" begincolumn="1" endcolumn="2" rule="UseSingleton" ruleset="Design Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="47" endline="49" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="StringUtils" method="makeStringFromInputStream" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="59" endline="61" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils" class="StringUtils" method="makeInputStreamFromString" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/TypeReference.java">
+<violation beginline="27" endline="51" begincolumn="17" endcolumn="1" rule="AbstractClassWithoutAbstractMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AbstractClassWithoutAbstractMethod" priority="3">
+This abstract class does not have any abstract methods
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/beanutils/DefaultFieldAdapter.java">
+<violation beginline="84" endline="85" begincolumn="83" endcolumn="5" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultFieldAdapter" method="setIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="90" endline="91" begincolumn="83" endcolumn="5" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultFieldAdapter" method="setMappedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="96" endline="97" begincolumn="71" endcolumn="5" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultFieldAdapter" method="setSimpleValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/beanutils/DefaultResolver.java">
+<violation beginline="57" endline="272" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.beanutils" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'DefaultResolver' has a Cyclomatic Complexity of 7 (Highest = 11).
+</violation>
+<violation beginline="68" endline="69" begincolumn="12" endcolumn="5" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultResolver" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="79" endline="106" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultResolver" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'getIndex' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="100" endline="100" begincolumn="21" endcolumn="94" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultResolver" method="getIndex" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="221" endline="248" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.beanutils" class="DefaultResolver" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'next' has a Cyclomatic Complexity of 11.
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/beanutils/DynaBeanAdapter.java">
+<violation beginline="92" endline="92" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DynaBeanAdapter" method="getSimpleValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'value'
+</violation>
+<violation beginline="105" endline="105" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DynaBeanAdapter" method="getIndexedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'value'
+</violation>
+<violation beginline="118" endline="118" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.beanutils" class="DynaBeanAdapter" method="getMappedValue" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'value'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/beanutils/FieldAdapter.java">
+<violation beginline="21" endline="21" begincolumn="1" endcolumn="68" rule="UnusedImports" ruleset="Import Statement Rules" package="org.azeckoski.reflectutils.beanutils" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.azeckoski.reflectutils.exceptions.FieldGetValueException'
+</violation>
+<violation beginline="22" endline="22" begincolumn="1" endcolumn="68" rule="UnusedImports" ruleset="Import Statement Rules" package="org.azeckoski.reflectutils.beanutils" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.azeckoski.reflectutils.exceptions.FieldSetValueException'
+</violation>
+<violation beginline="23" endline="23" begincolumn="1" endcolumn="72" rule="UnusedImports" ruleset="Import Statement Rules" package="org.azeckoski.reflectutils.beanutils" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/ArrayConverter.java">
+<violation beginline="33" endline="114" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ArrayConverter' has a Cyclomatic Complexity of 5 (Highest = 10).
+</violation>
+<violation beginline="53" endline="112" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="ArrayConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'convert' has a Cyclomatic Complexity of 10.
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/BaseDateFormatHolder.java">
+<violation beginline="30" endline="30" begincolumn="12" endcolumn="36" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BaseDateFormatHolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="36" endline="36" begincolumn="9" endcolumn="29" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BaseDateFormatHolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setPatterns' called during object construction
+</violation>
+<violation beginline="43" endline="43" begincolumn="9" endcolumn="27" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BaseDateFormatHolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'setFormats' called during object construction
+</violation>
+<violation beginline="78" endline="78" begincolumn="38" endcolumn="70" rule="SimpleDateFormatNeedsLocale" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BaseDateFormatHolder" method="getDateFormats" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimpleDateFormatNeedsLocale" priority="3">
+When instantiating a SimpleDateFormat object, specify a Locale
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/BooleanConverter.java">
+<violation beginline="32" endline="125" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'BooleanConverter' has a Cyclomatic Complexity of 4 (Highest = 12).
+</violation>
+<violation beginline="34" endline="72" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="BooleanConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'convert' has a Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="48" endline="48" begincolumn="31" endcolumn="55" rule="UseLocaleWithCaseConversions" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BooleanConverter" method="convert" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseLocaleWithCaseConversions" priority="3">
+When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+</violation>
+<violation beginline="87" endline="87" begincolumn="12" endcolumn="33" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="BooleanConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/CollectionConverter.java">
+<violation beginline="36" endline="36" begincolumn="40" endcolumn="45" rule="ReplaceVectorWithList" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="CollectionConverter" method="convert" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceVectorWithList" priority="3">
+Consider replacing this Vector with the newer java.util.List
+</violation>
+<violation beginline="43" endline="43" begincolumn="82" endcolumn="99" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="CollectionConverter" method="convertInterface" variable="implementationType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'implementationType'
+</violation>
+<violation beginline="43" endline="43" begincolumn="82" endcolumn="99" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="CollectionConverter" method="convertInterface" variable="implementationType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'implementationType'
+</violation>
+<violation beginline="48" endline="48" begincolumn="34" endcolumn="39" rule="ReplaceVectorWithList" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="CollectionConverter" method="convertInterface" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceVectorWithList" priority="3">
+Consider replacing this Vector with the newer java.util.List
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/DateConverter.java">
+<violation beginline="38" endline="325" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'DateConverter' has a Cyclomatic Complexity of 5 (Highest = 15).
+</violation>
+<violation beginline="85" endline="166" begincolumn="19" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'convertToType' has a Cyclomatic Complexity of 15.
+</violation>
+<violation beginline="85" endline="166" begincolumn="19" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method convertToType() has an NPath complexity of 576
+</violation>
+<violation beginline="133" endline="133" begincolumn="28" endcolumn="48" rule="LongInstantiation" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#LongInstantiation" priority="2">
+Avoid instantiating Long objects.Call Long.valueOf() instead
+</violation>
+<violation beginline="144" endline="144" begincolumn="25" endcolumn="54" rule="AvoidDeeplyNestedIfStmts" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidDeeplyNestedIfStmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="152" endline="154" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="243" endline="244" begincolumn="17" endcolumn="88" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" method="toDate" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="253" endline="254" begincolumn="17" endcolumn="86" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" method="toDate" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="263" endline="265" begincolumn="17" endcolumn="50" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="DateConverter" method="toDate" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/MapConverter.java">
+<violation beginline="49" endline="49" begincolumn="68" endcolumn="85" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="MapConverter" method="convertInterface" variable="implementationType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'implementationType'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/NumberConverter.java">
+<violation beginline="46" endline="283" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'NumberConverter' has a Cyclomatic Complexity of 10 (Highest = 21).
+</violation>
+<violation beginline="104" endline="104" begincolumn="9" endcolumn="26" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'number'
+</violation>
+<violation beginline="127" endline="216" begincolumn="20" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'toNumber' has a Cyclomatic Complexity of 21.
+</violation>
+<violation beginline="127" endline="216" begincolumn="20" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method toNumber() has an NPath complexity of 45000
+</violation>
+<violation beginline="138" endline="138" begincolumn="83" endcolumn="93" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) value (&quot; appears 7 times in this file; the first occurrence is on line 138
+</violation>
+<violation beginline="138" endline="138" begincolumn="57" endcolumn="66" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;source (&quot; appears 7 times in this file; the first occurrence is on line 138
+</violation>
+<violation beginline="139" endline="139" begincolumn="35" endcolumn="63" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;) is too large for target (&quot; appears 4 times in this file; the first occurrence is on line 139
+</violation>
+<violation beginline="145" endline="145" begincolumn="20" endcolumn="46" rule="ByteInstantiation" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ByteInstantiation" priority="2">
+Avoid instantiating Byte objects. Call Byte.valueOf() instead
+</violation>
+<violation beginline="159" endline="159" begincolumn="20" endcolumn="48" rule="ShortInstantiation" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ShortInstantiation" priority="2">
+Avoid instantiating Short objects. Call Short.valueOf() instead
+</violation>
+<violation beginline="173" endline="173" begincolumn="20" endcolumn="48" rule="IntegerInstantiation" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#IntegerInstantiation" priority="2">
+Avoid instantiating Integer objects. Call Integer.valueOf() instead.
+</violation>
+<violation beginline="178" endline="178" begincolumn="20" endcolumn="46" rule="LongInstantiation" ruleset="Migration Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" method="toNumber" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#LongInstantiation" priority="2">
+Avoid instantiating Long objects.Call Long.valueOf() instead
+</violation>
+<violation beginline="238" endline="281" begincolumn="20" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="NumberConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method toNumber() has an NPath complexity of 256
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/ScalarConverter.java">
+<violation beginline="34" endline="144" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'ScalarConverter' has a Cyclomatic Complexity of 4 (Highest = 13).
+</violation>
+<violation beginline="45" endline="48" begincolumn="17" endcolumn="17" rule="AvoidDeeplyNestedIfStmts" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="ScalarConverter" method="canConvert" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidDeeplyNestedIfStmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="45" endline="48" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.converters" class="ScalarConverter" method="canConvert" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="70" endline="142" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.converters" class="ScalarConverter" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'convert' has a Cyclomatic Complexity of 13.
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/converters/URLConverter.java">
+<violation beginline="38" endline="38" begincolumn="17" endcolumn="174" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.converters" class="URLConverter" method="convert" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java">
+<violation beginline="15" endline="378" begincolumn="1" endcolumn="2" rule="ExcessivePublicCount" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.map" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessivePublicCount" priority="3">
+This class has a bunch of public methods and attributes
+</violation>
+<violation beginline="37" endline="378" begincolumn="86" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="54" endline="54" begincolumn="13" endcolumn="54" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'put' called during object construction
+</violation>
+<violation beginline="108" endline="108" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" method="getEntry" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'entry'
+</violation>
+<violation beginline="152" endline="152" begincolumn="16" endcolumn="58" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" method="keySet" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="158" endline="158" begincolumn="16" endcolumn="58" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" method="values" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="165" endline="165" begincolumn="16" endcolumn="90" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" method="entrySet" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="170" endline="206" begincolumn="14" endcolumn="5" rule="AbstractClassWithoutAbstractMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AbstractClassWithoutAbstractMethod" priority="3">
+This abstract class does not have any abstract methods
+</violation>
+<violation beginline="174" endline="174" begincolumn="35" endcolumn="41" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap$CoreIterator" variable="entries" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'entries' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="188" endline="188" begincolumn="17" endcolumn="119" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap$CoreIterator" method="getNext" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="208" endline="208" begincolumn="74" endcolumn="87" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap$KeyIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+<violation beginline="213" endline="213" begincolumn="76" endcolumn="89" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap$ValueIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+<violation beginline="218" endline="218" begincolumn="85" endcolumn="107" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ArrayOrderedMap$EntryIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java">
+<violation beginline="15" endline="445" begincolumn="1" endcolumn="2" rule="ExcessivePublicCount" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.map" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessivePublicCount" priority="3">
+This class has a bunch of public methods and attributes
+</violation>
+<violation beginline="39" endline="445" begincolumn="101" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="42" endline="42" begincolumn="13" endcolumn="21" rule="ReplaceVectorWithList" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceVectorWithList" priority="3">
+Consider replacing this Vector with the newer java.util.List
+</violation>
+<violation beginline="56" endline="56" begincolumn="13" endcolumn="54" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'put' called during object construction
+</violation>
+<violation beginline="109" endline="109" begincolumn="9" endcolumn="21" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="getEntry" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'entry'
+</violation>
+<violation beginline="119" endline="119" begincolumn="27" endcolumn="31" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="put" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'value'
+</violation>
+<violation beginline="132" endline="135" begincolumn="9" endcolumn="28" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="putIfAbsent" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="148" endline="148" begincolumn="46" endcolumn="50" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="remove" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'value'
+</violation>
+<violation beginline="180" endline="180" begincolumn="16" endcolumn="58" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="keySet" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="186" endline="186" begincolumn="16" endcolumn="58" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="values" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="189" endline="189" begincolumn="23" endcolumn="33" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;unchecked&quot; appears 4 times in this file; the first occurrence is on line 189
+</violation>
+<violation beginline="192" endline="192" begincolumn="16" endcolumn="90" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" method="entrySet" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="197" endline="233" begincolumn="14" endcolumn="5" rule="AbstractClassWithoutAbstractMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AbstractClassWithoutAbstractMethod" priority="3">
+This abstract class does not have any abstract methods
+</violation>
+<violation beginline="201" endline="201" begincolumn="35" endcolumn="41" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap$CoreIterator" variable="entries" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'entries' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="215" endline="215" begincolumn="17" endcolumn="119" rule="PreserveStackTrace" ruleset="Design Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap$CoreIterator" method="getNext" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+Caught exception is rethrown, original stack trace may be lost
+</violation>
+<violation beginline="235" endline="235" begincolumn="74" endcolumn="87" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap$KeyIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+<violation beginline="240" endline="240" begincolumn="76" endcolumn="89" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap$ValueIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+<violation beginline="245" endline="245" begincolumn="85" endcolumn="107" rule="ReplaceEnumerationWithIterator" ruleset="Migration Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap$EntryIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#ReplaceEnumerationWithIterator" priority="3">
+Consider replacing this Enumeration with the newer java.util.Iterator
+</violation>
+<violation beginline="428" endline="430" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.map" class="ConcurrentOrderedMap" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/refmap/FinalizableReferenceQueue.java">
+<violation beginline="29" endline="77" begincolumn="1" endcolumn="1" rule="ClassWithOnlyPrivateConstructorsShouldBeFinal" ruleset="Design Rules" package="org.azeckoski.reflectutils.refmap" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ClassWithOnlyPrivateConstructorsShouldBeFinal" priority="1">
+A class which only has private constructors should be final
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/refmap/ReferenceMap.java">
+<violation beginline="61" endline="627" begincolumn="68" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.refmap" class="ReferenceMap" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="347" endline="347" begincolumn="11" endcolumn="16" rule="CompareObjectsWithEquals" ruleset="Design Rules" package="org.azeckoski.reflectutils.refmap" class="ReferenceMap" method="referenceEquals" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#CompareObjectsWithEquals" priority="3">
+Use equals() to compare object references.
+</violation>
+<violation beginline="398" endline="400" begincolumn="22" endcolumn="5" rule="UselessOverridingMethod" ruleset="Basic Rules" package="org.azeckoski.reflectutils.refmap" class="ReferenceMap$KeyReferenceAwareWrapper" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UselessOverridingMethod" priority="3">
+Overriding method merely calls super
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java">
+<violation beginline="34" endline="315" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'HTMLTranscoder' has a Cyclomatic Complexity of 4 (Highest = 17).
+</violation>
+<violation beginline="40" endline="40" begincolumn="48" endcolumn="51" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="encode" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="43" endline="45" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="encode" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="59" endline="59" begincolumn="12" endcolumn="30" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="115" endline="230" begincolumn="22" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="115" endline="115" begincolumn="58" endcolumn="64" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="115" endline="115" begincolumn="58" endcolumn="64" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="115" endline="115" begincolumn="58" endcolumn="64" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="115" endline="115" begincolumn="58" endcolumn="64" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="115" endline="115" begincolumn="58" endcolumn="64" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="115" endline="230" begincolumn="22" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'toHTML' has a Cyclomatic Complexity of 17.
+</violation>
+<violation beginline="115" endline="230" begincolumn="22" endcolumn="5" rule="NcssMethodCount" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NcssMethodCount" priority="3">
+The method toHTML() has an NCSS line count of 101
+</violation>
+<violation beginline="125" endline="125" begincolumn="27" endcolumn="37" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;&lt;/td&gt;&lt;td&gt;&quot; appears 5 times in this file; the first occurrence is on line 125
+</violation>
+<violation beginline="127" endline="127" begincolumn="27" endcolumn="38" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="toHTML" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;&lt;/td&gt;&lt;/tr&gt;&quot; appears 5 times in this file; the first occurrence is on line 127
+</violation>
+<violation beginline="235" endline="237" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="makeElementName" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="249" endline="249" begincolumn="65" endcolumn="69" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="HTMLTranscoder" method="makeLevelSpaces" variable="level" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'level'
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/JSONTranscoder.java">
+<violation beginline="44" endline="585" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'JSONTranscoder' has a Cyclomatic Complexity of 5 (Highest = 28).
+</violation>
+<violation beginline="44" endline="585" begincolumn="51" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="64" endline="64" begincolumn="9" endcolumn="23" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" method="encode" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'encoded'
+</violation>
+<violation beginline="85" endline="85" begincolumn="12" endcolumn="30" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="155" endline="269" begincolumn="22" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="155" endline="269" begincolumn="22" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'toJSON' has a Cyclomatic Complexity of 28.
+</violation>
+<violation beginline="291" endline="337" begincolumn="19" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'escapeForJSON' has a Cyclomatic Complexity of 13.
+</violation>
+<violation beginline="375" endline="583" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'JsonReader' has a Cyclomatic Complexity of 4 (Highest = 13).
+</violation>
+<violation beginline="375" endline="583" begincolumn="29" endcolumn="5" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="380" endline="380" begincolumn="30" endcolumn="32" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" variable="buf" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'buf' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="380" endline="380" begincolumn="17" endcolumn="28" rule="AvoidStringBufferField" ruleset="String and StringBuffer Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidStringBufferField" priority="3">
+StringBuffers can grow quite a lot, and so may become a source of memory leak (if the owning class has a long life time).
+</violation>
+<violation beginline="395" endline="405" begincolumn="13" endcolumn="13" rule="SwitchStmtsShouldHaveDefault" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" method="read" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+Switch statements should have a default label
+</violation>
+<violation beginline="417" endline="449" begincolumn="17" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'read' has a Cyclomatic Complexity of 13.
+</violation>
+<violation beginline="454" endline="454" begincolumn="20" endcolumn="43" rule="CompareObjectsWithEquals" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" method="object" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#CompareObjectsWithEquals" priority="3">
+Use equals() to compare object references.
+</violation>
+<violation beginline="456" endline="456" begincolumn="21" endcolumn="44" rule="CompareObjectsWithEquals" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" method="object" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#CompareObjectsWithEquals" priority="3">
+Use equals() to compare object references.
+</violation>
+<violation beginline="470" endline="470" begincolumn="20" endcolumn="42" rule="CompareObjectsWithEquals" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" method="array" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#CompareObjectsWithEquals" priority="3">
+Use equals() to compare object references.
+</violation>
+<violation beginline="479" endline="523" begincolumn="17" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'number' has a Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="567" endline="578" begincolumn="17" endcolumn="17" rule="SwitchStmtsShouldHaveDefault" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="JSONTranscoder$JsonReader" method="unicode" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+Switch statements should have a default label
+</violation>
+</file>
+<file name="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java">
+<violation beginline="54" endline="786" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'XMLTranscoder' has a Cyclomatic Complexity of 4 (Highest = 29).
+</violation>
+<violation beginline="54" endline="786" begincolumn="50" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="60" endline="60" begincolumn="48" endcolumn="51" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="encode" variable="name" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'name'
+</violation>
+<violation beginline="64" endline="66" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="encode" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="88" endline="88" begincolumn="12" endcolumn="29" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="159" endline="314" begincolumn="22" endcolumn="5" rule="ExcessiveMethodLength" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#ExcessiveMethodLength" priority="3">
+Avoid really long methods.
+</violation>
+<violation beginline="159" endline="159" begincolumn="57" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="toXML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="159" endline="159" begincolumn="57" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="toXML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="159" endline="159" begincolumn="57" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="toXML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="159" endline="159" begincolumn="57" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="toXML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="159" endline="159" begincolumn="57" endcolumn="63" rule="AvoidReassigningParameters" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="toXML" variable="tagName" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'tagName'
+</violation>
+<violation beginline="159" endline="314" begincolumn="22" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'toXML' has a Cyclomatic Complexity of 29.
+</violation>
+<violation beginline="159" endline="314" begincolumn="22" endcolumn="5" rule="NcssMethodCount" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NcssMethodCount" priority="3">
+The method toXML() has an NCSS line count of 132
+</violation>
+<violation beginline="159" endline="314" begincolumn="22" endcolumn="5" rule="NPathComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#NPathComplexity" priority="3">
+The method toXML() has an NPath complexity of 331
+</violation>
+<violation beginline="319" endline="322" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="makeElementName" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="437" endline="601" begincolumn="12" endcolumn="5" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The class 'XMLparser' has a Cyclomatic Complexity of 4 (Highest = 11).
+</violation>
+<violation beginline="438" endline="438" begincolumn="24" endcolumn="26" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" variable="xml" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'xml' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="439" endline="439" begincolumn="37" endcolumn="39" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" variable="map" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'map' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="447" endline="447" begincolumn="13" endcolumn="25" rule="ConstructorCallsOverridableMethod" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConstructorCallsOverridableMethod" priority="1">
+Overridable method 'parseXML' called during object construction
+</violation>
+<violation beginline="476" endline="523" begincolumn="19" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'add' has a Cyclomatic Complexity of 10.
+</violation>
+<violation beginline="525" endline="525" begincolumn="31" endcolumn="38" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" variable="tagStack" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'tagStack' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="526" endline="526" begincolumn="34" endcolumn="47" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" variable="containerStack" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'containerStack' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="528" endline="528" begincolumn="33" endcolumn="40" rule="ImmutableField" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" variable="contents" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'contents' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="551" endline="588" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$XMLparser" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#CyclomaticComplexity" priority="3">
+The method 'endElement' has a Cyclomatic Complexity of 11.
+</violation>
+<violation beginline="636" endline="638" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="getDataClass" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="669" endline="677" begincolumn="13" endcolumn="13" rule="MissingBreakInSwitch" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="number" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#MissingBreakInSwitch" priority="3">
+A switch statement does not contain a break
+</violation>
+<violation beginline="669" endline="677" begincolumn="13" endcolumn="13" rule="SwitchStmtsShouldHaveDefault" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder" method="number" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SwitchStmtsShouldHaveDefault" priority="3">
+Switch statements should have a default label
+</violation>
+<violation beginline="740" endline="744" begincolumn="13" endcolumn="13" rule="ConfusingTernary" ruleset="Design Rules" package="org.azeckoski.reflectutils.transcoders" class="XMLTranscoder$Container" method="replaceContainer" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+</pmd>

@@ -1,0 +1,28 @@
+-classpath '/opt/mytools/reflectutils/target/checkout/target/classes:/Users/azeckoski/.m2/repository/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar:/Users/azeckoski/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar'
+ -breakiterator
+-encoding
+'ISO-8859-1'
+-protected
+-verbose
+-sourcepath
+'/opt/mytools/reflectutils/target/checkout/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2006-2008. All Rights Reserved.'
+-breakiterator
+-charset
+'ISO-8859-1'
+-d
+'/opt/mytools/reflectutils/target/checkout/target/site/apidocs'
+-doctitle
+'Reflection Utilities 0.9 API'
+-link
+'http://java.sun.com/j2se/1.4.2/docs/api'
+-link
+'http://saffron.caret.cam.ac.uk/projects/ServletUtil/apidocs'
+-link
+'http://saffron.caret.cam.ac.uk/projects/PonderUtilCore/apidocs'
+-use
+-version
+-windowtitle
+'Reflection Utilities 0.9 API'

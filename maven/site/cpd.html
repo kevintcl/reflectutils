@@ -1,0 +1,721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reflection Utilities - CPD Results</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Reflection Utilities
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2008-10-01
+                      </div>
+            <div class="xright">            <a href="">Reflection Utilities</a>
+            
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                             <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="changelog.html">changelog</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cobertura/index.html">Cobertura Test Coverage</a>
+          </li>
+                  
+    <li class="none">
+              <strong>CPD Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="dev-activity.html">dev-activity</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="file-activity.html">file-activity</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jdepend-report.html">JDepend</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jxr.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="taglist.html">Tag List</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>CPD Results</h2>
+<p>The following document contains the results of PMD's  <a href="http://pmd.sourceforge.net/cpd.html" class="externalLink">CPD</a>
+ 4.2.2.</p>
+</div>
+<div class="section"><h2>Duplications</h2>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#304">304</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#331">331</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            // Since we don't ordinarily have distinct Entry objects, we
+            // must pack elements using exportable SimpleEntry
+            Collection&lt;Map.Entry&lt;K,V&gt;&gt; c = new ArrayList&lt;Map.Entry&lt;K,V&gt;&gt;(size());
+            for (Iterator&lt;Map.Entry&lt;K,V&gt;&gt; i = iterator(); i.hasNext(); )
+                c.add(new SimpleEntry&lt;K,V&gt;(i.next()));
+            return c.toArray();
+        }
+        public &lt;T&gt; T[] toArray(T[] a) {
+            Collection&lt;Map.Entry&lt;K,V&gt;&gt; c = new ArrayList&lt;Map.Entry&lt;K,V&gt;&gt;(size());
+            for (Iterator&lt;Map.Entry&lt;K,V&gt;&gt; i = iterator(); i.hasNext(); )
+                c.add(new SimpleEntry&lt;K,V&gt;(i.next()));
+            return c.toArray(a);
+        }
+
+    }
+
+
+    /**
+     * This duplicates java.util.AbstractMap.SimpleEntry until this class
+     * is made accessible.
+     */
+    static final class SimpleEntry&lt;K,V&gt; implements Entry&lt;K,V&gt; {
+        K key;
+        V value;
+
+        public SimpleEntry(K key, V value) {
+            this.key   = key;
+            this.value = value;
+        }
+
+        public SimpleEntry(Entry&lt;K,V&gt; e) {
+            this.key   = e.getKey();
+            this.value = e.getValue();
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return fixNullOut(value);</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#51">51</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#53">53</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>    public ConcurrentOrderedMap(Map&lt;K, V&gt; map) {
+        this(map.size());
+        for (Entry&lt;K, V&gt; entry : map.entrySet()) {
+            this.put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    private String name = &quot;entity&quot;;
+    public String getName() {
+        return name;
+    }
+    /**
+     * @param name the name to use when encoding this map of entities
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return a list of all the keys in this map in the order they were entered
+     */
+    public List&lt;K&gt; getKeys() {
+        return new ArrayList&lt;K&gt;(list);
+    }
+
+    /* (non-Javadoc)
+     * @see org.azeckoski.reflectutils.map.OrderedMap#getValues()
+     */
+    public List&lt;V&gt; getValues() {
+        return new ArrayList&lt;V&gt;( values() );
+    }
+
+    /**
+     * @return a list of all the entries in this map in the order they were created
+     */
+    public List&lt;Entry&lt;K, V&gt;&gt; getEntries() {
+        ArrayList&lt;Entry&lt;K, V&gt;&gt; entries = new ArrayList&lt;Entry&lt;K,V&gt;&gt;();
+        for (K key : list) {
+            Entry&lt;K, V&gt; entry = new SimpleEntry&lt;K,V&gt;(key, this.get(key));
+            entries.add(entry);
+        }
+        return entries;
+    }
+
+    /**
+     * Get an entry based on the position it is in the map (based on the order entries were created)
+     * @param position the position in the map (must be less that the size)
+     * @return the entry at that position
+     * @throws IllegalArgumentException if the position is greater than the map size
+     */
+    public Entry&lt;K, V&gt; getEntry(int position) {
+        if (position &gt;= list.size()) {
+            throw new IllegalArgumentException(&quot;Value is too large for the map size: &quot; + list.size());
+        }
+        K key = list.get(position);
+        Entry&lt;K, V&gt; entry = new SimpleEntry&lt;K,V&gt;(key, this.get(key));
+        return entry;
+    }
+
+    @Override
+    public V get(Object key) {</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#198">198</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#225">225</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            ConcurrentOrderedMap.this.remove(lastReturned.getKey());
+        }
+
+        // shared methods
+        public boolean hasNext() {          return hasMore(); }
+        public boolean hasMoreElements() {  return hasMore(); }
+        public void remove() {              removeCurrent(); }
+
+    }
+
+    final class KeyIterator extends CoreIterator implements Iterator&lt;K&gt;, Enumeration&lt;K&gt; {
+        public K next() {                   return super.getNext().getKey(); }
+        public K nextElement() {            return next(); }
+    }
+
+    final class ValueIterator extends CoreIterator implements Iterator&lt;V&gt;, Enumeration&lt;V&gt; {
+        public V next() {                   return super.getNext().getValue(); }
+        public V nextElement() {            return next(); }
+    }
+
+    final class EntryIterator extends CoreIterator implements Iterator&lt;Entry&lt;K,V&gt;&gt;, Enumeration&lt;Entry&lt;K,V&gt;&gt; {
+        public Entry&lt;K,V&gt; next() {                   return super.getNext(); }
+        public Entry&lt;K,V&gt; nextElement() {            return next(); }
+    }
+
+    // All below copied from CHM
+
+    final class KeySet extends AbstractSet&lt;K&gt; {
+        public Iterator&lt;K&gt; iterator() {
+            return new KeyIterator();
+        }
+        public int size() {
+            return ConcurrentOrderedMap.this.size();</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.html#251">251</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/transcoders/XMLTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#343">343</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>        if (includeEOL) {
+            for (int i = 0; i &lt; level; i++) {
+                sb.append(SPACES);
+            }
+        }
+    }
+
+    /**
+     * Escape a string for XML encoding: replace special characters with XML escapes:
+     * &lt;pre&gt;
+     * &amp;amp; &lt;small&gt;(ampersand)&lt;/small&gt; is replaced by &amp;amp;amp;
+     * &amp;lt; &lt;small&gt;(less than)&lt;/small&gt; is replaced by &amp;amp;lt;
+     * &amp;gt; &lt;small&gt;(greater than)&lt;/small&gt; is replaced by &amp;amp;gt;
+     * &amp;quot; &lt;small&gt;(double quote)&lt;/small&gt; is replaced by &amp;amp;quot;
+     * &lt;/pre&gt;
+     * @param string The string to be escaped.
+     * @return The escaped string.
+     */
+    public static String escapeForXML(String string) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, len = string.length(); i &lt; len; i++) {
+            char c = string.charAt(i);
+            switch (c) {
+            case AMP:
+                sb.append(&quot;&amp;amp;&quot;);
+                break;
+            case LT:
+                sb.append(&quot;&amp;lt;&quot;);
+                break;
+            case GT:
+                sb.append(&quot;&amp;gt;&quot;);
+                break;
+            case QUOT:
+                sb.append(&quot;&amp;quot;&quot;);
+                break;
+            default:
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Validates that a string contains no spaces and is non-null/non-empty
+     * Throw an exception if the string contains whitespace. 
+     * Whitespace is not allowed in tagNames and attributes.
+     * @param string any string
+     * @throws IllegalArgumentException
+     */
+    public static String validate(String string) {
+        if (string == null) {
+            throw new IllegalArgumentException(&quot;string is NULL&quot;);
+        }
+        int i, length = string.length();
+        if (length == 0) {
+            throw new IllegalArgumentException(&quot;Empty string.&quot;);
+        }
+        for (i = 0; i &lt; length; i += 1) {
+            if (Character.isWhitespace(string.charAt(i))) {
+                throw new IllegalArgumentException(&quot;'&quot; + string + &quot;' contains a space character.&quot;);
+            }
+        }
+        return string;
+    }</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#266">266</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#293">293</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            Collection&lt;V&gt; c = new ArrayList&lt;V&gt;();
+            for (Iterator&lt;V&gt; i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray();
+        }
+        public &lt;T&gt; T[] toArray(T[] a) {
+            Collection&lt;V&gt; c = new ArrayList&lt;V&gt;();
+            for (Iterator&lt;V&gt; i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray(a);
+        }
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    final class EntrySet extends AbstractSet&lt;Map.Entry&lt;K,V&gt;&gt; {
+        public Iterator&lt;Map.Entry&lt;K,V&gt;&gt; iterator() {
+            return new EntryIterator();
+        }
+        public boolean contains(Object o) {
+            if (!(o instanceof Map.Entry))
+                return false;
+            Map.Entry&lt;K,V&gt; e = (Map.Entry&lt;K,V&gt;)o;
+            V v = ConcurrentOrderedMap.this.get(e.getKey());</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#239">239</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#266">266</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            ConcurrentOrderedMap.this.clear();
+        }
+        public Object[] toArray() {
+            Collection&lt;K&gt; c = new ArrayList&lt;K&gt;();
+            for (Iterator&lt;K&gt; i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray();
+        }
+        public &lt;T&gt; T[] toArray(T[] a) {
+            Collection&lt;K&gt; c = new ArrayList&lt;K&gt;();
+            for (Iterator&lt;K&gt; i = iterator(); i.hasNext(); )
+                c.add(i.next());
+            return c.toArray(a);
+        }
+    }
+
+    final class Values extends AbstractCollection&lt;V&gt; {
+        public Iterator&lt;V&gt; iterator() {
+            return new ValueIterator();
+        }
+        public int size() {
+            return ConcurrentOrderedMap.this.size();</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#352">352</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#379">379</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            this.value = value;
+            return oldValue;
+        }
+
+        @SuppressWarnings(&quot;unchecked&quot;)
+        public boolean equals(Object o) {
+            if (!(o instanceof Map.Entry))
+                return false;
+            Map.Entry e = (Map.Entry)o;
+            return eq(key, e.getKey()) 
+                &amp;&amp; eq(value, e.getValue());
+        }
+
+        public int hashCode() {
+            return ((key   == null)   ? 0 :   key.hashCode()) ^
+                   ((value == null)   ? 0 : value.hashCode());
+        }
+
+        public String toString() {
+            return key + &quot;=&quot; + fixNullOut(value);</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/FieldUtils.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/FieldUtils.html#248">248</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/FieldUtils.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/FieldUtils.html#543">543</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>            while (getResolver().hasNested(name)) {
+                String next = getResolver().next(name);
+                Object nestedBean = null;
+                if (Map.class.isAssignableFrom(obj.getClass())) {
+                    nestedBean = getValueOfMap((Map) obj, next);
+                } else if (getResolver().isMapped(next)) {
+                    nestedBean = getMappedValue(obj, next);
+                } else if (getResolver().isIndexed(next)) {
+                    nestedBean = getIndexedValue(obj, next);
+                } else {
+                    nestedBean = getSimpleValue(obj, next);
+                }
+                if (nestedBean == null) {</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/map/ArrayOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ArrayOrderedMap.html#141">141</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.html#169">169</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>    public Enumeration&lt;V&gt; elements() {
+        return new ValueIterator();
+    }
+
+    transient Set&lt;K&gt; keySet;
+    transient Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;
+    transient Collection&lt;V&gt; values;
+
+    @Override
+    public Set&lt;K&gt; keySet() {
+        Set&lt;K&gt; ks = keySet;
+        return (ks != null) ? ks : (keySet = new KeySet());
+    }
+
+    @Override
+    public Collection&lt;V&gt; values() {
+        Collection&lt;V&gt; vs = values;
+        return (vs != null) ? vs : (values = new Values());
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/FieldUtils.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/FieldUtils.html#496">496</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/FieldUtils.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/FieldUtils.html#1011">1011</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>                    } else {
+                        // this is a list
+                        List l = (List) indexedObject;
+                        try {
+                            // set value on list
+                            if (index &lt; 0) {
+                                l.add(value);
+                            } else {
+                                if (index &gt;= l.size()) {
+                                    // automatically expand the list
+                                    int start = l.size();
+                                    for (int i = start; i &lt; (index+1); i++) {
+                                        l.add(i, null);
+                                    }
+                                }
+                                l.set(index, value);
+                            }
+                        } catch (Exception e) {
+                            // catching the general exception is correct here, translate the exception
+                            throw new IllegalArgumentException(&quot;Failed to set index (&quot;+index+&quot;) for list of size (&quot;+l.size()+&quot;) to value: &quot; + value, e);
+                        }
+                    }</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/transcoders/JSONTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/JSONTranscoder.html#504">504</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/transcoders/XMLTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#681">681</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>        Number num = null;
+        if (isFloatingPoint) {
+            if (length &lt; 10) {
+                num = Float.valueOf(s);
+            } else if (length &lt; 17) {
+                num = Double.valueOf(s);
+            } else {
+                num = new BigDecimal(s);
+            }
+        } else {
+            if (length &lt; 10) {
+                num = Integer.valueOf(s);
+            } else if (length &lt; 19) {
+                num = Long.valueOf(s);
+            } else {
+                num = new BigInteger(s);
+            }
+        }
+        return num;
+    }</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2006-2008
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
