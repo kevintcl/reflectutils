@@ -209,7 +209,17 @@ public class FieldUtils {
         } else {
             // normal object
             ClassFields<?> cf = analyzeClass(type);
-            fieldType = cf.getFieldType(targetName);
+            try {
+                fieldType = cf.getFieldType(targetName);
+            } catch (FieldnameNotFoundException fnfe) {
+                // could not find this as a standard field so handle as internal lookup
+                ClassData<?> cd = cf.getClassData();
+                Field field = getFieldIfPossible(cd, name);
+                if (field == null) {
+                    throw new FieldnameNotFoundException("Could not find field with name ("+name+") in class (" + type + ") after extended look into non-visible fields", fnfe);
+                }
+                fieldType = field.getType();
+            }
         }
         // special handling for indexed and mapped names
         if (getResolver().isIndexed(name) || getResolver().isMapped(name)) {
@@ -277,8 +287,18 @@ public class FieldUtils {
         } else {
             // normal object
             ClassFields<?> cf = analyzeObject(obj);
-            ClassProperty cp = cf.getClassProperty(targetName);
-            fieldType = cp.getType();
+            try {
+                ClassProperty cp = cf.getClassProperty(targetName);
+                fieldType = cp.getType();
+            } catch (FieldnameNotFoundException fnfe) {
+                // could not find this as a standard field so handle as internal lookup
+                ClassData<?> cd = cf.getClassData();
+                Field field = getFieldIfPossible(cd, name);
+                if (field == null) {
+                    throw new FieldnameNotFoundException("Could not find field with name ("+name+") on object (" + obj + ") after extended look into non-visible fields", fnfe);
+                }
+                fieldType = field.getType();
+            }
         }
         // special handling for indexed and mapped names
         if (getResolver().isIndexed(name) || getResolver().isMapped(name)) {
@@ -629,8 +649,24 @@ public class FieldUtils {
         } else {
             // normal bean
             ClassFields<?> cf = analyzeObject(obj);
-            ClassProperty cp = cf.getClassProperty(name);
-            value = findFieldValue(obj, cp);
+            try {
+                // use the class property
+                ClassProperty cp = cf.getClassProperty(name);
+                value = findFieldValue(obj, cp);
+            } catch (FieldnameNotFoundException fnfe) {
+                // could not find this as a standard field so handle as internal lookup
+                ClassData<?> cd = cf.getClassData();
+                Field field = getFieldIfPossible(cd, name);
+                if (field == null) {
+                    throw new FieldnameNotFoundException("Could not find field with name ("+name+") on object (" + obj + ") after extended look into non-visible fields", fnfe);
+                }
+                try {
+                    value = field.get(obj);
+                } catch (Exception e) {
+                    // catching the general exception is correct here, translate the exception
+                    throw new FieldGetValueException("Field get failure getting value for field ("+name+") from non-visible field in object: " + obj, name, obj, e);
+                }
+            }
         }
         return value;
     }
@@ -909,8 +945,24 @@ public class FieldUtils {
         } else {
             // normal bean
             ClassFields<?> cf = analyzeObject(obj);
-            ClassProperty cp = cf.getClassProperty(name);
-            assignFieldValue(obj, cp, value);
+            try {
+                ClassProperty cp = cf.getClassProperty(name);
+                assignFieldValue(obj, cp, value);
+            } catch (FieldnameNotFoundException fnfe) {
+                // could not find this as a standard field so handle as internal lookup
+                ClassData<?> cd = cf.getClassData();
+                Field field = getFieldIfPossible(cd, name);
+                if (field == null) {
+                    throw new FieldnameNotFoundException("Could not find field with name ("+name+") on object (" + obj + ") after extended look into non-visible fields", fnfe);
+                }
+                try {
+                    value = getConversionUtils().convert(value, field.getType());
+                    field.set(obj, value);
+                } catch (Exception e) {
+                    // catching the general exception is correct here, translate the exception
+                    throw new FieldSetValueException("Field set failure setting value ("+value+") for field ("+name+") from non-visible field in object: " + obj, name, obj, e);
+                }
+            }
         }
     }
 
@@ -1210,6 +1262,24 @@ public class FieldUtils {
                         cp.getFieldName(), value, obj, e);
             }
         }
+    }
+
+    /**
+     * Get the field if it exists for this class
+     * @param cd the class data cache object
+     * @param name the name of the field
+     * @return the field if found OR null if not
+     */
+    protected Field getFieldIfPossible(ClassData<?> cd, String name) {
+        Field f = null;
+        List<Field> fields = cd.getFields();
+        for (Field field : fields) {
+            if (field.getName().equals(name)) {
+                f = field;
+                break;
+            }
+        }
+        return f;
     }
 
     public static final class Holder {
