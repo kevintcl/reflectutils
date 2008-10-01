@@ -1,28 +1,32 @@
--classpath '/opt/mytools/reflectutils/target/checkout/target/classes:/opt/mytools/reflectutils/target/checkout/target/test-classes:/Users/azeckoski/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/azeckoski/.m2/repository/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar:/Users/azeckoski/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar'
- -breakiterator
+-breakiterator
+-classpath
+'/opt/mytools/reflectutils/target/classes:/opt/mytools/reflectutils/target/test-classes:/Users/azeckoski/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/azeckoski/.m2/repository/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar:/Users/azeckoski/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar'
 -encoding
-'ISO-8859-1'
+'MacRoman'
+-overview
+'/opt/mytools/reflectutils/src/main/java/overview.html'
 -protected
--verbose
 -sourcepath
-'/opt/mytools/reflectutils/target/checkout/src/test/java'
+'/opt/mytools/reflectutils/src/test/java'
+-verbose
 -author
 -bottom
 'Copyright &#169; 2006-2008. All Rights Reserved.'
--breakiterator
 -charset
-'ISO-8859-1'
+'UTF-8'
 -d
-'/opt/mytools/reflectutils/target/checkout/target/site/testapidocs'
+'/opt/mytools/reflectutils/target/site/testapidocs'
+-docencoding
+'UTF-8'
 -doctitle
-'Reflection Utilities 0.9 Test API'
+'Reflection Utilities 0.9.6-SNAPSHOT Test API'
 -link
-'http://java.sun.com/j2se/1.4.2/docs/api'
+'http://java.sun.com/j2se/1.5.0/docs/api'
 -link
-'http://saffron.caret.cam.ac.uk/projects/ServletUtil/apidocs'
+'http://commons.apache.org/beanutils/apidocs'
 -link
-'http://saffron.caret.cam.ac.uk/projects/PonderUtilCore/apidocs'
+'../apidocs'
 -use
 -version
 -windowtitle
-'Reflection Utilities 0.9 Test API'
+'Reflection Utilities 0.9.6-SNAPSHOT Test API'

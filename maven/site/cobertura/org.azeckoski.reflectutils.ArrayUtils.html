@@ -218,27 +218,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;41</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        Class&lt;?&gt; type = array.getClass().getComponentType();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;42</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        T[] newArray = (T[]) Array.newInstance(type, newSize);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;43</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> toCopy = Math.min(array.length, newArray.length);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;44</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        System.arraycopy( array, 0, newArray, 0, toCopy );</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;45</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> newArray;</pre></td>
 </tr>
 <tr>
@@ -293,12 +293,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;56</td>
-  <td class="nbHitsCovered">&nbsp;19</td>
+  <td class="nbHitsCovered">&nbsp;114</td>
   <td class="src"><pre class="src">&nbsp;        T[] newArray = (T[]) Array.newInstance(type, newSize);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;57</td>
-  <td class="nbHitsCovered">&nbsp;19</td>
+  <td class="nbHitsCovered">&nbsp;114</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> newArray;</pre></td>
 </tr>
 <tr>
@@ -343,7 +343,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;66</td>
-  <td class="nbHitsCovered">&nbsp;71</td>
+  <td class="nbHitsCovered">&nbsp;426</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Array.getLength(array);</pre></td>
 </tr>
 <tr>
@@ -388,7 +388,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;75</td>
-  <td class="nbHitsCovered">&nbsp;38</td>
+  <td class="nbHitsCovered">&nbsp;228</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> array.getClass().getComponentType();</pre></td>
 </tr>
 <tr>
@@ -518,17 +518,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;101</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;        Class&lt;?&gt; type = array.getClass().getComponentType();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;102</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;        T[] newArray = (T[]) Array.newInstance(type, array.length);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;103</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> newArray;</pre></td>
 </tr>
 <tr>
@@ -593,32 +593,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;116</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> foundValue = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;117</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (value != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;118</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; array.length; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;119</td>
-  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (value.equals(array[i])) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;120</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                    foundValue = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;121</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">break</span>;</pre></td>
 </tr>
 <tr>
@@ -638,7 +638,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;125</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> foundValue;</pre></td>
 </tr>
 <tr>
@@ -1298,27 +1298,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;257</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        StringBuilder result = <span class="keyword">new</span> StringBuilder();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;258</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (array != <span class="keyword">null</span> &amp;&amp; array.length &gt; 0) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;259</td>
-  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; array.length; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;260</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (i &gt; 0) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;261</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;                    result.append(<span class="string">","</span>);</pre></td>
 </tr>
 <tr>
@@ -1328,12 +1328,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;263</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (array[i] != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;264</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                    result.append(array[i].toString());</pre></td>
 </tr>
 <tr>
@@ -1353,7 +1353,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;268</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> result.toString();</pre></td>
 </tr>
 <tr>
@@ -1478,27 +1478,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;293</td>
-  <td class="nbHitsCovered">&nbsp;155</td>
+  <td class="nbHitsCovered">&nbsp;930</td>
   <td class="src"><pre class="src">&nbsp;        Set&lt;T&gt; s = <span class="keyword">new</span> HashSet&lt;T&gt;();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;294</td>
-  <td class="nbHitsCovered">&nbsp;155</td>
+  <td class="nbHitsCovered">&nbsp;1286</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (Iterator&lt;T&gt; iter = list.iterator(); iter.hasNext();) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;295</td>
-  <td class="nbHitsCovered">&nbsp;23</td>
+  <td class="nbHitsCovered">&nbsp;138</td>
   <td class="src"><pre class="src">&nbsp;            T element = (T) iter.next();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;296</td>
-  <td class="nbHitsCovered">&nbsp;23</td>
+  <td class="nbHitsCovered">&nbsp;138</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (! s.add(element)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;297</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                iter.remove();</pre></td>
 </tr>
 <tr>
@@ -1508,12 +1508,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;299</td>
-  <td class="nbHitsCovered">&nbsp;23</td>
+  <td class="nbHitsCovered">&nbsp;92</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;300</td>
-  <td class="nbHitsCovered">&nbsp;155</td>
+  <td class="nbHitsCovered">&nbsp;930</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> list;</pre></td>
 </tr>
 <tr>
@@ -1563,27 +1563,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;310</td>
-  <td class="nbHitsCovered">&nbsp;43</td>
+  <td class="nbHitsCovered">&nbsp;258</td>
   <td class="src"><pre class="src">&nbsp;        Set&lt;T&gt; set = <span class="keyword">new</span> HashSet&lt;T&gt;();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;311</td>
-  <td class="nbHitsCovered">&nbsp;43</td>
+  <td class="nbHitsCovered">&nbsp;258</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (array != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;312</td>
-  <td class="nbHitsCovered">&nbsp;11</td>
+  <td class="nbHitsCovered">&nbsp;66</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; array.length; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;313</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (array[i] != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;314</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;                    set.add(array[i]);</pre></td>
 </tr>
 <tr>
@@ -1603,7 +1603,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;318</td>
-  <td class="nbHitsCovered">&nbsp;43</td>
+  <td class="nbHitsCovered">&nbsp;258</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> set;</pre></td>
 </tr>
 <tr>

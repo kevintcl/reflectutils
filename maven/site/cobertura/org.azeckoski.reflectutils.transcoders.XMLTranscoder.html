@@ -12,14 +12,14 @@
 <div class="separator">&nbsp;</div>
 <table class="report">
 <thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
-  <tr><td class="text"><a href="org.azeckoski.reflectutils.transcoders.XMLTranscoder.html">XMLTranscoder</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>79%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="78"></td><td class="uncovered" width="21"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>91%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="90"></td><td class="uncovered" width="9"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
+  <tr><td class="text"><a href="org.azeckoski.reflectutils.transcoders.XMLTranscoder.html">XMLTranscoder</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>78%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="78"></td><td class="uncovered" width="21"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>91%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="90"></td><td class="uncovered" width="9"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
 </table>
 <div class="separator">&nbsp;</div>
 <table cellspacing="0" cellpadding="0" class="src">
 <tr>
-  <td class="numLine">&nbsp;1</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
+  <td class="numLineCover">&nbsp;1</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<span class="comment">/**</span></span></pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;2</td>
@@ -318,12 +318,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;61</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;        String encoded = <span class="string">""</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;62</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (object != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -333,12 +333,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;64</td>
-  <td class="nbHitsCovered">&nbsp;29</td>
+  <td class="nbHitsCovered">&nbsp;174</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (name == <span class="keyword">null</span> || <span class="string">""</span>.equals(name)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;65</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                name = DATA_KEY;</pre></td>
 </tr>
 <tr>
@@ -353,12 +353,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;68</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;        encoded = XMLTranscoder.makeXML(object, name, properties, humanOutput, includeNulls, includeClass, includeClassField);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;69</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> encoded;</pre></td>
 </tr>
 <tr>
@@ -418,7 +418,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;81</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> XMLparser(string).getMap();</pre></td>
 </tr>
 <tr>
@@ -463,22 +463,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;90</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> humanOutput = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;91</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> includeNulls = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;92</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> includeClass = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;93</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> includeClassField = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -513,27 +513,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;100</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> XMLTranscoder(<span class="keyword">boolean</span> humanOutput, <span class="keyword">boolean</span> includeNulls, <span class="keyword">boolean</span> includeClassField) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;101</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.humanOutput = humanOutput;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;102</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.includeNulls = includeNulls;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;103</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.includeClassField = includeClassField;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;104</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -788,7 +788,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;155</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toXML(object, tagName, 0, humanOutput, includeNulls, includeClass, includeClassField, properties);</pre></td>
 </tr>
 <tr>
@@ -813,7 +813,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;160</td>
-  <td class="nbHitsCovered">&nbsp;262</td>
+  <td class="nbHitsCovered">&nbsp;1572</td>
   <td class="src"><pre class="src">&nbsp;        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</pre></td>
 </tr>
 <tr>
@@ -823,12 +823,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;162</td>
-  <td class="nbHitsCovered">&nbsp;262</td>
+  <td class="nbHitsCovered">&nbsp;1572</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (object == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;163</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (includeNulls) {</pre></td>
 </tr>
 <tr>
@@ -838,37 +838,37 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;165</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                tagName = validate(tagName == <span class="keyword">null</span> ? <span class="string">"null"</span> : tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;166</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;167</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;168</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;169</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SLASH);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;170</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;171</td>
-  <td class="nbHitsCovered">&nbsp;26</td>
+  <td class="nbHitsCovered">&nbsp;156</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
@@ -883,12 +883,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;174</td>
-  <td class="nbHitsCovered">&nbsp;231</td>
+  <td class="nbHitsCovered">&nbsp;1386</td>
   <td class="src"><pre class="src">&nbsp;            Class&lt;?&gt; type = ConstructorUtils.getWrapper(object.getClass());</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;175</td>
-  <td class="nbHitsCovered">&nbsp;231</td>
+  <td class="nbHitsCovered">&nbsp;1386</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> ( ConstructorUtils.isClassSimple(type) ) {</pre></td>
 </tr>
 <tr>
@@ -898,32 +898,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;177</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                tagName = validate(tagName == <span class="keyword">null</span> ? makeElementName(type) : tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;178</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                String value = <span class="string">""</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;179</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;180</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;181</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;182</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (Date.<span class="keyword">class</span>.isAssignableFrom(type) || Calendar.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
@@ -933,17 +933,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;184</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    Date d = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;185</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (Date.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;186</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                        d = (Date) object;</pre></td>
 </tr>
 <tr>
@@ -963,27 +963,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;190</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    value = d.getTime()+<span class="string">""</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;191</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append(<span class="string">" type='date' date='"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;192</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append( DateUtils.makeDateISO8601(d) );</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;193</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append(APOS);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;194</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;322</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> <span class="keyword">if</span> (Number.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
@@ -993,12 +993,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;196</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append(<span class="string">" type='number'"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;197</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (includeClass) {</pre></td>
 </tr>
 <tr>
@@ -1013,12 +1013,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;200</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;                    value = object.toString();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;201</td>
-  <td class="nbHitsCovered">&nbsp;106</td>
+  <td class="nbHitsCovered">&nbsp;636</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> <span class="keyword">if</span> (Boolean.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
@@ -1028,12 +1028,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;203</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                    value = object.toString();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;204</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append(<span class="string">" type='boolean'"</span>);</pre></td>
 </tr>
 <tr>
@@ -1043,7 +1043,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;206</td>
-  <td class="nbHitsCovered">&nbsp;104</td>
+  <td class="nbHitsCovered">&nbsp;624</td>
   <td class="src"><pre class="src">&nbsp;                    value = escapeForXML( object.toString() );</pre></td>
 </tr>
 <tr>
@@ -1053,42 +1053,42 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;208</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;209</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(value);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;210</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;211</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SLASH);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;212</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;213</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;214</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;936</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;215</td>
-  <td class="nbHitsCovered">&nbsp;156</td>
+  <td class="nbHitsCovered">&nbsp;774</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> ( ConstructorUtils.isClassArray(type) ) {</pre></td>
 </tr>
 <tr>
@@ -1098,52 +1098,52 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;217</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                tagName = validate(tagName == <span class="keyword">null</span> ? <span class="string">"array"</span> : tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;218</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> length = ArrayUtils.size((Object[])object);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;219</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                Class&lt;?&gt; elementType = ArrayUtils.type((Object[])object);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;220</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;221</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;222</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;223</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(<span class="string">" type='array' length='"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;224</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(length);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;225</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(APOS);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;226</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (includeClass) {</pre></td>
 </tr>
 <tr>
@@ -1168,22 +1168,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;231</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;232</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;233</td>
-  <td class="nbHitsCovered">&nbsp;46</td>
+  <td class="nbHitsCovered">&nbsp;276</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; length; ++i) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;234</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append( toXML(Array.get(object, i), makeElementName(elementType), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );</pre></td>
 </tr>
 <tr>
@@ -1193,37 +1193,37 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;236</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;237</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;238</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SLASH);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;239</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;240</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;241</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;242</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;180</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> ( ConstructorUtils.isClassCollection(type) ) {</pre></td>
 </tr>
 <tr>
@@ -1233,47 +1233,47 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;244</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                tagName = validate(tagName == <span class="keyword">null</span> ? <span class="string">"collection"</span> : tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;245</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                Collection&lt;Object&gt; collection = (Collection) object;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;246</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;247</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;248</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;249</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(<span class="string">" type='collection' size='"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;250</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(collection.size());</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;251</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(APOS);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;252</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (includeClass) {</pre></td>
 </tr>
 <tr>
@@ -1288,32 +1288,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;255</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;256</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;257</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;92</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">for</span> (Object element : collection) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;258</td>
-  <td class="nbHitsCovered">&nbsp;14</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                    Class&lt;?&gt; elementType = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;259</td>
-  <td class="nbHitsCovered">&nbsp;14</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (element != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;260</td>
-  <td class="nbHitsCovered">&nbsp;14</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                        elementType = element.getClass();</pre></td>
 </tr>
 <tr>
@@ -1323,47 +1323,47 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;262</td>
-  <td class="nbHitsCovered">&nbsp;14</td>
+  <td class="nbHitsCovered">&nbsp;84</td>
   <td class="src"><pre class="src">&nbsp;                    sb.append( toXML(element, makeElementName(elementType), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;263</td>
-  <td class="nbHitsCovered">&nbsp;14</td>
+  <td class="nbHitsCovered">&nbsp;56</td>
   <td class="src"><pre class="src">&nbsp;                }</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;264</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;265</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;266</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SLASH);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;267</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;268</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;269</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;270</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;32</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> {</pre></td>
 </tr>
 <tr>
@@ -1373,32 +1373,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;272</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                tagName = validate(tagName == <span class="keyword">null</span> ? makeElementName(type) : tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;273</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                String xmlType = <span class="string">"bean"</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;274</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                Map&lt;String, Object&gt; map = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;275</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (Map.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;276</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                    xmlType = <span class="string">"map"</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;277</td>
-  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;90</td>
   <td class="src"><pre class="src">&nbsp;                    map = (Map&lt;String, Object&gt;) object;</pre></td>
 </tr>
 <tr>
@@ -1413,7 +1413,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;280</td>
-  <td class="nbHitsCovered">&nbsp;37</td>
+  <td class="nbHitsCovered">&nbsp;222</td>
   <td class="src"><pre class="src">&nbsp;                    map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, <span class="keyword">false</span>);</pre></td>
 </tr>
 <tr>
@@ -1428,12 +1428,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;283</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (level == 0 &amp;&amp; properties != <span class="keyword">null</span> &amp;&amp; ! properties.isEmpty()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;284</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;                    map.putAll(properties);</pre></td>
 </tr>
 <tr>
@@ -1443,52 +1443,52 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;286</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;287</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;288</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;289</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(<span class="string">" type='"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;290</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(xmlType);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;291</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(APOS);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;292</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(<span class="string">" size='"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;293</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(map.size());</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;294</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(APOS);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;295</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (includeClass) {</pre></td>
 </tr>
 <tr>
@@ -1503,27 +1503,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;298</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;299</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;300</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;788</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">for</span> (Entry&lt;String, Object&gt; entry : map.entrySet()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;301</td>
-  <td class="nbHitsCovered">&nbsp;186</td>
+  <td class="nbHitsCovered">&nbsp;1116</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (entry.getKey() != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;302</td>
-  <td class="nbHitsCovered">&nbsp;186</td>
+  <td class="nbHitsCovered">&nbsp;1116</td>
   <td class="src"><pre class="src">&nbsp;                        sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );</pre></td>
 </tr>
 <tr>
@@ -1538,32 +1538,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;305</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                makeLevelSpaces(sb, level, humanOutput);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;306</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(LT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;307</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SLASH);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;308</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(tagName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;309</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(GT);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;310</td>
-  <td class="nbHitsCovered">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;312</td>
   <td class="src"><pre class="src">&nbsp;                makeEOL(sb, humanOutput);</pre></td>
 </tr>
 <tr>
@@ -1578,7 +1578,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;313</td>
-  <td class="nbHitsCovered">&nbsp;262</td>
+  <td class="nbHitsCovered">&nbsp;1572</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sb.toString();</pre></td>
 </tr>
 <tr>
@@ -1598,17 +1598,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;317</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;        String name = <span class="string">"element"</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;318</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (type != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;319</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (! Map.<span class="keyword">class</span>.isAssignableFrom(type)) {</pre></td>
 </tr>
 <tr>
@@ -1618,7 +1618,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;321</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;                name = type.getSimpleName().toLowerCase();</pre></td>
 </tr>
 <tr>
@@ -1633,7 +1633,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;324</td>
-  <td class="nbHitsCovered">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;270</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> name;</pre></td>
 </tr>
 <tr>
@@ -1693,12 +1693,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;336</td>
-  <td class="nbHitsCovered">&nbsp;332</td>
+  <td class="nbHitsCovered">&nbsp;1992</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (includeEOL) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;337</td>
-  <td class="nbHitsCovered">&nbsp;190</td>
+  <td class="nbHitsCovered">&nbsp;1140</td>
   <td class="src"><pre class="src">&nbsp;            sb.append(EOL);</pre></td>
 </tr>
 <tr>
@@ -1708,7 +1708,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;339</td>
-  <td class="nbHitsCovered">&nbsp;332</td>
+  <td class="nbHitsCovered">&nbsp;1992</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -1728,17 +1728,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;343</td>
-  <td class="nbHitsCovered">&nbsp;332</td>
+  <td class="nbHitsCovered">&nbsp;1992</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (includeEOL) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;344</td>
-  <td class="nbHitsCovered">&nbsp;478</td>
+  <td class="nbHitsCovered">&nbsp;2868</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; level; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;345</td>
-  <td class="nbHitsCovered">&nbsp;288</td>
+  <td class="nbHitsCovered">&nbsp;1728</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(SPACES);</pre></td>
 </tr>
 <tr>
@@ -1753,7 +1753,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;348</td>
-  <td class="nbHitsCovered">&nbsp;332</td>
+  <td class="nbHitsCovered">&nbsp;1992</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -1823,22 +1823,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;362</td>
-  <td class="nbHitsCovered">&nbsp;104</td>
+  <td class="nbHitsCovered">&nbsp;624</td>
   <td class="src"><pre class="src">&nbsp;        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;363</td>
-  <td class="nbHitsCovered">&nbsp;472</td>
+  <td class="nbHitsCovered">&nbsp;2832</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0, len = string.length(); i &lt; len; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;364</td>
-  <td class="nbHitsCovered">&nbsp;368</td>
+  <td class="nbHitsCovered">&nbsp;2208</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = string.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;365</td>
-  <td class="nbHitsCovered">&nbsp;368</td>
+  <td class="nbHitsCovered">&nbsp;2208</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">switch</span> (c) {</pre></td>
 </tr>
 <tr>
@@ -1908,7 +1908,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;379</td>
-  <td class="nbHitsCovered">&nbsp;368</td>
+  <td class="nbHitsCovered">&nbsp;2208</td>
   <td class="src"><pre class="src">&nbsp;                sb.append(c);</pre></td>
 </tr>
 <tr>
@@ -1923,7 +1923,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;382</td>
-  <td class="nbHitsCovered">&nbsp;104</td>
+  <td class="nbHitsCovered">&nbsp;624</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sb.toString();</pre></td>
 </tr>
 <tr>
@@ -1978,7 +1978,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;393</td>
-  <td class="nbHitsCovered">&nbsp;257</td>
+  <td class="nbHitsCovered">&nbsp;1542</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (string == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -1993,12 +1993,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;396</td>
-  <td class="nbHitsCovered">&nbsp;257</td>
+  <td class="nbHitsCovered">&nbsp;1542</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> i, length = string.length();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;397</td>
-  <td class="nbHitsCovered">&nbsp;257</td>
+  <td class="nbHitsCovered">&nbsp;1542</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (length == 0) {</pre></td>
 </tr>
 <tr>
@@ -2013,12 +2013,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;400</td>
-  <td class="nbHitsCovered">&nbsp;1603</td>
+  <td class="nbHitsCovered">&nbsp;9618</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (i = 0; i &lt; length; i += 1) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;401</td>
-  <td class="nbHitsCovered">&nbsp;1346</td>
+  <td class="nbHitsCovered">&nbsp;8076</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (Character.isWhitespace(string.charAt(i))) {</pre></td>
 </tr>
 <tr>
@@ -2038,7 +2038,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;405</td>
-  <td class="nbHitsCovered">&nbsp;257</td>
+  <td class="nbHitsCovered">&nbsp;1542</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> string;</pre></td>
 </tr>
 <tr>
@@ -2073,12 +2073,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;412</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> SAXParserFactory parserFactory = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;413</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> SAXParser parser = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
@@ -2088,22 +2088,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;415</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (parserFactory == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;416</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;            parserFactory = SAXParserFactory.newInstance();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;417</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;            parserFactory.setValidating(<span class="keyword">true</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;418</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;            parserFactory.setNamespaceAware(<span class="keyword">true</span>);</pre></td>
 </tr>
 <tr>
@@ -2113,7 +2113,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;420</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (parser == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -2123,7 +2123,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;422</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                parser = parserFactory.newSAXParser();</pre></td>
 </tr>
 <tr>
@@ -2148,7 +2148,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;427</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;8</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td>
 </tr>
 <tr>
@@ -2158,7 +2158,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;429</td>
-  <td class="nbHitsCovered">&nbsp;7</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
   <td class="src"><pre class="src">&nbsp;            parser.reset();</pre></td>
 </tr>
 <tr>
@@ -2168,7 +2168,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;431</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> parser;</pre></td>
 </tr>
 <tr>
@@ -2203,22 +2203,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;438</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> String xml = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;439</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> Map&lt;String, Object&gt; map = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;440</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> XMLparser(String xml) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;441</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (xml == <span class="keyword">null</span> || <span class="string">""</span>.equals(xml)) {</pre></td>
 </tr>
 <tr>
@@ -2233,27 +2233,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;444</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.xml = xml;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;445</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.map = <span class="keyword">new</span> ArrayOrderedMap&lt;String, Object&gt;();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;446</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            containerStack.push( <span class="keyword">new</span> Container(<span class="keyword">this</span>.map) ); <span class="comment">// init the holder stack (causes root node to be trashed)</span></pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;447</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            parseXML(xml);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;448</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -2283,7 +2283,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;454</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> map;</pre></td>
 </tr>
 <tr>
@@ -2308,7 +2308,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;459</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;                getParser().parse( <span class="keyword">new</span> ByteArrayInputStream(xml.getBytes()), <span class="keyword">this</span> );</pre></td>
 </tr>
 <tr>
@@ -2333,12 +2333,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;464</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;465</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -2423,22 +2423,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;482</td>
-  <td class="nbHitsCovered">&nbsp;74</td>
+  <td class="nbHitsCovered">&nbsp;444</td>
   <td class="src"><pre class="src">&nbsp;            Class&lt;?&gt; type = container.getContainer().getClass();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;483</td>
-  <td class="nbHitsCovered">&nbsp;74</td>
+  <td class="nbHitsCovered">&nbsp;444</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> ( ConstructorUtils.isClassMap(type)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;484</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;396</td>
   <td class="src"><pre class="src">&nbsp;                Map&lt;String, Object&gt; m = (Map)container.getContainer();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;485</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;396</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (m.containsKey(key)) {</pre></td>
 </tr>
 <tr>
@@ -2448,17 +2448,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;487</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    Collection collection = (Collection) makeContainerObject(Types.COLLECTION);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;488</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;80</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">for</span> (Entry entry : m.entrySet()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;489</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                        collection.add( entry.getValue());</pre></td>
 </tr>
 <tr>
@@ -2468,7 +2468,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;491</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    collection.add(value);</pre></td>
 </tr>
 <tr>
@@ -2478,22 +2478,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;493</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> endPosition = containerStack.size()-1;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;494</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> containerPosition = endPosition;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;495</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (container != containerStack.peek() &amp;&amp; containerPosition != 0) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;496</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;                        containerPosition--;</pre></td>
 </tr>
 <tr>
@@ -2503,12 +2503,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;498</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    Container current = containerStack.get(containerPosition);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;499</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    current.replaceContainer(collection); <span class="comment">// update container and replace the value in the parent object in the container</span></pre></td>
 </tr>
 <tr>
@@ -2518,7 +2518,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;501</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (containerPosition &lt; endPosition) {</pre></td>
 </tr>
 <tr>
@@ -2528,7 +2528,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;503</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;                        containerStack.set(endPosition, <span class="keyword">new</span> Container(collection, 1, value) );</pre></td>
 </tr>
 <tr>
@@ -2538,12 +2538,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;505</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;32</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;506</td>
-  <td class="nbHitsCovered">&nbsp;58</td>
+  <td class="nbHitsCovered">&nbsp;348</td>
   <td class="src"><pre class="src">&nbsp;                    m.put(key, value);</pre></td>
 </tr>
 <tr>
@@ -2553,17 +2553,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;508</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;280</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> ( ConstructorUtils.isClassCollection(type)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;509</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                Collection collection = ((Collection)container.getContainer());</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;510</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                collection.add(value);</pre></td>
 </tr>
 <tr>
@@ -2573,12 +2573,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;512</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (container != containerStack.peek()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;513</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;                    containerStack.peek().updateIndex(collection.size() - 1);</pre></td>
 </tr>
 <tr>
@@ -2588,7 +2588,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;515</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;32</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> {</pre></td>
 </tr>
 <tr>
@@ -2628,7 +2628,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;523</td>
-  <td class="nbHitsCovered">&nbsp;74</td>
+  <td class="nbHitsCovered">&nbsp;444</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -2638,12 +2638,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;525</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> Stack&lt;String&gt; tagStack = <span class="keyword">new</span> Stack&lt;String&gt;();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;526</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> Stack&lt;Container&gt; containerStack = <span class="keyword">new</span> Stack&lt;Container&gt;();</pre></td>
 </tr>
 <tr>
@@ -2653,12 +2653,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;528</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> CharArrayWriter contents = <span class="keyword">new</span> CharArrayWriter();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;529</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> Types currentType = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
@@ -2668,7 +2668,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;531</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> <span class="keyword">boolean</span> currentContents = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -2693,17 +2693,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;536</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            contents.reset();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;537</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            tagStack.push(localName);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;538</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (tagStack.size() &gt; containerStack.size() + 1) {</pre></td>
 </tr>
 <tr>
@@ -2713,27 +2713,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;540</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                Container lastContainer = containerStack.peek();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;541</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                Object newContainerObject = makeContainerObject(currentType);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;542</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                String parentName = ( tagStack.size() &gt; 1 ? tagStack.get(tagStack.size()-2) : tagStack.peek() );</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;543</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                containerStack.push( <span class="keyword">new</span> Container(lastContainer.getContainer(), parentName, newContainerObject) );</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;544</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                add(lastContainer, parentName, newContainerObject);</pre></td>
 </tr>
 <tr>
@@ -2743,17 +2743,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;546</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            currentType = getDataType(attributes);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;547</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            currentContents = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;548</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -2773,7 +2773,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;552</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (tagStack.size() &gt; containerStack.size()) {</pre></td>
 </tr>
 <tr>
@@ -2783,27 +2783,27 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;554</td>
-  <td class="nbHitsCovered">&nbsp;53</td>
+  <td class="nbHitsCovered">&nbsp;318</td>
   <td class="src"><pre class="src">&nbsp;                Object val = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;555</td>
-  <td class="nbHitsCovered">&nbsp;53</td>
+  <td class="nbHitsCovered">&nbsp;318</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (currentContents) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;556</td>
-  <td class="nbHitsCovered">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;300</td>
   <td class="src"><pre class="src">&nbsp;                    String content = unescapeXML(contents.toString().trim());</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;557</td>
-  <td class="nbHitsCovered">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;300</td>
   <td class="src"><pre class="src">&nbsp;                    val = content;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;558</td>
-  <td class="nbHitsCovered">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;300</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">if</span> (Types.BOOLEAN.equals(currentType)) {</pre></td>
 </tr>
 <tr>
@@ -2813,7 +2813,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;560</td>
-  <td class="nbHitsCovered">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;300</td>
   <td class="src"><pre class="src">&nbsp;                    } <span class="keyword">else</span> <span class="keyword">if</span> (Types.NUMBER.equals(currentType)) {</pre></td>
 </tr>
 <tr>
@@ -2823,7 +2823,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;562</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                            val = number(content);</pre></td>
 </tr>
 <tr>
@@ -2838,12 +2838,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;565</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;32</td>
   <td class="src"><pre class="src">&nbsp;                        }</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;566</td>
-  <td class="nbHitsCovered">&nbsp;42</td>
+  <td class="nbHitsCovered">&nbsp;252</td>
   <td class="src"><pre class="src">&nbsp;                    } <span class="keyword">else</span> <span class="keyword">if</span> (Types.DATE.equals(currentType)) {</pre></td>
 </tr>
 <tr>
@@ -2853,7 +2853,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;568</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                            val = <span class="keyword">new</span> Date(Long.valueOf(content));</pre></td>
 </tr>
 <tr>
@@ -2868,7 +2868,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;571</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;8</td>
   <td class="src"><pre class="src">&nbsp;                        }</pre></td>
 </tr>
 <tr>
@@ -2888,7 +2888,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;575</td>
-  <td class="nbHitsCovered">&nbsp;53</td>
+  <td class="nbHitsCovered">&nbsp;318</td>
   <td class="src"><pre class="src">&nbsp;                add(containerStack.peek(), localName, val);</pre></td>
 </tr>
 <tr>
@@ -2898,7 +2898,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;577</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (tagStack.isEmpty()) {</pre></td>
 </tr>
 <tr>
@@ -2913,7 +2913,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;580</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;                tagStack.pop();</pre></td>
 </tr>
 <tr>
@@ -2928,17 +2928,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;583</td>
-  <td class="nbHitsCovered">&nbsp;104</td>
+  <td class="nbHitsCovered">&nbsp;790</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">while</span> (tagStack.size() &lt; containerStack.size()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;584</td>
-  <td class="nbHitsCovered">&nbsp;30</td>
+  <td class="nbHitsCovered">&nbsp;180</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (containerStack.size() &lt;= 1) <span class="keyword">break</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;585</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;                containerStack.pop();</pre></td>
 </tr>
 <tr>
@@ -2948,12 +2948,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;587</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;            contents.reset();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;588</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -2978,17 +2978,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;593</td>
-  <td class="nbHitsCovered">&nbsp;71</td>
+  <td class="nbHitsCovered">&nbsp;426</td>
   <td class="src"><pre class="src">&nbsp;            contents.write(ch, start, length);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;594</td>
-  <td class="nbHitsCovered">&nbsp;71</td>
+  <td class="nbHitsCovered">&nbsp;426</td>
   <td class="src"><pre class="src">&nbsp;            currentContents = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;595</td>
-  <td class="nbHitsCovered">&nbsp;71</td>
+  <td class="nbHitsCovered">&nbsp;426</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -3033,7 +3033,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;604</td>
-  <td class="nbHitsCovered">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;300</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> string.replace(<span class="string">"&amp;lt;"</span>,<span class="string">"&lt;"</span>).replace(<span class="string">"&amp;gt;"</span>, <span class="string">"&gt;"</span>).replace(<span class="string">"&amp;quot;"</span>, <span class="string">"\""</span>).replace(<span class="string">"&amp;amp;"</span>, <span class="string">"&amp;"</span>);</pre></td>
 </tr>
 <tr>
@@ -3048,7 +3048,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;607</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> enum Types {STRING,NUMBER,BOOLEAN,DATE,ARRAY,COLLECTION,MAP,BEAN}; </pre></td>
 </tr>
 <tr>
@@ -3063,22 +3063,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;610</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        Types elementType = Types.STRING;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;611</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        String value = attributes.getValue(<span class="string">""</span>, <span class="string">"type"</span>);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;612</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (value != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;613</td>
-  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="nbHitsCovered">&nbsp;108</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (<span class="string">"boolean"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
@@ -3088,37 +3088,37 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;615</td>
-  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="nbHitsCovered">&nbsp;108</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"number"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;616</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                elementType = Types.NUMBER;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;617</td>
-  <td class="nbHitsCovered">&nbsp;10</td>
+  <td class="nbHitsCovered">&nbsp;60</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"date"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;618</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                elementType = Types.DATE;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;619</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"array"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;620</td>
-  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
   <td class="src"><pre class="src">&nbsp;                elementType = Types.ARRAY;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;621</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"collection"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
@@ -3128,22 +3128,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;623</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;36</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"map"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;624</td>
-  <td class="nbHitsCovered">&nbsp;5</td>
+  <td class="nbHitsCovered">&nbsp;30</td>
   <td class="src"><pre class="src">&nbsp;                elementType = Types.MAP;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;625</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"bean"</span>.equals(value)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;626</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;                elementType = Types.BEAN;</pre></td>
 </tr>
 <tr>
@@ -3158,7 +3158,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;629</td>
-  <td class="nbHitsCovered">&nbsp;83</td>
+  <td class="nbHitsCovered">&nbsp;498</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> elementType;</pre></td>
 </tr>
 <tr>
@@ -3238,22 +3238,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;645</td>
-  <td class="nbHitsCovered">&nbsp;29</td>
+  <td class="nbHitsCovered">&nbsp;174</td>
   <td class="src"><pre class="src">&nbsp;        Object newContainer = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;646</td>
-  <td class="nbHitsCovered">&nbsp;29</td>
+  <td class="nbHitsCovered">&nbsp;174</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (Types.ARRAY.equals(type) </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;647</td>
-  <td class="nbHits">&nbsp;</td>
+  <td class="numLineCover">&nbsp;647</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;                || Types.COLLECTION.equals(type)) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;648</td>
-  <td class="nbHitsCovered">&nbsp;10</td>
+  <td class="nbHitsCovered">&nbsp;60</td>
   <td class="src"><pre class="src">&nbsp;            newContainer = <span class="keyword">new</span> Vector&lt;Object&gt;();</pre></td>
 </tr>
 <tr>
@@ -3268,7 +3268,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;651</td>
-  <td class="nbHitsCovered">&nbsp;19</td>
+  <td class="nbHitsCovered">&nbsp;114</td>
   <td class="src"><pre class="src">&nbsp;            newContainer = <span class="keyword">new</span> ArrayOrderedMap&lt;String, Object&gt;();</pre></td>
 </tr>
 <tr>
@@ -3278,7 +3278,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;653</td>
-  <td class="nbHitsCovered">&nbsp;29</td>
+  <td class="nbHitsCovered">&nbsp;174</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> newContainer;</pre></td>
 </tr>
 <tr>
@@ -3333,12 +3333,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;664</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> length = s.length();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;665</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> isFloatingPoint = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -3348,17 +3348,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;667</td>
-  <td class="nbHitsCovered">&nbsp;28</td>
+  <td class="nbHitsCovered">&nbsp;168</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; s.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;668</td>
-  <td class="nbHitsCovered">&nbsp;20</td>
+  <td class="nbHitsCovered">&nbsp;120</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = s.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;669</td>
-  <td class="nbHitsCovered">&nbsp;20</td>
+  <td class="nbHitsCovered">&nbsp;120</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">switch</span> (c) {</pre></td>
 </tr>
 <tr>
@@ -3418,12 +3418,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;681</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        Number num = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;682</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (isFloatingPoint) {</pre></td>
 </tr>
 <tr>
@@ -3468,12 +3468,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;691</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (length &lt; 10) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;692</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                num = Integer.valueOf(s);</pre></td>
 </tr>
 <tr>
@@ -3508,7 +3508,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;699</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> num;</pre></td>
 </tr>
 <tr>
@@ -3528,7 +3528,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;703</td>
-  <td class="nbHitsCovered">&nbsp;34</td>
+  <td class="nbHitsCovered">&nbsp;204</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> <span class="keyword">boolean</span> root = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -3633,7 +3633,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;724</td>
-  <td class="nbHitsCovered">&nbsp;169</td>
+  <td class="nbHitsCovered">&nbsp;1014</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> container;</pre></td>
 </tr>
 <tr>
@@ -3648,7 +3648,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;727</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (index &lt; 0) {</pre></td>
 </tr>
 <tr>
@@ -3663,17 +3663,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;730</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.index = index;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;731</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;            key = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;732</td>
-  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -3698,7 +3698,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;737</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (container == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -3713,12 +3713,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;740</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (key != <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;741</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;                FieldUtils.getInstance().setFieldValue(parent, key, container);</pre></td>
 </tr>
 <tr>
@@ -3743,12 +3743,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;746</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.container = container;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;747</td>
-  <td class="nbHitsCovered">&nbsp;8</td>
+  <td class="nbHitsCovered">&nbsp;48</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -3768,12 +3768,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;751</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> Container(Object container) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;752</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (container == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -3788,17 +3788,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;755</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.container = container;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;756</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.root = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;757</td>
-  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="nbHitsCovered">&nbsp;54</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -3818,12 +3818,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;761</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> Container(Object parent, String key, Object container) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;762</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (parent == <span class="keyword">null</span> || key == <span class="keyword">null</span> || container == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -3838,22 +3838,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;765</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.container = container;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;766</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.key = key;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;767</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.parent = parent;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;768</td>
-  <td class="nbHitsCovered">&nbsp;21</td>
+  <td class="nbHitsCovered">&nbsp;126</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>
@@ -3873,12 +3873,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;772</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> Container(Object parent, <span class="keyword">int</span> index, Object container) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;773</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (parent == <span class="keyword">null</span> || index &lt; 0 || container == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -3893,22 +3893,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;776</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.container = container;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;777</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.index = index;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;778</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.parent = parent;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;779</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td>
 </tr>
 <tr>

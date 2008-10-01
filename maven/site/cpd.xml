@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
 <duplication lines="44" tokens="281">
-<file line="304" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="331" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="304" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="331" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
             ConcurrentOrderedMap.this.clear();
@@ -53,8 +53,8 @@
 </codefragment>
 </duplication>
 <duplication lines="61" tokens="279">
-<file line="51" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="53" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="51" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="53" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
     public ConcurrentOrderedMap(Map<K, V> map) {
@@ -122,8 +122,8 @@
 </codefragment>
 </duplication>
 <duplication lines="33" tokens="227">
-<file line="198" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="225" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="198" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="225" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
             ConcurrentOrderedMap.this.remove(lastReturned.getKey());
@@ -163,8 +163,8 @@
 </codefragment>
 </duplication>
 <duplication lines="64" tokens="225">
-<file line="251" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java"/>
-<file line="343" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
+<file line="251" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java"/>
+<file line="343" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
 <codefragment>
 <![CDATA[
         if (includeEOL) {
@@ -235,8 +235,8 @@
 </codefragment>
 </duplication>
 <duplication lines="26" tokens="214">
-<file line="266" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="293" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="266" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="293" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
             ConcurrentOrderedMap.this.clear();
@@ -269,8 +269,8 @@
 </codefragment>
 </duplication>
 <duplication lines="22" tokens="157">
-<file line="239" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="266" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="239" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="266" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
             ConcurrentOrderedMap.this.clear();
@@ -299,8 +299,8 @@
 </codefragment>
 </duplication>
 <duplication lines="20" tokens="118">
-<file line="352" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="379" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="352" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="379" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
             this.value = value;
@@ -327,8 +327,8 @@
 </codefragment>
 </duplication>
 <duplication lines="13" tokens="117">
-<file line="248" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
-<file line="543" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="258" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="585" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
 <codefragment>
 <![CDATA[
             while (getResolver().hasNested(name)) {
@@ -348,8 +348,8 @@
 </codefragment>
 </duplication>
 <duplication lines="21" tokens="113">
-<file line="141" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
-<file line="169" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
+<file line="141" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ArrayOrderedMap.java"/>
+<file line="169" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/map/ConcurrentOrderedMap.java"/>
 <codefragment>
 <![CDATA[
     public Enumeration<V> elements() {
@@ -377,8 +377,8 @@
 </codefragment>
 </duplication>
 <duplication lines="22" tokens="112">
-<file line="496" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
-<file line="1011" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="538" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
+<file line="1084" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/FieldUtils.java"/>
 <codefragment>
 <![CDATA[
                     } else {
@@ -407,8 +407,8 @@
 </codefragment>
 </duplication>
 <duplication lines="20" tokens="101">
-<file line="504" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/JSONTranscoder.java"/>
-<file line="681" path="/opt/mytools/reflectutils/target/checkout/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
+<file line="504" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/transcoders/JSONTranscoder.java"/>
+<file line="681" path="/opt/mytools/reflectutils/src/main/java/org/azeckoski/reflectutils/transcoders/XMLTranscoder.java"/>
 <codefragment>
 <![CDATA[
         Number num = null;

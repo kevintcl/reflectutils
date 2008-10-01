@@ -778,282 +778,351 @@
 <a name="769" href="#769">769</a>         assertEquals(24, value);
 <a name="770" href="#770">770</a>     }
 <a name="771" href="#771">771</a> 
-<a name="772" href="#772">772</a>     <em>/**<em>*</em></em>
-<a name="773" href="#773">773</a> <em>     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)}.</em>
-<a name="774" href="#774">774</a> <em>     */</em>
-<a name="775" href="#775">775</a>     <strong>public</strong> <strong>void</strong> testSetFieldValue() {
-<a name="776" href="#776">776</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
-<a name="777" href="#777">777</a> 
-<a name="778" href="#778">778</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(8, <span class="string">"AZ"</span>, <strong>new</strong> String[] {<span class="string">"1"</span>, <span class="string">"B"</span>, <span class="string">"three"</span>});
-<a name="779" href="#779">779</a>         fu.setFieldValue(tn, <span class="string">"id"</span>, 88);
-<a name="780" href="#780">780</a>         assertEquals(88, tn.getId());
+<a name="772" href="#772">772</a>     <strong>public</strong> <strong>void</strong> testGetFieldValueAsType() {
+<a name="773" href="#773">773</a>         FieldUtils fu = FieldUtils.getInstance();
+<a name="774" href="#774">774</a>         Object value = <strong>null</strong>;
+<a name="775" href="#775">775</a>         String sval = <strong>null</strong>;
+<a name="776" href="#776">776</a> 
+<a name="777" href="#777">777</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(8, <span class="string">"AZ"</span>, <strong>new</strong> String[] {<span class="string">"1"</span>, <span class="string">"B"</span>, <span class="string">"three"</span>});
+<a name="778" href="#778">778</a>         value = fu.getFieldValue(tn, <span class="string">"id"</span>);
+<a name="779" href="#779">779</a>         assertNotNull(value);
+<a name="780" href="#780">780</a>         assertEquals(8, value);
 <a name="781" href="#781">781</a> 
-<a name="782" href="#782">782</a>         fu.setFieldValue(tn, <span class="string">"title"</span>, <span class="string">"stuff"</span>);
-<a name="783" href="#783">783</a>         assertEquals(<span class="string">"stuff"</span>, tn.getTitle());
-<a name="784" href="#784">784</a> 
-<a name="785" href="#785">785</a>         fu.setFieldValue(tn, <span class="string">"extra"</span>, <span class="string">"Xtra"</span>);
-<a name="786" href="#786">786</a>         assertEquals(<span class="string">"Xtra"</span>, tn.getExtra());
-<a name="787" href="#787">787</a> 
-<a name="788" href="#788">788</a>         fu.setFieldValue(tn, <span class="string">"myArray"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>});
-<a name="789" href="#789">789</a>         assertEquals(4, tn.getMyArray().length);
-<a name="790" href="#790">790</a>         assertEquals(<span class="string">"A"</span>, tn.getMyArray()[0]);
-<a name="791" href="#791">791</a> 
-<a name="792" href="#792">792</a>         ArrayList&lt;String> al = <strong>new</strong> ArrayList&lt;String>();
-<a name="793" href="#793">793</a>         al.add(<span class="string">"A"</span>);
-<a name="794" href="#794">794</a>         al.add(<span class="string">"B"</span>);
-<a name="795" href="#795">795</a>         al.add(<span class="string">"C"</span>);
-<a name="796" href="#796">796</a>         fu.setFieldValue(tn, <span class="string">"sList"</span>, al);
-<a name="797" href="#797">797</a>         assertEquals(3, tn.getSList().size());
+<a name="782" href="#782">782</a>         sval = fu.getFieldValue(tn, <span class="string">"id"</span>, String.<strong>class</strong>);
+<a name="783" href="#783">783</a>         assertNotNull(sval);
+<a name="784" href="#784">784</a>         assertEquals(<span class="string">"8"</span>, sval);
+<a name="785" href="#785">785</a> 
+<a name="786" href="#786">786</a>         value = fu.getFieldValue(tn, <span class="string">"testEntity.id"</span>);
+<a name="787" href="#787">787</a>         assertNotNull(value);
+<a name="788" href="#788">788</a>         assertEquals(<strong>new</strong> Long(3), value);
+<a name="789" href="#789">789</a> 
+<a name="790" href="#790">790</a>         sval = fu.getFieldValue(tn, <span class="string">"testEntity.id"</span>, String.<strong>class</strong>);
+<a name="791" href="#791">791</a>         assertNotNull(sval);
+<a name="792" href="#792">792</a>         assertEquals(<span class="string">"3"</span>, sval);
+<a name="793" href="#793">793</a> 
+<a name="794" href="#794">794</a>         value = fu.getFieldValue(tn, <span class="string">"myArray"</span>);
+<a name="795" href="#795">795</a>         assertNotNull(value);
+<a name="796" href="#796">796</a>         assertTrue(value.getClass().isArray());
+<a name="797" href="#797">797</a>         assertEquals(2, ((String[])value).length );
 <a name="798" href="#798">798</a> 
-<a name="799" href="#799">799</a>         HashMap&lt;String, String> hm = <strong>new</strong> HashMap&lt;String, String>();
-<a name="800" href="#800">800</a>         hm.put(<span class="string">"A1"</span>, <span class="string">"A"</span>);
-<a name="801" href="#801">801</a>         hm.put(<span class="string">"B2"</span>, <span class="string">"B"</span>);
-<a name="802" href="#802">802</a>         hm.put(<span class="string">"C3"</span>, <span class="string">"C"</span>);
-<a name="803" href="#803">803</a>         fu.setFieldValue(tn, <span class="string">"sMap"</span>, hm);
-<a name="804" href="#804">804</a>         assertEquals(3, tn.getSMap().size());
-<a name="805" href="#805">805</a> 
-<a name="806" href="#806">806</a>         <em class="comment">// test setting index values</em>
-<a name="807" href="#807">807</a>         fu.setFieldValue(tn, <span class="string">"myArray[0]"</span>, <span class="string">"AAA"</span>);
-<a name="808" href="#808">808</a>         assertEquals(<span class="string">"AAA"</span>, tn.getMyArray()[0]);
+<a name="799" href="#799">799</a>         sval = fu.getFieldValue(tn, <span class="string">"myArray"</span>, String.<strong>class</strong>);
+<a name="800" href="#800">800</a>         assertNotNull(sval);
+<a name="801" href="#801">801</a>         assertEquals(<span class="string">"A,B"</span>, sval);
+<a name="802" href="#802">802</a>     }
+<a name="803" href="#803">803</a> 
+<a name="804" href="#804">804</a>     <em>/**<em>*</em></em>
+<a name="805" href="#805">805</a> <em>     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)}.</em>
+<a name="806" href="#806">806</a> <em>     */</em>
+<a name="807" href="#807">807</a>     <strong>public</strong> <strong>void</strong> testSetFieldValue() {
+<a name="808" href="#808">808</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
 <a name="809" href="#809">809</a> 
-<a name="810" href="#810">810</a>         fu.setFieldValue(tn, <span class="string">"myArray[1]"</span>, <span class="string">"BBBB"</span>);
-<a name="811" href="#811">811</a>         assertEquals(<span class="string">"BBBB"</span>, tn.getMyArray()[1]);
-<a name="812" href="#812">812</a> 
-<a name="813" href="#813">813</a>         fu.setFieldValue(tn, <span class="string">"sList[0]"</span>, <span class="string">"alpha"</span>);
-<a name="814" href="#814">814</a>         assertEquals(<span class="string">"alpha"</span>, tn.getSList().get(0));
-<a name="815" href="#815">815</a> 
-<a name="816" href="#816">816</a>         fu.setFieldValue(tn, <span class="string">"sList[1]"</span>, <span class="string">"beta"</span>);
-<a name="817" href="#817">817</a>         assertEquals(<span class="string">"beta"</span>, tn.getSList().get(1));
-<a name="818" href="#818">818</a> 
-<a name="819" href="#819">819</a>         fu.setIndexedValue(tn, <span class="string">"myArray[99]"</span>, <span class="string">"zeta"</span>);
-<a name="820" href="#820">820</a>         assertEquals(<span class="string">"zeta"</span>, tn.getMyArray()[99]);
-<a name="821" href="#821">821</a> 
-<a name="822" href="#822">822</a>         fu.setIndexedValue(tn, <span class="string">"sList[99]"</span>, <span class="string">"zeta"</span>);
-<a name="823" href="#823">823</a>         assertEquals(<span class="string">"zeta"</span>, tn.getSList().get(99));
-<a name="824" href="#824">824</a> 
-<a name="825" href="#825">825</a>         <strong>try</strong> {
-<a name="826" href="#826">826</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"myArray[1]"</span>, <span class="string">"BBBB"</span>);
-<a name="827" href="#827">827</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="828" href="#828">828</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="829" href="#829">829</a>             assertNotNull(e.getMessage());
-<a name="830" href="#830">830</a>         }      
-<a name="831" href="#831">831</a> 
-<a name="832" href="#832">832</a>         <strong>try</strong> {
-<a name="833" href="#833">833</a>             fu.setFieldValue(tn, <strong>null</strong>, <span class="string">"BBBB"</span>);
-<a name="834" href="#834">834</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="835" href="#835">835</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="836" href="#836">836</a>             assertNotNull(e.getMessage());
-<a name="837" href="#837">837</a>         }
-<a name="838" href="#838">838</a> 
-<a name="839" href="#839">839</a>         <em class="comment">// test setting mapped values</em>
-<a name="840" href="#840">840</a>         fu.setFieldValue(tn, <span class="string">"sMap(A1)"</span>, <span class="string">"UNO"</span>);
-<a name="841" href="#841">841</a>         assertEquals(<span class="string">"UNO"</span>, tn.getSMap().get(<span class="string">"A1"</span>));
-<a name="842" href="#842">842</a> 
-<a name="843" href="#843">843</a>         fu.setFieldValue(tn, <span class="string">"sMap(XXX)"</span>, <span class="string">"xray"</span>);
-<a name="844" href="#844">844</a>         assertEquals(<span class="string">"xray"</span>, tn.getSMap().get(<span class="string">"XXX"</span>));
-<a name="845" href="#845">845</a> 
-<a name="846" href="#846">846</a>         <strong>try</strong> {
-<a name="847" href="#847">847</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"sMap(A1)"</span>, <span class="string">"UNO"</span>);
-<a name="848" href="#848">848</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="849" href="#849">849</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="850" href="#850">850</a>             assertNotNull(e.getMessage());
-<a name="851" href="#851">851</a>         }
-<a name="852" href="#852">852</a> 
-<a name="853" href="#853">853</a>         <strong>try</strong> {
-<a name="854" href="#854">854</a>             fu.setFieldValue(tn, <strong>null</strong>, <span class="string">"UNO"</span>);
-<a name="855" href="#855">855</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="856" href="#856">856</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="857" href="#857">857</a>             assertNotNull(e.getMessage());
-<a name="858" href="#858">858</a>         }
-<a name="859" href="#859">859</a> 
-<a name="860" href="#860">860</a>         <strong>try</strong> {
-<a name="861" href="#861">861</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"sMap(A1)"</span>, 120);
-<a name="862" href="#862">862</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="863" href="#863">863</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="864" href="#864">864</a>             assertNotNull(e.getMessage());
-<a name="865" href="#865">865</a>         }
-<a name="866" href="#866">866</a> 
-<a name="867" href="#867">867</a>         <strong>try</strong> {
-<a name="868" href="#868">868</a>             fu.setFieldValue(tn, <span class="string">"sList(A1)"</span>, <span class="string">"UNO"</span>);
-<a name="869" href="#869">869</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="870" href="#870">870</a>         } <strong>catch</strong> (IllegalArgumentException e) {
-<a name="871" href="#871">871</a>             assertNotNull(e.getMessage());
-<a name="872" href="#872">872</a>         }
-<a name="873" href="#873">873</a> 
-<a name="874" href="#874">874</a>         <em class="comment">// test setting map values</em>
-<a name="875" href="#875">875</a>         Map&lt;String, Integer> myMap = <strong>new</strong> HashMap&lt;String, Integer>();
-<a name="876" href="#876">876</a>         myMap.put(<span class="string">"A"</span>, 10);
-<a name="877" href="#877">877</a>         myMap.put(<span class="string">"B"</span>, 2);
-<a name="878" href="#878">878</a>         myMap.put(<span class="string">"C"</span>, 24);
-<a name="879" href="#879">879</a>         fu.setFieldValue(myMap, <span class="string">"A"</span>, <span class="string">"alpha"</span>);
-<a name="880" href="#880">880</a>         assertEquals(<span class="string">"alpha"</span>, myMap.get(<span class="string">"A"</span>));
-<a name="881" href="#881">881</a> 
-<a name="882" href="#882">882</a>         fu.setFieldValue(myMap, <span class="string">"(B)"</span>, <span class="string">"beta"</span>);
-<a name="883" href="#883">883</a>         assertEquals(<span class="string">"beta"</span>, myMap.get(<span class="string">"B"</span>));
+<a name="810" href="#810">810</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(8, <span class="string">"AZ"</span>, <strong>new</strong> String[] {<span class="string">"1"</span>, <span class="string">"B"</span>, <span class="string">"three"</span>});
+<a name="811" href="#811">811</a>         fu.setFieldValue(tn, <span class="string">"id"</span>, 88);
+<a name="812" href="#812">812</a>         assertEquals(88, tn.getId());
+<a name="813" href="#813">813</a> 
+<a name="814" href="#814">814</a>         fu.setFieldValue(tn, <span class="string">"title"</span>, <span class="string">"stuff"</span>);
+<a name="815" href="#815">815</a>         assertEquals(<span class="string">"stuff"</span>, tn.getTitle());
+<a name="816" href="#816">816</a> 
+<a name="817" href="#817">817</a>         fu.setFieldValue(tn, <span class="string">"extra"</span>, <span class="string">"Xtra"</span>);
+<a name="818" href="#818">818</a>         assertEquals(<span class="string">"Xtra"</span>, tn.getExtra());
+<a name="819" href="#819">819</a> 
+<a name="820" href="#820">820</a>         fu.setFieldValue(tn, <span class="string">"myArray"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>});
+<a name="821" href="#821">821</a>         assertEquals(4, tn.getMyArray().length);
+<a name="822" href="#822">822</a>         assertEquals(<span class="string">"A"</span>, tn.getMyArray()[0]);
+<a name="823" href="#823">823</a> 
+<a name="824" href="#824">824</a>         ArrayList&lt;String> al = <strong>new</strong> ArrayList&lt;String>();
+<a name="825" href="#825">825</a>         al.add(<span class="string">"A"</span>);
+<a name="826" href="#826">826</a>         al.add(<span class="string">"B"</span>);
+<a name="827" href="#827">827</a>         al.add(<span class="string">"C"</span>);
+<a name="828" href="#828">828</a>         fu.setFieldValue(tn, <span class="string">"sList"</span>, al);
+<a name="829" href="#829">829</a>         assertEquals(3, tn.getSList().size());
+<a name="830" href="#830">830</a> 
+<a name="831" href="#831">831</a>         HashMap&lt;String, String> hm = <strong>new</strong> HashMap&lt;String, String>();
+<a name="832" href="#832">832</a>         hm.put(<span class="string">"A1"</span>, <span class="string">"A"</span>);
+<a name="833" href="#833">833</a>         hm.put(<span class="string">"B2"</span>, <span class="string">"B"</span>);
+<a name="834" href="#834">834</a>         hm.put(<span class="string">"C3"</span>, <span class="string">"C"</span>);
+<a name="835" href="#835">835</a>         fu.setFieldValue(tn, <span class="string">"sMap"</span>, hm);
+<a name="836" href="#836">836</a>         assertEquals(3, tn.getSMap().size());
+<a name="837" href="#837">837</a> 
+<a name="838" href="#838">838</a>         <em class="comment">// test setting index values</em>
+<a name="839" href="#839">839</a>         fu.setFieldValue(tn, <span class="string">"myArray[0]"</span>, <span class="string">"AAA"</span>);
+<a name="840" href="#840">840</a>         assertEquals(<span class="string">"AAA"</span>, tn.getMyArray()[0]);
+<a name="841" href="#841">841</a> 
+<a name="842" href="#842">842</a>         fu.setFieldValue(tn, <span class="string">"myArray[1]"</span>, <span class="string">"BBBB"</span>);
+<a name="843" href="#843">843</a>         assertEquals(<span class="string">"BBBB"</span>, tn.getMyArray()[1]);
+<a name="844" href="#844">844</a> 
+<a name="845" href="#845">845</a>         fu.setFieldValue(tn, <span class="string">"sList[0]"</span>, <span class="string">"alpha"</span>);
+<a name="846" href="#846">846</a>         assertEquals(<span class="string">"alpha"</span>, tn.getSList().get(0));
+<a name="847" href="#847">847</a> 
+<a name="848" href="#848">848</a>         fu.setFieldValue(tn, <span class="string">"sList[1]"</span>, <span class="string">"beta"</span>);
+<a name="849" href="#849">849</a>         assertEquals(<span class="string">"beta"</span>, tn.getSList().get(1));
+<a name="850" href="#850">850</a> 
+<a name="851" href="#851">851</a>         fu.setIndexedValue(tn, <span class="string">"myArray[99]"</span>, <span class="string">"zeta"</span>);
+<a name="852" href="#852">852</a>         assertEquals(<span class="string">"zeta"</span>, tn.getMyArray()[99]);
+<a name="853" href="#853">853</a> 
+<a name="854" href="#854">854</a>         fu.setIndexedValue(tn, <span class="string">"sList[99]"</span>, <span class="string">"zeta"</span>);
+<a name="855" href="#855">855</a>         assertEquals(<span class="string">"zeta"</span>, tn.getSList().get(99));
+<a name="856" href="#856">856</a> 
+<a name="857" href="#857">857</a>         <strong>try</strong> {
+<a name="858" href="#858">858</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"myArray[1]"</span>, <span class="string">"BBBB"</span>);
+<a name="859" href="#859">859</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="860" href="#860">860</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="861" href="#861">861</a>             assertNotNull(e.getMessage());
+<a name="862" href="#862">862</a>         }      
+<a name="863" href="#863">863</a> 
+<a name="864" href="#864">864</a>         <strong>try</strong> {
+<a name="865" href="#865">865</a>             fu.setFieldValue(tn, <strong>null</strong>, <span class="string">"BBBB"</span>);
+<a name="866" href="#866">866</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="867" href="#867">867</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="868" href="#868">868</a>             assertNotNull(e.getMessage());
+<a name="869" href="#869">869</a>         }
+<a name="870" href="#870">870</a> 
+<a name="871" href="#871">871</a>         <em class="comment">// test setting mapped values</em>
+<a name="872" href="#872">872</a>         fu.setFieldValue(tn, <span class="string">"sMap(A1)"</span>, <span class="string">"UNO"</span>);
+<a name="873" href="#873">873</a>         assertEquals(<span class="string">"UNO"</span>, tn.getSMap().get(<span class="string">"A1"</span>));
+<a name="874" href="#874">874</a> 
+<a name="875" href="#875">875</a>         fu.setFieldValue(tn, <span class="string">"sMap(XXX)"</span>, <span class="string">"xray"</span>);
+<a name="876" href="#876">876</a>         assertEquals(<span class="string">"xray"</span>, tn.getSMap().get(<span class="string">"XXX"</span>));
+<a name="877" href="#877">877</a> 
+<a name="878" href="#878">878</a>         <strong>try</strong> {
+<a name="879" href="#879">879</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"sMap(A1)"</span>, <span class="string">"UNO"</span>);
+<a name="880" href="#880">880</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="881" href="#881">881</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="882" href="#882">882</a>             assertNotNull(e.getMessage());
+<a name="883" href="#883">883</a>         }
 <a name="884" href="#884">884</a> 
-<a name="885" href="#885">885</a>         fu.setFieldValue(myMap, <span class="string">"D"</span>, <span class="string">"delta"</span>);
-<a name="886" href="#886">886</a>         assertEquals(<span class="string">"delta"</span>, myMap.get(<span class="string">"D"</span>));
-<a name="887" href="#887">887</a>     }
-<a name="888" href="#888">888</a> 
-<a name="889" href="#889">889</a>     <strong>public</strong> <strong>void</strong> testSetNoConvert() {
-<a name="890" href="#890">890</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
+<a name="885" href="#885">885</a>         <strong>try</strong> {
+<a name="886" href="#886">886</a>             fu.setFieldValue(tn, <strong>null</strong>, <span class="string">"UNO"</span>);
+<a name="887" href="#887">887</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="888" href="#888">888</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="889" href="#889">889</a>             assertNotNull(e.getMessage());
+<a name="890" href="#890">890</a>         }
 <a name="891" href="#891">891</a> 
-<a name="892" href="#892">892</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(8, <span class="string">"AZ"</span>, <strong>new</strong> String[] {<span class="string">"1"</span>, <span class="string">"B"</span>, <span class="string">"three"</span>});
-<a name="893" href="#893">893</a>         fu.setFieldValue(tn, <span class="string">"id"</span>, 88, false);
-<a name="894" href="#894">894</a>         assertEquals(88, tn.getId());
-<a name="895" href="#895">895</a> 
-<a name="896" href="#896">896</a>         <strong>try</strong> {
-<a name="897" href="#897">897</a>             fu.setFieldValue(tn, <span class="string">"id"</span>, <span class="string">"888"</span>, false);
-<a name="898" href="#898">898</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="899" href="#899">899</a>         } <strong>catch</strong> (FieldSetValueException e) {
-<a name="900" href="#900">900</a>             assertNotNull(e.getMessage());
-<a name="901" href="#901">901</a>         }
-<a name="902" href="#902">902</a> 
-<a name="903" href="#903">903</a>         fu.setFieldValue(tn, <span class="string">"title"</span>, <span class="string">"stuff"</span>, false);
-<a name="904" href="#904">904</a>         assertEquals(<span class="string">"stuff"</span>, tn.getTitle());
+<a name="892" href="#892">892</a>         <strong>try</strong> {
+<a name="893" href="#893">893</a>             fu.setFieldValue(<strong>null</strong>, <span class="string">"sMap(A1)"</span>, 120);
+<a name="894" href="#894">894</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="895" href="#895">895</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="896" href="#896">896</a>             assertNotNull(e.getMessage());
+<a name="897" href="#897">897</a>         }
+<a name="898" href="#898">898</a> 
+<a name="899" href="#899">899</a>         <strong>try</strong> {
+<a name="900" href="#900">900</a>             fu.setFieldValue(tn, <span class="string">"sList(A1)"</span>, <span class="string">"UNO"</span>);
+<a name="901" href="#901">901</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="902" href="#902">902</a>         } <strong>catch</strong> (IllegalArgumentException e) {
+<a name="903" href="#903">903</a>             assertNotNull(e.getMessage());
+<a name="904" href="#904">904</a>         }
 <a name="905" href="#905">905</a> 
-<a name="906" href="#906">906</a>         <strong>try</strong> {
-<a name="907" href="#907">907</a>             fu.setFieldValue(tn, <span class="string">"title"</span>, 1234, false);
-<a name="908" href="#908">908</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="909" href="#909">909</a>         } <strong>catch</strong> (FieldSetValueException e) {
-<a name="910" href="#910">910</a>             assertNotNull(e.getMessage());
-<a name="911" href="#911">911</a>         }
-<a name="912" href="#912">912</a> 
-<a name="913" href="#913">913</a>         fu.setFieldValue(tn, <span class="string">"myArray"</span>, <span class="string">"A,C,T,G"</span>, <strong>true</strong>);
-<a name="914" href="#914">914</a>         assertEquals(4, tn.getMyArray().length);
-<a name="915" href="#915">915</a>         assertEquals(<span class="string">"A"</span>, tn.getMyArray()[0]);
+<a name="906" href="#906">906</a>         <em class="comment">// test setting map values</em>
+<a name="907" href="#907">907</a>         Map&lt;String, Integer> myMap = <strong>new</strong> HashMap&lt;String, Integer>();
+<a name="908" href="#908">908</a>         myMap.put(<span class="string">"A"</span>, 10);
+<a name="909" href="#909">909</a>         myMap.put(<span class="string">"B"</span>, 2);
+<a name="910" href="#910">910</a>         myMap.put(<span class="string">"C"</span>, 24);
+<a name="911" href="#911">911</a>         fu.setFieldValue(myMap, <span class="string">"A"</span>, <span class="string">"alpha"</span>);
+<a name="912" href="#912">912</a>         assertEquals(<span class="string">"alpha"</span>, myMap.get(<span class="string">"A"</span>));
+<a name="913" href="#913">913</a> 
+<a name="914" href="#914">914</a>         fu.setFieldValue(myMap, <span class="string">"(B)"</span>, <span class="string">"beta"</span>);
+<a name="915" href="#915">915</a>         assertEquals(<span class="string">"beta"</span>, myMap.get(<span class="string">"B"</span>));
 <a name="916" href="#916">916</a> 
-<a name="917" href="#917">917</a>         <strong>try</strong> {
-<a name="918" href="#918">918</a>             fu.setFieldValue(tn, <span class="string">"myArray"</span>, <span class="string">"A,C,T,G"</span>, false);
-<a name="919" href="#919">919</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="920" href="#920">920</a>         } <strong>catch</strong> (FieldSetValueException e) {
-<a name="921" href="#921">921</a>             assertNotNull(e.getMessage());
-<a name="922" href="#922">922</a>         }
+<a name="917" href="#917">917</a>         fu.setFieldValue(myMap, <span class="string">"D"</span>, <span class="string">"delta"</span>);
+<a name="918" href="#918">918</a>         assertEquals(<span class="string">"delta"</span>, myMap.get(<span class="string">"D"</span>));
+<a name="919" href="#919">919</a>     }
+<a name="920" href="#920">920</a> 
+<a name="921" href="#921">921</a>     <strong>public</strong> <strong>void</strong> testSetNoConvert() {
+<a name="922" href="#922">922</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
 <a name="923" href="#923">923</a> 
-<a name="924" href="#924">924</a>         fu.setFieldValue(tn, <span class="string">"sList"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>}, <strong>true</strong>);
-<a name="925" href="#925">925</a> 
-<a name="926" href="#926">926</a>         <strong>try</strong> {
-<a name="927" href="#927">927</a>             fu.setFieldValue(tn, <span class="string">"sList"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>}, false);
-<a name="928" href="#928">928</a>             fail(<span class="string">"should have thrown exception"</span>);
-<a name="929" href="#929">929</a>         } <strong>catch</strong> (FieldSetValueException e) {
-<a name="930" href="#930">930</a>             assertNotNull(e.getMessage());
-<a name="931" href="#931">931</a>         }
-<a name="932" href="#932">932</a> 
-<a name="933" href="#933">933</a>         <em class="comment">// test setting map values</em>
-<a name="934" href="#934">934</a>         Map&lt;String, Integer> myMap = <strong>new</strong> HashMap&lt;String, Integer>();
-<a name="935" href="#935">935</a>         myMap.put(<span class="string">"A"</span>, 10);
-<a name="936" href="#936">936</a>         myMap.put(<span class="string">"B"</span>, 2);
-<a name="937" href="#937">937</a>         myMap.put(<span class="string">"C"</span>, 24);
-<a name="938" href="#938">938</a>         fu.setFieldValue(myMap, <span class="string">"A"</span>, <span class="string">"alpha"</span>, false);
-<a name="939" href="#939">939</a>         assertEquals(<span class="string">"alpha"</span>, myMap.get(<span class="string">"A"</span>));
-<a name="940" href="#940">940</a> 
-<a name="941" href="#941">941</a>         fu.setFieldValue(myMap, <span class="string">"(B)"</span>, <span class="string">"beta"</span>, false);
-<a name="942" href="#942">942</a>         assertEquals(<span class="string">"beta"</span>, myMap.get(<span class="string">"B"</span>));
-<a name="943" href="#943">943</a> 
-<a name="944" href="#944">944</a>         fu.setFieldValue(myMap, <span class="string">"D"</span>, <span class="string">"delta"</span>, false);
-<a name="945" href="#945">945</a>         assertEquals(<span class="string">"delta"</span>, myMap.get(<span class="string">"D"</span>));
-<a name="946" href="#946">946</a>     }
-<a name="947" href="#947">947</a> 
-<a name="948" href="#948">948</a>     <em>/**<em>*</em></em>
-<a name="949" href="#949">949</a> <em>     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getFieldValues(java.lang.Object)}.</em>
-<a name="950" href="#950">950</a> <em>     */</em>
-<a name="951" href="#951">951</a>     <strong>public</strong> <strong>void</strong> testGetFieldValues() {
-<a name="952" href="#952">952</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
-<a name="953" href="#953">953</a>         Map&lt;String, Object> m = <strong>null</strong>;
-<a name="954" href="#954">954</a> 
-<a name="955" href="#955">955</a>         m = fu.getFieldValues( <strong>new</strong> TestNone() );
-<a name="956" href="#956">956</a>         assertNotNull(m);
-<a name="957" href="#957">957</a>         assertEquals(0, m.size());
-<a name="958" href="#958">958</a> 
-<a name="959" href="#959">959</a>         m = fu.getFieldValues( <strong>new</strong> TestPea() );
-<a name="960" href="#960">960</a>         assertNotNull(m);
-<a name="961" href="#961">961</a>         assertEquals(2, m.size());
-<a name="962" href="#962">962</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
-<a name="963" href="#963">963</a>         assertEquals(<span class="string">"id"</span>, m.get(<span class="string">"id"</span>));
-<a name="964" href="#964">964</a>         assertTrue(m.containsKey(<span class="string">"entityId"</span>));
-<a name="965" href="#965">965</a>         assertEquals(<span class="string">"EID"</span>, m.get(<span class="string">"entityId"</span>));
-<a name="966" href="#966">966</a> 
-<a name="967" href="#967">967</a>         m = fu.getFieldValues( <strong>new</strong> TestBean() );
-<a name="968" href="#968">968</a>         assertNotNull(m);
-<a name="969" href="#969">969</a>         assertEquals(2, m.size());
-<a name="970" href="#970">970</a>         assertTrue(m.containsKey(<span class="string">"myInt"</span>));
-<a name="971" href="#971">971</a>         assertTrue(m.containsKey(<span class="string">"myString"</span>));
-<a name="972" href="#972">972</a>         assertEquals(0, m.get(<span class="string">"myInt"</span>));
-<a name="973" href="#973">973</a>         assertEquals(<span class="string">"woot"</span>, m.get(<span class="string">"myString"</span>));
-<a name="974" href="#974">974</a> 
-<a name="975" href="#975">975</a>         m = fu.getFieldValues( <strong>new</strong> TestEntity() );
-<a name="976" href="#976">976</a>         assertNotNull(m);
-<a name="977" href="#977">977</a>         assertEquals(6, m.size());
-<a name="978" href="#978">978</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
-<a name="979" href="#979">979</a>         assertTrue(m.containsKey(<span class="string">"entityId"</span>));
-<a name="980" href="#980">980</a>         assertTrue(m.containsKey(<span class="string">"extra"</span>));
-<a name="981" href="#981">981</a>         assertTrue(m.containsKey(<span class="string">"sArray"</span>));
-<a name="982" href="#982">982</a>         assertTrue(m.containsKey(<span class="string">"bool"</span>));
-<a name="983" href="#983">983</a>         assertEquals(<strong>new</strong> Long(3), m.get(<span class="string">"id"</span>));
-<a name="984" href="#984">984</a>         assertEquals(<span class="string">"33"</span>, m.get(<span class="string">"entityId"</span>));
-<a name="985" href="#985">985</a>         assertEquals(<strong>null</strong>, m.get(<span class="string">"extra"</span>));
-<a name="986" href="#986">986</a>         assertTrue(m.get(<span class="string">"sArray"</span>).getClass().isArray());
-<a name="987" href="#987">987</a> 
-<a name="988" href="#988">988</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>();
-<a name="989" href="#989">989</a>         tn.setTestBean( <strong>new</strong> TestBean() );
-<a name="990" href="#990">990</a>         m = fu.getFieldValues( tn );
-<a name="991" href="#991">991</a>         assertNotNull(m);
-<a name="992" href="#992">992</a>         assertEquals(9, m.size());
-<a name="993" href="#993">993</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
-<a name="994" href="#994">994</a>         assertTrue(m.containsKey(<span class="string">"title"</span>));
-<a name="995" href="#995">995</a>         assertTrue(m.containsKey(<span class="string">"extra"</span>));
-<a name="996" href="#996">996</a>         assertTrue(m.containsKey(<span class="string">"myArray"</span>));
-<a name="997" href="#997">997</a>         assertTrue(m.containsKey(<span class="string">"sList"</span>));
-<a name="998" href="#998">998</a>         assertTrue(m.containsKey(<span class="string">"sMap"</span>));
-<a name="999" href="#999">999</a>         assertTrue(m.containsKey(<span class="string">"testPea"</span>));
-<a name="1000" href="#1000">1000</a>         assertTrue(m.containsKey(<span class="string">"testBean"</span>));
-<a name="1001" href="#1001">1001</a>         assertTrue(m.containsKey(<span class="string">"testEntity"</span>));
-<a name="1002" href="#1002">1002</a>         assertEquals(5, m.get(<span class="string">"id"</span>));
-<a name="1003" href="#1003">1003</a>         assertEquals(<span class="string">"55"</span>, m.get(<span class="string">"title"</span>));
-<a name="1004" href="#1004">1004</a>         assertEquals(<strong>null</strong>, m.get(<span class="string">"extra"</span>));
-<a name="1005" href="#1005">1005</a>         assertTrue(m.get(<span class="string">"myArray"</span>).getClass().isArray());
-<a name="1006" href="#1006">1006</a>         assertTrue(List.<strong>class</strong>.isAssignableFrom(m.get(<span class="string">"sList"</span>).getClass()));
-<a name="1007" href="#1007">1007</a>         assertTrue(Map.<strong>class</strong>.isAssignableFrom(m.get(<span class="string">"sMap"</span>).getClass()));
-<a name="1008" href="#1008">1008</a>         assertNotNull(m.get(<span class="string">"testBean"</span>));
-<a name="1009" href="#1009">1009</a>         assertNull(m.get(<span class="string">"testPea"</span>));
-<a name="1010" href="#1010">1010</a>         assertNotNull(m.get(<span class="string">"testEntity"</span>));
-<a name="1011" href="#1011">1011</a>     }
-<a name="1012" href="#1012">1012</a> 
-<a name="1013" href="#1013">1013</a>     <strong>public</strong> <strong>void</strong> testAutoCreateBeans() {
-<a name="1014" href="#1014">1014</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
-<a name="1015" href="#1015">1015</a> 
-<a name="1016" href="#1016">1016</a>         <em class="comment">// check that the objects are auto created</em>
-<a name="1017" href="#1017">1017</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> nested = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(10, <span class="string">"100"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"B"</span>});
-<a name="1018" href="#1018">1018</a> 
-<a name="1019" href="#1019">1019</a>         fu.setFieldValue(nested, <span class="string">"testBean.myString"</span>, <span class="string">"stuff"</span>);
-<a name="1020" href="#1020">1020</a>         assertEquals(<span class="string">"stuff"</span>, nested.getTestBean().getMyString());
-<a name="1021" href="#1021">1021</a> 
-<a name="1022" href="#1022">1022</a>         fu.setFieldValue(nested, <span class="string">"testPea.id"</span>, <span class="string">"AZ"</span>);
-<a name="1023" href="#1023">1023</a>         assertEquals(<span class="string">"AZ"</span>, nested.testPea.id);
-<a name="1024" href="#1024">1024</a> 
-<a name="1025" href="#1025">1025</a>         <em class="comment">// test that collections are auto created</em>
-<a name="1026" href="#1026">1026</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a> collect = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a>(false);
-<a name="1027" href="#1027">1027</a> 
-<a name="1028" href="#1028">1028</a>         fu.setFieldValue(collect, <span class="string">"list[0]"</span>, <span class="string">"AZ"</span>);
-<a name="1029" href="#1029">1029</a>         assertEquals(<span class="string">"AZ"</span>, collect.list.get(0));
-<a name="1030" href="#1030">1030</a> 
-<a name="1031" href="#1031">1031</a>         fu.setFieldValue(collect, <span class="string">"array[0]"</span>, <span class="string">"AZ"</span>);
-<a name="1032" href="#1032">1032</a>         assertEquals(<span class="string">"AZ"</span>, collect.array[0]);
-<a name="1033" href="#1033">1033</a> 
-<a name="1034" href="#1034">1034</a>         fu.setFieldValue(collect, <span class="string">"map(aaron)"</span>, <span class="string">"AZ"</span>);
-<a name="1035" href="#1035">1035</a>         assertEquals(<span class="string">"AZ"</span>, collect.map.get(<span class="string">"aaron"</span>));
-<a name="1036" href="#1036">1036</a> 
-<a name="1037" href="#1037">1037</a>         <em class="comment">// test collection nesting (mostly for maps)</em>
-<a name="1038" href="#1038">1038</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a> tc = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a>(false);
-<a name="1039" href="#1039">1039</a> 
-<a name="1040" href="#1040">1040</a>         fu.setFieldValue(tc, <span class="string">"map.user.name"</span>, <span class="string">"AZ"</span>);
-<a name="1041" href="#1041">1041</a>         assertNotNull(tc.map);
-<a name="1042" href="#1042">1042</a>         assertEquals(1, tc.map.size());
-<a name="1043" href="#1043">1043</a>         assertTrue(tc.map.containsKey(<span class="string">"user"</span>));
-<a name="1044" href="#1044">1044</a>         assertEquals(<span class="string">"AZ"</span>, fu.getFieldValue(tc, <span class="string">"map.user.name"</span>));
-<a name="1045" href="#1045">1045</a>     }
-<a name="1046" href="#1046">1046</a> 
-<a name="1047" href="#1047">1047</a> }
+<a name="924" href="#924">924</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(8, <span class="string">"AZ"</span>, <strong>new</strong> String[] {<span class="string">"1"</span>, <span class="string">"B"</span>, <span class="string">"three"</span>});
+<a name="925" href="#925">925</a>         fu.setFieldValue(tn, <span class="string">"id"</span>, 88, false);
+<a name="926" href="#926">926</a>         assertEquals(88, tn.getId());
+<a name="927" href="#927">927</a> 
+<a name="928" href="#928">928</a>         <strong>try</strong> {
+<a name="929" href="#929">929</a>             fu.setFieldValue(tn, <span class="string">"id"</span>, <span class="string">"888"</span>, false);
+<a name="930" href="#930">930</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="931" href="#931">931</a>         } <strong>catch</strong> (FieldSetValueException e) {
+<a name="932" href="#932">932</a>             assertNotNull(e.getMessage());
+<a name="933" href="#933">933</a>         }
+<a name="934" href="#934">934</a> 
+<a name="935" href="#935">935</a>         fu.setFieldValue(tn, <span class="string">"title"</span>, <span class="string">"stuff"</span>, false);
+<a name="936" href="#936">936</a>         assertEquals(<span class="string">"stuff"</span>, tn.getTitle());
+<a name="937" href="#937">937</a> 
+<a name="938" href="#938">938</a>         <strong>try</strong> {
+<a name="939" href="#939">939</a>             fu.setFieldValue(tn, <span class="string">"title"</span>, 1234, false);
+<a name="940" href="#940">940</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="941" href="#941">941</a>         } <strong>catch</strong> (FieldSetValueException e) {
+<a name="942" href="#942">942</a>             assertNotNull(e.getMessage());
+<a name="943" href="#943">943</a>         }
+<a name="944" href="#944">944</a> 
+<a name="945" href="#945">945</a>         fu.setFieldValue(tn, <span class="string">"myArray"</span>, <span class="string">"A,C,T,G"</span>, <strong>true</strong>);
+<a name="946" href="#946">946</a>         assertEquals(4, tn.getMyArray().length);
+<a name="947" href="#947">947</a>         assertEquals(<span class="string">"A"</span>, tn.getMyArray()[0]);
+<a name="948" href="#948">948</a> 
+<a name="949" href="#949">949</a>         <strong>try</strong> {
+<a name="950" href="#950">950</a>             fu.setFieldValue(tn, <span class="string">"myArray"</span>, <span class="string">"A,C,T,G"</span>, false);
+<a name="951" href="#951">951</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="952" href="#952">952</a>         } <strong>catch</strong> (FieldSetValueException e) {
+<a name="953" href="#953">953</a>             assertNotNull(e.getMessage());
+<a name="954" href="#954">954</a>         }
+<a name="955" href="#955">955</a> 
+<a name="956" href="#956">956</a>         fu.setFieldValue(tn, <span class="string">"sList"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>}, <strong>true</strong>);
+<a name="957" href="#957">957</a> 
+<a name="958" href="#958">958</a>         <strong>try</strong> {
+<a name="959" href="#959">959</a>             fu.setFieldValue(tn, <span class="string">"sList"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"C"</span>, <span class="string">"T"</span>, <span class="string">"G"</span>}, false);
+<a name="960" href="#960">960</a>             fail(<span class="string">"should have thrown exception"</span>);
+<a name="961" href="#961">961</a>         } <strong>catch</strong> (FieldSetValueException e) {
+<a name="962" href="#962">962</a>             assertNotNull(e.getMessage());
+<a name="963" href="#963">963</a>         }
+<a name="964" href="#964">964</a> 
+<a name="965" href="#965">965</a>         <em class="comment">// test setting map values</em>
+<a name="966" href="#966">966</a>         Map&lt;String, Integer> myMap = <strong>new</strong> HashMap&lt;String, Integer>();
+<a name="967" href="#967">967</a>         myMap.put(<span class="string">"A"</span>, 10);
+<a name="968" href="#968">968</a>         myMap.put(<span class="string">"B"</span>, 2);
+<a name="969" href="#969">969</a>         myMap.put(<span class="string">"C"</span>, 24);
+<a name="970" href="#970">970</a>         fu.setFieldValue(myMap, <span class="string">"A"</span>, <span class="string">"alpha"</span>, false);
+<a name="971" href="#971">971</a>         assertEquals(<span class="string">"alpha"</span>, myMap.get(<span class="string">"A"</span>));
+<a name="972" href="#972">972</a> 
+<a name="973" href="#973">973</a>         fu.setFieldValue(myMap, <span class="string">"(B)"</span>, <span class="string">"beta"</span>, false);
+<a name="974" href="#974">974</a>         assertEquals(<span class="string">"beta"</span>, myMap.get(<span class="string">"B"</span>));
+<a name="975" href="#975">975</a> 
+<a name="976" href="#976">976</a>         fu.setFieldValue(myMap, <span class="string">"D"</span>, <span class="string">"delta"</span>, false);
+<a name="977" href="#977">977</a>         assertEquals(<span class="string">"delta"</span>, myMap.get(<span class="string">"D"</span>));
+<a name="978" href="#978">978</a>     }
+<a name="979" href="#979">979</a> 
+<a name="980" href="#980">980</a>     <em>/**<em>*</em></em>
+<a name="981" href="#981">981</a> <em>     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getFieldValues(java.lang.Object)}.</em>
+<a name="982" href="#982">982</a> <em>     */</em>
+<a name="983" href="#983">983</a>     <strong>public</strong> <strong>void</strong> testGetFieldValues() {
+<a name="984" href="#984">984</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
+<a name="985" href="#985">985</a>         Map&lt;String, Object> m = <strong>null</strong>;
+<a name="986" href="#986">986</a> 
+<a name="987" href="#987">987</a>         m = fu.getFieldValues( <strong>new</strong> TestNone() );
+<a name="988" href="#988">988</a>         assertNotNull(m);
+<a name="989" href="#989">989</a>         assertEquals(0, m.size());
+<a name="990" href="#990">990</a> 
+<a name="991" href="#991">991</a>         m = fu.getFieldValues( <strong>new</strong> TestPea() );
+<a name="992" href="#992">992</a>         assertNotNull(m);
+<a name="993" href="#993">993</a>         assertEquals(2, m.size());
+<a name="994" href="#994">994</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
+<a name="995" href="#995">995</a>         assertEquals(<span class="string">"id"</span>, m.get(<span class="string">"id"</span>));
+<a name="996" href="#996">996</a>         assertTrue(m.containsKey(<span class="string">"entityId"</span>));
+<a name="997" href="#997">997</a>         assertEquals(<span class="string">"EID"</span>, m.get(<span class="string">"entityId"</span>));
+<a name="998" href="#998">998</a> 
+<a name="999" href="#999">999</a>         m = fu.getFieldValues( <strong>new</strong> TestBean() );
+<a name="1000" href="#1000">1000</a>         assertNotNull(m);
+<a name="1001" href="#1001">1001</a>         assertEquals(2, m.size());
+<a name="1002" href="#1002">1002</a>         assertTrue(m.containsKey(<span class="string">"myInt"</span>));
+<a name="1003" href="#1003">1003</a>         assertTrue(m.containsKey(<span class="string">"myString"</span>));
+<a name="1004" href="#1004">1004</a>         assertEquals(0, m.get(<span class="string">"myInt"</span>));
+<a name="1005" href="#1005">1005</a>         assertEquals(<span class="string">"woot"</span>, m.get(<span class="string">"myString"</span>));
+<a name="1006" href="#1006">1006</a> 
+<a name="1007" href="#1007">1007</a>         m = fu.getFieldValues( <strong>new</strong> TestEntity() );
+<a name="1008" href="#1008">1008</a>         assertNotNull(m);
+<a name="1009" href="#1009">1009</a>         assertEquals(6, m.size());
+<a name="1010" href="#1010">1010</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
+<a name="1011" href="#1011">1011</a>         assertTrue(m.containsKey(<span class="string">"entityId"</span>));
+<a name="1012" href="#1012">1012</a>         assertTrue(m.containsKey(<span class="string">"extra"</span>));
+<a name="1013" href="#1013">1013</a>         assertTrue(m.containsKey(<span class="string">"sArray"</span>));
+<a name="1014" href="#1014">1014</a>         assertTrue(m.containsKey(<span class="string">"bool"</span>));
+<a name="1015" href="#1015">1015</a>         assertEquals(<strong>new</strong> Long(3), m.get(<span class="string">"id"</span>));
+<a name="1016" href="#1016">1016</a>         assertEquals(<span class="string">"33"</span>, m.get(<span class="string">"entityId"</span>));
+<a name="1017" href="#1017">1017</a>         assertEquals(<strong>null</strong>, m.get(<span class="string">"extra"</span>));
+<a name="1018" href="#1018">1018</a>         assertTrue(m.get(<span class="string">"sArray"</span>).getClass().isArray());
+<a name="1019" href="#1019">1019</a> 
+<a name="1020" href="#1020">1020</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> tn = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>();
+<a name="1021" href="#1021">1021</a>         tn.setTestBean( <strong>new</strong> TestBean() );
+<a name="1022" href="#1022">1022</a>         m = fu.getFieldValues( tn );
+<a name="1023" href="#1023">1023</a>         assertNotNull(m);
+<a name="1024" href="#1024">1024</a>         assertEquals(9, m.size());
+<a name="1025" href="#1025">1025</a>         assertTrue(m.containsKey(<span class="string">"id"</span>));
+<a name="1026" href="#1026">1026</a>         assertTrue(m.containsKey(<span class="string">"title"</span>));
+<a name="1027" href="#1027">1027</a>         assertTrue(m.containsKey(<span class="string">"extra"</span>));
+<a name="1028" href="#1028">1028</a>         assertTrue(m.containsKey(<span class="string">"myArray"</span>));
+<a name="1029" href="#1029">1029</a>         assertTrue(m.containsKey(<span class="string">"sList"</span>));
+<a name="1030" href="#1030">1030</a>         assertTrue(m.containsKey(<span class="string">"sMap"</span>));
+<a name="1031" href="#1031">1031</a>         assertTrue(m.containsKey(<span class="string">"testPea"</span>));
+<a name="1032" href="#1032">1032</a>         assertTrue(m.containsKey(<span class="string">"testBean"</span>));
+<a name="1033" href="#1033">1033</a>         assertTrue(m.containsKey(<span class="string">"testEntity"</span>));
+<a name="1034" href="#1034">1034</a>         assertEquals(5, m.get(<span class="string">"id"</span>));
+<a name="1035" href="#1035">1035</a>         assertEquals(<span class="string">"55"</span>, m.get(<span class="string">"title"</span>));
+<a name="1036" href="#1036">1036</a>         assertEquals(<strong>null</strong>, m.get(<span class="string">"extra"</span>));
+<a name="1037" href="#1037">1037</a>         assertTrue(m.get(<span class="string">"myArray"</span>).getClass().isArray());
+<a name="1038" href="#1038">1038</a>         assertTrue(List.<strong>class</strong>.isAssignableFrom(m.get(<span class="string">"sList"</span>).getClass()));
+<a name="1039" href="#1039">1039</a>         assertTrue(Map.<strong>class</strong>.isAssignableFrom(m.get(<span class="string">"sMap"</span>).getClass()));
+<a name="1040" href="#1040">1040</a>         assertNotNull(m.get(<span class="string">"testBean"</span>));
+<a name="1041" href="#1041">1041</a>         assertNull(m.get(<span class="string">"testPea"</span>));
+<a name="1042" href="#1042">1042</a>         assertNotNull(m.get(<span class="string">"testEntity"</span>));
+<a name="1043" href="#1043">1043</a>     }
+<a name="1044" href="#1044">1044</a> 
+<a name="1045" href="#1045">1045</a>     <strong>public</strong> <strong>void</strong> testAutoCreateBeans() {
+<a name="1046" href="#1046">1046</a>         FieldUtils fu = <strong>new</strong> FieldUtils();
+<a name="1047" href="#1047">1047</a> 
+<a name="1048" href="#1048">1048</a>         <em class="comment">// check that the objects are auto created</em>
+<a name="1049" href="#1049">1049</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a> nested = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestNesting.html">TestNesting</a>(10, <span class="string">"100"</span>, <strong>new</strong> String[] {<span class="string">"A"</span>, <span class="string">"B"</span>});
+<a name="1050" href="#1050">1050</a> 
+<a name="1051" href="#1051">1051</a>         fu.setFieldValue(nested, <span class="string">"testBean.myString"</span>, <span class="string">"stuff"</span>);
+<a name="1052" href="#1052">1052</a>         assertEquals(<span class="string">"stuff"</span>, nested.getTestBean().getMyString());
+<a name="1053" href="#1053">1053</a> 
+<a name="1054" href="#1054">1054</a>         fu.setFieldValue(nested, <span class="string">"testPea.id"</span>, <span class="string">"AZ"</span>);
+<a name="1055" href="#1055">1055</a>         assertEquals(<span class="string">"AZ"</span>, nested.testPea.id);
+<a name="1056" href="#1056">1056</a> 
+<a name="1057" href="#1057">1057</a>         <em class="comment">// test that collections are auto created</em>
+<a name="1058" href="#1058">1058</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a> collect = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a>(false);
+<a name="1059" href="#1059">1059</a> 
+<a name="1060" href="#1060">1060</a>         fu.setFieldValue(collect, <span class="string">"list[0]"</span>, <span class="string">"AZ"</span>);
+<a name="1061" href="#1061">1061</a>         assertEquals(<span class="string">"AZ"</span>, collect.list.get(0));
+<a name="1062" href="#1062">1062</a> 
+<a name="1063" href="#1063">1063</a>         fu.setFieldValue(collect, <span class="string">"array[0]"</span>, <span class="string">"AZ"</span>);
+<a name="1064" href="#1064">1064</a>         assertEquals(<span class="string">"AZ"</span>, collect.array[0]);
+<a name="1065" href="#1065">1065</a> 
+<a name="1066" href="#1066">1066</a>         fu.setFieldValue(collect, <span class="string">"map(aaron)"</span>, <span class="string">"AZ"</span>);
+<a name="1067" href="#1067">1067</a>         assertEquals(<span class="string">"AZ"</span>, collect.map.get(<span class="string">"aaron"</span>));
+<a name="1068" href="#1068">1068</a> 
+<a name="1069" href="#1069">1069</a>         <em class="comment">// test collection nesting (mostly for maps)</em>
+<a name="1070" href="#1070">1070</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a> tc = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestCollections.html">TestCollections</a>(false);
+<a name="1071" href="#1071">1071</a> 
+<a name="1072" href="#1072">1072</a>         fu.setFieldValue(tc, <span class="string">"map.user.name"</span>, <span class="string">"AZ"</span>);
+<a name="1073" href="#1073">1073</a>         assertNotNull(tc.map);
+<a name="1074" href="#1074">1074</a>         assertEquals(1, tc.map.size());
+<a name="1075" href="#1075">1075</a>         assertTrue(tc.map.containsKey(<span class="string">"user"</span>));
+<a name="1076" href="#1076">1076</a>         assertEquals(<span class="string">"AZ"</span>, fu.getFieldValue(tc, <span class="string">"map.user.name"</span>));
+<a name="1077" href="#1077">1077</a>     }
+<a name="1078" href="#1078">1078</a> 
+<a name="1079" href="#1079">1079</a>     <strong>public</strong> <strong>void</strong> testNonVisibleFields() {
+<a name="1080" href="#1080">1080</a>         FieldUtils fu = FieldUtils.getInstance();
+<a name="1081" href="#1081">1081</a>         Object value = <strong>null</strong>;
+<a name="1082" href="#1082">1082</a> 
+<a name="1083" href="#1083">1083</a>         <a href="../../../org/azeckoski/reflectutils/classes/TestPea.html">TestPea</a> tp = <strong>new</strong> <a href="../../../org/azeckoski/reflectutils/classes/TestPea.html">TestPea</a>();
+<a name="1084" href="#1084">1084</a>         <em class="comment">// test getting</em>
+<a name="1085" href="#1085">1085</a>         value = fu.getFieldValue(tp, <span class="string">"prot"</span>);
+<a name="1086" href="#1086">1086</a>         assertNotNull(value);
+<a name="1087" href="#1087">1087</a>         assertEquals(<span class="string">"prot"</span>, value);
+<a name="1088" href="#1088">1088</a> 
+<a name="1089" href="#1089">1089</a>         value = fu.getFieldValue(tp, <span class="string">"priv"</span>);
+<a name="1090" href="#1090">1090</a>         assertNotNull(value);
+<a name="1091" href="#1091">1091</a>         assertEquals(<span class="string">"priv"</span>, value);
+<a name="1092" href="#1092">1092</a> 
+<a name="1093" href="#1093">1093</a>         <em class="comment">// test types</em>
+<a name="1094" href="#1094">1094</a>         Class&lt;?> type = fu.getFieldType(tp, <span class="string">"prot"</span>);
+<a name="1095" href="#1095">1095</a>         assertNotNull(type);
+<a name="1096" href="#1096">1096</a>         assertEquals(String.<strong>class</strong>, type);
+<a name="1097" href="#1097">1097</a> 
+<a name="1098" href="#1098">1098</a>         type = fu.getFieldType(tp, <span class="string">"priv"</span>);
+<a name="1099" href="#1099">1099</a>         assertNotNull(type);
+<a name="1100" href="#1100">1100</a>         assertEquals(String.<strong>class</strong>, type);
+<a name="1101" href="#1101">1101</a> 
+<a name="1102" href="#1102">1102</a>         <em class="comment">// test setting</em>
+<a name="1103" href="#1103">1103</a>         String newVal = <span class="string">"aaronz"</span>;
+<a name="1104" href="#1104">1104</a>         fu.setFieldValue(tp, <span class="string">"prot"</span>, newVal);
+<a name="1105" href="#1105">1105</a>         value = fu.getFieldValue(tp, <span class="string">"prot"</span>);
+<a name="1106" href="#1106">1106</a>         assertNotNull(value);
+<a name="1107" href="#1107">1107</a>         assertEquals(<span class="string">"aaronz"</span>, value);
+<a name="1108" href="#1108">1108</a> 
+<a name="1109" href="#1109">1109</a>         fu.setFieldValue(tp, <span class="string">"priv"</span>, newVal);
+<a name="1110" href="#1110">1110</a>         value = fu.getFieldValue(tp, <span class="string">"priv"</span>);
+<a name="1111" href="#1111">1111</a>         assertNotNull(value);
+<a name="1112" href="#1112">1112</a>         assertEquals(<span class="string">"aaronz"</span>, value);
+<a name="1113" href="#1113">1113</a> 
+<a name="1114" href="#1114">1114</a>     }
+<a name="1115" href="#1115">1115</a> 
+<a name="1116" href="#1116">1116</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

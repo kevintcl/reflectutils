@@ -353,12 +353,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;68</td>
-  <td class="nbHitsCovered">&nbsp;20</td>
+  <td class="nbHitsCovered">&nbsp;120</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> DefaultResolver() {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;69</td>
-  <td class="nbHitsCovered">&nbsp;20</td>
+  <td class="nbHitsCovered">&nbsp;120</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -413,7 +413,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;80</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -428,17 +428,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;83</td>
-  <td class="nbHitsCovered">&nbsp;324</td>
+  <td class="nbHitsCovered">&nbsp;1944</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;84</td>
-  <td class="nbHitsCovered">&nbsp;324</td>
+  <td class="nbHitsCovered">&nbsp;1944</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;85</td>
-  <td class="nbHitsCovered">&nbsp;324</td>
+  <td class="nbHitsCovered">&nbsp;1944</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (c == NESTED || c == MAPPED_START) {</pre></td>
 </tr>
 <tr>
@@ -448,17 +448,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;87</td>
-  <td class="nbHitsCovered">&nbsp;324</td>
+  <td class="nbHitsCovered">&nbsp;1944</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;88</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> end = expression.indexOf(INDEXED_END, i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;89</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (end &lt; 0) {</pre></td>
 </tr>
 <tr>
@@ -473,12 +473,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;92</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                String value = expression.substring(i + 1, end);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;93</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (value.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -493,7 +493,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;96</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> index = 0;</pre></td>
 </tr>
 <tr>
@@ -503,7 +503,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;98</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                    index = Integer.parseInt(value, 10);</pre></td>
 </tr>
 <tr>
@@ -518,12 +518,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;101</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;220</td>
   <td class="src"><pre class="src">&nbsp;                }</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;102</td>
-  <td class="nbHitsCovered">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;330</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> index;</pre></td>
 </tr>
 <tr>
@@ -593,7 +593,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;116</td>
-  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="nbHitsCovered">&nbsp;198</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -608,17 +608,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;119</td>
-  <td class="nbHitsCovered">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;780</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;120</td>
-  <td class="nbHitsCovered">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;780</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;121</td>
-  <td class="nbHitsCovered">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;780</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (c == NESTED || c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
@@ -628,17 +628,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;123</td>
-  <td class="nbHitsCovered">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;780</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (c == MAPPED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;124</td>
-  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="nbHitsCovered">&nbsp;198</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> end = expression.indexOf(MAPPED_END, i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;125</td>
-  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="nbHitsCovered">&nbsp;198</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (end &lt; 0) {</pre></td>
 </tr>
 <tr>
@@ -653,7 +653,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;128</td>
-  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="nbHitsCovered">&nbsp;198</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> expression.substring(i + 1, end);</pre></td>
 </tr>
 <tr>
@@ -718,7 +718,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;141</td>
-  <td class="nbHitsCovered">&nbsp;252</td>
+  <td class="nbHitsCovered">&nbsp;1536</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -733,17 +733,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;144</td>
-  <td class="nbHitsCovered">&nbsp;1470</td>
+  <td class="nbHitsCovered">&nbsp;8940</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;145</td>
-  <td class="nbHitsCovered">&nbsp;1340</td>
+  <td class="nbHitsCovered">&nbsp;8136</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;146</td>
-  <td class="nbHitsCovered">&nbsp;1340</td>
+  <td class="nbHitsCovered">&nbsp;8136</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (c == NESTED) {</pre></td>
 </tr>
 <tr>
@@ -753,12 +753,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;148</td>
-  <td class="nbHitsCovered">&nbsp;1340</td>
+  <td class="nbHitsCovered">&nbsp;8136</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (c == MAPPED_START || c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;149</td>
-  <td class="nbHitsCovered">&nbsp;122</td>
+  <td class="nbHitsCovered">&nbsp;732</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> expression.substring(0, i);</pre></td>
 </tr>
 <tr>
@@ -773,7 +773,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;152</td>
-  <td class="nbHitsCovered">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;804</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> expression;</pre></td>
 </tr>
 <tr>
@@ -828,7 +828,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;163</td>
-  <td class="nbHitsCovered">&nbsp;864</td>
+  <td class="nbHitsCovered">&nbsp;5292</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -843,7 +843,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;166</td>
-  <td class="nbHitsCovered">&nbsp;864</td>
+  <td class="nbHitsCovered">&nbsp;5292</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> (remove(expression) != <span class="keyword">null</span>);</pre></td>
 </tr>
 <tr>
@@ -903,7 +903,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;178</td>
-  <td class="nbHitsCovered">&nbsp;823</td>
+  <td class="nbHitsCovered">&nbsp;5046</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -918,32 +918,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;181</td>
-  <td class="nbHitsCovered">&nbsp;5497</td>
+  <td class="nbHitsCovered">&nbsp;33582</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;182</td>
-  <td class="nbHitsCovered">&nbsp;4742</td>
+  <td class="nbHitsCovered">&nbsp;28944</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;183</td>
-  <td class="nbHitsCovered">&nbsp;4742</td>
+  <td class="nbHitsCovered">&nbsp;28944</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (c == NESTED || c == MAPPED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;184</td>
-  <td class="nbHitsCovered">&nbsp;11</td>
+  <td class="nbHitsCovered">&nbsp;66</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;185</td>
-  <td class="nbHitsCovered">&nbsp;4731</td>
+  <td class="nbHitsCovered">&nbsp;28878</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;186</td>
-  <td class="nbHitsCovered">&nbsp;57</td>
+  <td class="nbHitsCovered">&nbsp;342</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
@@ -958,7 +958,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;189</td>
-  <td class="nbHitsCovered">&nbsp;755</td>
+  <td class="nbHitsCovered">&nbsp;4638</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -1013,7 +1013,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;200</td>
-  <td class="nbHitsCovered">&nbsp;845</td>
+  <td class="nbHitsCovered">&nbsp;5178</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -1028,32 +1028,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;203</td>
-  <td class="nbHitsCovered">&nbsp;5543</td>
+  <td class="nbHitsCovered">&nbsp;33858</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;204</td>
-  <td class="nbHitsCovered">&nbsp;4765</td>
+  <td class="nbHitsCovered">&nbsp;29082</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;205</td>
-  <td class="nbHitsCovered">&nbsp;4765</td>
+  <td class="nbHitsCovered">&nbsp;29082</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (c == NESTED || c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;206</td>
-  <td class="nbHitsCovered">&nbsp;34</td>
+  <td class="nbHitsCovered">&nbsp;204</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;207</td>
-  <td class="nbHitsCovered">&nbsp;4731</td>
+  <td class="nbHitsCovered">&nbsp;28878</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (c == MAPPED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;208</td>
-  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="nbHitsCovered">&nbsp;198</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
@@ -1068,7 +1068,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;211</td>
-  <td class="nbHitsCovered">&nbsp;778</td>
+  <td class="nbHitsCovered">&nbsp;4776</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
@@ -1123,7 +1123,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;222</td>
-  <td class="nbHitsCovered">&nbsp;911</td>
+  <td class="nbHitsCovered">&nbsp;5598</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -1138,37 +1138,37 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;225</td>
-  <td class="nbHitsCovered">&nbsp;911</td>
+  <td class="nbHitsCovered">&nbsp;5598</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> indexed = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;226</td>
-  <td class="nbHitsCovered">&nbsp;911</td>
+  <td class="nbHitsCovered">&nbsp;5598</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> mapped  = <span class="keyword">false</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;227</td>
-  <td class="nbHitsCovered">&nbsp;6370</td>
+  <td class="nbHitsCovered">&nbsp;39084</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; expression.length(); i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;228</td>
-  <td class="nbHitsCovered">&nbsp;5618</td>
+  <td class="nbHitsCovered">&nbsp;34476</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">char</span> c = expression.charAt(i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;229</td>
-  <td class="nbHitsCovered">&nbsp;5618</td>
+  <td class="nbHitsCovered">&nbsp;34476</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (indexed) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;230</td>
-  <td class="nbHitsCovered">&nbsp;115</td>
+  <td class="nbHitsCovered">&nbsp;690</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (c == INDEXED_END) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;231</td>
-  <td class="nbHitsCovered">&nbsp;57</td>
+  <td class="nbHitsCovered">&nbsp;342</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">return</span> expression.substring(0, i + 1);</pre></td>
 </tr>
 <tr>
@@ -1178,17 +1178,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;233</td>
-  <td class="nbHitsCovered">&nbsp;5503</td>
+  <td class="nbHitsCovered">&nbsp;33786</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> <span class="keyword">if</span> (mapped) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;234</td>
-  <td class="nbHitsCovered">&nbsp;105</td>
+  <td class="nbHitsCovered">&nbsp;630</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (c == MAPPED_END) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;235</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">return</span> expression.substring(0, i + 1);</pre></td>
 </tr>
 <tr>
@@ -1203,32 +1203,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;238</td>
-  <td class="nbHitsCovered">&nbsp;5398</td>
+  <td class="nbHitsCovered">&nbsp;33156</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (c == NESTED) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;239</td>
-  <td class="nbHitsCovered">&nbsp;71</td>
+  <td class="nbHitsCovered">&nbsp;462</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">return</span> expression.substring(0, i);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;240</td>
-  <td class="nbHitsCovered">&nbsp;5327</td>
+  <td class="nbHitsCovered">&nbsp;32694</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> <span class="keyword">if</span> (c == MAPPED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;241</td>
-  <td class="nbHitsCovered">&nbsp;31</td>
+  <td class="nbHitsCovered">&nbsp;186</td>
   <td class="src"><pre class="src">&nbsp;                    mapped = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;242</td>
-  <td class="nbHitsCovered">&nbsp;5296</td>
+  <td class="nbHitsCovered">&nbsp;32508</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> <span class="keyword">if</span> (c == INDEXED_START) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;243</td>
-  <td class="nbHitsCovered">&nbsp;57</td>
+  <td class="nbHitsCovered">&nbsp;342</td>
   <td class="src"><pre class="src">&nbsp;                    indexed = <span class="keyword">true</span>;</pre></td>
 </tr>
 <tr>
@@ -1248,7 +1248,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;247</td>
-  <td class="nbHitsCovered">&nbsp;752</td>
+  <td class="nbHitsCovered">&nbsp;4608</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> expression;</pre></td>
 </tr>
 <tr>
@@ -1308,7 +1308,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;259</td>
-  <td class="nbHitsCovered">&nbsp;887</td>
+  <td class="nbHitsCovered">&nbsp;5442</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression == <span class="keyword">null</span> || expression.length() == 0) {</pre></td>
 </tr>
 <tr>
@@ -1323,17 +1323,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;262</td>
-  <td class="nbHitsCovered">&nbsp;887</td>
+  <td class="nbHitsCovered">&nbsp;5442</td>
   <td class="src"><pre class="src">&nbsp;        String property = next(expression);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;263</td>
-  <td class="nbHitsCovered">&nbsp;887</td>
+  <td class="nbHitsCovered">&nbsp;5442</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression.length() == property.length()) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;264</td>
-  <td class="nbHitsCovered">&nbsp;840</td>
+  <td class="nbHitsCovered">&nbsp;5136</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
@@ -1343,17 +1343,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;266</td>
-  <td class="nbHitsCovered">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;306</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> start = property.length();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;267</td>
-  <td class="nbHitsCovered">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;306</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (expression.charAt(start) == NESTED) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;268</td>
-  <td class="nbHitsCovered">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;306</td>
   <td class="src"><pre class="src">&nbsp;            start++;</pre></td>
 </tr>
 <tr>
@@ -1363,7 +1363,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;270</td>
-  <td class="nbHitsCovered">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;306</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> expression.substring(start);</pre></td>
 </tr>
 <tr>
