@@ -25,9 +25,9 @@ import java.util.Map;
 import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
 import org.azeckoski.reflectutils.ClassProperty.IndexedProperty;
 import org.azeckoski.reflectutils.ClassProperty.MappedProperty;
-import org.azeckoski.reflectutils.beanutils.DefaultFieldAdapter;
 import org.azeckoski.reflectutils.beanutils.DefaultResolver;
 import org.azeckoski.reflectutils.beanutils.FieldAdapter;
+import org.azeckoski.reflectutils.beanutils.FieldAdapterManager;
 import org.azeckoski.reflectutils.beanutils.Resolver;
 import org.azeckoski.reflectutils.exceptions.FieldGetValueException;
 import org.azeckoski.reflectutils.exceptions.FieldSetValueException;
@@ -48,10 +48,6 @@ import org.azeckoski.reflectutils.map.ArrayOrderedMap;
  */
 public class FieldUtils {
 
-    public static final String DYNABEAN_CLASSNAME = "org.apache.commons.beanutils.DynaBean";
-    public static final String DYNABEAN_ADAPTER = "DynaBeanAdapter";
-    protected FieldAdapter fieldAdapter = null;
-
     /**
      * Empty constructor - protected
      */
@@ -69,7 +65,7 @@ public class FieldUtils {
     public FieldUtils(Resolver resolver) {
         setResolver(resolver);
 
-        loadFieldAdapter();
+        fieldAdapterManager = new FieldAdapterManager();
 
         FieldUtils.setInstance(this);
     }
@@ -103,40 +99,13 @@ public class FieldUtils {
     }
 
 
-    /**
-     * loads up the field adapter if the right classes exist,
-     * this allows us to support DynaBeans even though they may not be available 
-     */
-    protected void loadFieldAdapter() {
-        // load up the field adapter if possible
-        Class<?> dynaBean = ClassLoaderUtils.getClassFromString(DYNABEAN_CLASSNAME);
-        if (dynaBean != null) {
-            // assumes the adapter impl is in the same path as the interface
-            String path = FieldAdapter.class.getName();
-            path = path.replace(FieldAdapter.class.getSimpleName(), DYNABEAN_ADAPTER);
-            Class<?> adapterClass = ClassLoaderUtils.getClassFromString(path);
-            if (adapterClass == null) {
-                throw new IllegalStateException("Could not find adapter class: " + DYNABEAN_ADAPTER);
-            }
-            try {
-                fieldAdapter = (FieldAdapter) adapterClass.newInstance();
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to instantiate field adapter: " + adapterClass, e);
-            }
-        } else {
-            getFieldAdapter(); // loads the default
-        }
-    }
+    protected FieldAdapterManager fieldAdapterManager;
     /**
      * INTERNAL USAGE
      * @return the field adapter being used by this set of field utils
      */
     public FieldAdapter getFieldAdapter() {
-        if (fieldAdapter == null) {
-            // load the default which does nothing
-            fieldAdapter = new DefaultFieldAdapter();
-        }
-        return fieldAdapter;
+        return fieldAdapterManager.getFieldAdapter();
     }
 
 
@@ -278,8 +247,8 @@ public class FieldUtils {
         String targetName = getResolver().getProperty(name); // simple name of target field
         // get the type
         Class<?> fieldType = null;
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            fieldType = fieldAdapter.getFieldType(obj, targetName);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            fieldType = fieldAdapterManager.getFieldAdapter().getFieldType(obj, targetName);
         } else if ( ConstructorUtils.isClassObjectHolder(obj.getClass()) 
                 || Object.class.equals(obj.getClass()) ) {
             // special handling for the holder types, needed because attempting to analyze a map or other container will cause a failure
@@ -370,8 +339,8 @@ public class FieldUtils {
             // add as the first field
             values.put(ClassFields.FIELD_CLASS, obj.getClass());
         }
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            values.putAll( fieldAdapter.getFieldValues(obj, filter) );
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            values.putAll( fieldAdapterManager.getFieldAdapter().getFieldValues(obj, filter) );
         } else {
             Map<String, Class<?>> types = getFieldTypes(obj.getClass(), filter);
             if (FieldsFilter.WRITEABLE.equals(filter)) {
@@ -644,8 +613,8 @@ public class FieldUtils {
 
         Object value = null;
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            value = fieldAdapter.getSimpleValue(obj, name);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            value = fieldAdapterManager.getFieldAdapter().getSimpleValue(obj, name);
         } else {
             // normal bean
             ClassFields<?> cf = analyzeObject(obj);
@@ -709,8 +678,8 @@ public class FieldUtils {
 
         boolean indexedProperty = false;
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            value = fieldAdapter.getIndexedValue(obj, name, index);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            value = fieldAdapterManager.getFieldAdapter().getIndexedValue(obj, name, index);
         } else {
             boolean isArray = false;
             Object indexedObject = null;
@@ -811,8 +780,8 @@ public class FieldUtils {
 
         boolean mappedProperty = false;
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            value = fieldAdapter.getMappedValue(obj, name, key);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            value = fieldAdapterManager.getFieldAdapter().getMappedValue(obj, name, key);
         } else {
             Map map = null;
             if (Map.class.isAssignableFrom(obj.getClass())) {
@@ -940,8 +909,8 @@ public class FieldUtils {
         }
 
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            fieldAdapter.setSimpleValue(obj, name, value);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            fieldAdapterManager.getFieldAdapter().setSimpleValue(obj, name, value);
         } else {
             // normal bean
             ClassFields<?> cf = analyzeObject(obj);
@@ -1000,8 +969,8 @@ public class FieldUtils {
 
         boolean indexedProperty = false;
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            fieldAdapter.setIndexedValue(obj, name, index, value);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            fieldAdapterManager.getFieldAdapter().setIndexedValue(obj, name, index, value);
         } else {
             boolean isArray = false;
             Object indexedObject = null;
@@ -1142,8 +1111,8 @@ public class FieldUtils {
 
         boolean mappedProperty = false;
         // Handle DynaBean instances specially
-        if (fieldAdapter.isAdaptableObject(obj)) {
-            fieldAdapter.setMappedValue(obj, name, key, value);
+        if (fieldAdapterManager.isAdaptableObject(obj)) {
+            fieldAdapterManager.getFieldAdapter().setMappedValue(obj, name, key, value);
         } else {
             Map map = null;
             if (Map.class.isAssignableFrom(obj.getClass())) {
