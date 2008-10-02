@@ -21,6 +21,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import org.azeckoski.reflectutils.classes.TestBaseOne;
 import org.azeckoski.reflectutils.classes.TestBean;
 import org.azeckoski.reflectutils.classes.TestCompound;
 import org.azeckoski.reflectutils.classes.TestNesting;
@@ -1163,4 +1164,30 @@ public class TranscodersTest extends TestCase {
 
     }
 
+    public void testLoopStoppingJSON() {
+        Transcoder transcoder = new JSONTranscoder(true, true, false);
+        String encoded = null;
+
+        TestBaseOne tbo = new TestBaseOne();
+        encoded = transcoder.encode(tbo, null, null);
+        int size = encoded.length();
+        assertNotNull(encoded);
+        assertTrue(size > 1000);
+        assertTrue(size < 200000);
+        
+    }
+
+    public void testLoopStoppingXML() {
+        Transcoder transcoder = new XMLTranscoder(true, true, false);
+        String encoded = null;
+
+        TestBaseOne tbo = new TestBaseOne();
+        encoded = transcoder.encode(tbo, null, null);
+        int size = encoded.length();
+        assertNotNull(encoded);
+        assertTrue(size > 1000);
+        assertTrue(size < 200000);
+        
+    }
+    
 }

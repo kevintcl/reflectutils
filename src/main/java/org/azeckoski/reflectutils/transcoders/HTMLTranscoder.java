@@ -44,7 +44,7 @@ public class HTMLTranscoder implements Transcoder {
                 name = DATA_KEY;
             }
         }
-        encoded = HTMLTranscoder.makeHTML(object, name, properties, humanOutput, includeNulls, includeClassField);
+        encoded = HTMLTranscoder.makeHTML(object, name, properties, humanOutput, includeNulls, includeClassField, maxLevel);
         return encoded;
     }
 
@@ -72,6 +72,16 @@ public class HTMLTranscoder implements Transcoder {
         this.includeClassField = includeClassField;
     }
 
+    private int maxLevel = 7;
+    /**
+     * @param maxLevel the number of objects to follow when traveling through the object,
+     * 0 means only the fields in the initial object, default is 7
+     */
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
+    }
+
+
     public static final char SPACE = ' ';
     public static final char AMP   = '&';
     /**
@@ -94,7 +104,7 @@ public class HTMLTranscoder implements Transcoder {
      * @return the HTML string version of the object
      */
     public static String makeHTML(Object object) {
-        return makeHTML(object, null, null, false, true, false);
+        return makeHTML(object, null, null, false, true, false, 7);
     }
 
     /**
@@ -103,16 +113,17 @@ public class HTMLTranscoder implements Transcoder {
      * @param tagName (optional) enclosing root tag
      * @param humanOutput true of human readable output
      * @param includeNulls true to include null values when generating tags
+     * @param maxLevel TODO
      * @return the HTML string version of the object
      */
-    public static String makeHTML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField) {
+    public static String makeHTML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel) {
         return "<table border='1'>\n" 
-            + toHTML(object, tagName, 0, humanOutput, includeNulls, includeClassField, properties) 
+            + toHTML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties) 
             + "</table>\n";
     }
 
     @SuppressWarnings("unchecked")
-    protected static String toHTML(Object object, String tagName, int level, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
+    protected static String toHTML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
@@ -156,7 +167,7 @@ public class HTMLTranscoder implements Transcoder {
                 sb.append("<table border='1'>");
                 makeEOL(sb, humanOutput);
                 for (int i = 0; i < length; ++i) {
-                    sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, humanOutput, includeNulls, includeClassField, properties) );
+                    sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                 }
                 makeLevelSpaces(sb, level+1, humanOutput);
                 sb.append("</table>");
@@ -183,7 +194,7 @@ public class HTMLTranscoder implements Transcoder {
                     if (element != null) {
                         elementType = element.getClass();
                     }
-                    sb.append( toHTML(element, makeElementName(elementType), level+2, humanOutput, includeNulls, includeClassField, properties) );
+                    sb.append( toHTML(element, makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                 }
                 makeLevelSpaces(sb, level+1, humanOutput);
                 sb.append("</table>");
@@ -194,36 +205,49 @@ public class HTMLTranscoder implements Transcoder {
             } else {
                 // must be a bean or map, make sure it is a map
                 tagName = validate(tagName == null ? makeElementName(type) : tagName);
-                String xmlType = "bean";
-                Map<String, Object> map = null;
-                if (Map.class.isAssignableFrom(type)) {
-                    xmlType = "map";
-                    map = (Map<String, Object>) object;
+                if ((maxLevel*2) <= level) {
+                    // if the max level was reached then stop
+                    sb.append("<tr><td width='3%'>");
+                    sb.append(tagName);
+                    sb.append("</td><td>");
+                    sb.append( "MAX level reached (" );
+                    sb.append( level );
+                    sb.append( "):" );
+                    sb.append( escapeForXML(object.toString()) );
+                    sb.append("</td></tr>");
+                    makeEOL(sb, humanOutput);
                 } else {
-                    // reflect over objects
-                    map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
-                }
-                makeLevelSpaces(sb, level, humanOutput);
-                sb.append("<tr><td width='3%'>");
-                sb.append(tagName);
-                sb.append(" type="+xmlType);
-                sb.append(" size="+map.size());
-                sb.append("</td><td>");
-                makeEOL(sb, humanOutput);
-                makeLevelSpaces(sb, level+1, humanOutput);
-                sb.append("<table border='1'>");
-                makeEOL(sb, humanOutput);
-                for (Entry<String, Object> entry : map.entrySet()) {
-                    if (entry.getKey() != null) {
-                        sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, humanOutput, includeNulls, includeClassField, properties) );
+                    String xmlType = "bean";
+                    Map<String, Object> map = null;
+                    if (Map.class.isAssignableFrom(type)) {
+                        xmlType = "map";
+                        map = (Map<String, Object>) object;
+                    } else {
+                        // reflect over objects
+                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
                     }
+                    makeLevelSpaces(sb, level, humanOutput);
+                    sb.append("<tr><td width='3%'>");
+                    sb.append(tagName);
+                    sb.append(" type="+xmlType);
+                    sb.append(" size="+map.size());
+                    sb.append("</td><td>");
+                    makeEOL(sb, humanOutput);
+                    makeLevelSpaces(sb, level+1, humanOutput);
+                    sb.append("<table border='1'>");
+                    makeEOL(sb, humanOutput);
+                    for (Entry<String, Object> entry : map.entrySet()) {
+                        if (entry.getKey() != null) {
+                            sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                        }
+                    }
+                    makeLevelSpaces(sb, level+1, humanOutput);
+                    sb.append("</table>");
+                    makeEOL(sb, humanOutput);
+                    makeLevelSpaces(sb, level, humanOutput);
+                    sb.append("</td></tr>");
+                    makeEOL(sb, humanOutput);
                 }
-                makeLevelSpaces(sb, level+1, humanOutput);
-                sb.append("</table>");
-                makeEOL(sb, humanOutput);
-                makeLevelSpaces(sb, level, humanOutput);
-                sb.append("</td></tr>");
-                makeEOL(sb, humanOutput);
             }
         }
         return sb.toString();

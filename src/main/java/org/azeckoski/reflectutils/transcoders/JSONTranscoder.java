@@ -60,7 +60,7 @@ public class JSONTranscoder implements Transcoder {
 //            }
 //        }
         // allow the transcoder to deal with the data directly, no need to convert it to a map first
-        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField);
+        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField, maxLevel);
         return encoded;
     }
 
@@ -96,6 +96,15 @@ public class JSONTranscoder implements Transcoder {
         this.humanOutput = humanOutput;
         this.includeNulls = includeNulls;
         this.includeClassField = includeClassField;
+    }
+
+    private int maxLevel = 7;
+    /**
+     * @param maxLevel the number of objects to follow when traveling through the object,
+     * 0 means only the fields in the initial object, default is 7
+     */
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
     }
 
     
@@ -136,7 +145,7 @@ public class JSONTranscoder implements Transcoder {
      * @return the JSON string version of the object
      */
     public static String makeJSON(Object object) {
-        return makeJSON(object, null, false, true, false);
+        return makeJSON(object, null, false, true, false, 10);
     }
 
     /**
@@ -145,14 +154,15 @@ public class JSONTranscoder implements Transcoder {
      * @param humanOutput true of human readable output
      * @param includeNulls true to include null values when generating tags
      * @param includeClassField if true then include the value from the "getClass()" method as "class" when encoding beans and maps
+     * @param maxLevel TODO
      * @return the JSON string version of the object
      */
-    public static String makeJSON(Object object, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField) {
-        return toJSON(object, 0, humanOutput, includeNulls, includeClassField, properties);
+    public static String makeJSON(Object object, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel) {
+        return toJSON(object, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties);
     }
 
     @SuppressWarnings("unchecked")
-    protected static String toJSON(Object object, int level, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
+    protected static String toJSON(Object object, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
@@ -199,7 +209,7 @@ public class JSONTranscoder implements Transcoder {
                         }
                         makeEOL(sb, humanOutput);
                         makeLevelSpaces(sb, level+1, humanOutput);
-                        sb.append( toJSON(Array.get(object, i), level+1, humanOutput, includeNulls, includeClassField, properties) );
+                        sb.append( toJSON(Array.get(object, i), level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                     }
                     makeEOL(sb, humanOutput);
                     makeLevelSpaces(sb, level, humanOutput);
@@ -219,7 +229,7 @@ public class JSONTranscoder implements Transcoder {
                         }
                         makeEOL(sb, humanOutput);
                         makeLevelSpaces(sb, level+1, humanOutput);
-                        sb.append( toJSON(element, level+1, humanOutput, includeNulls, includeClassField, properties) );
+                        sb.append( toJSON(element, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                     }
                     makeEOL(sb, humanOutput);
                     makeLevelSpaces(sb, level, humanOutput);
@@ -227,42 +237,52 @@ public class JSONTranscoder implements Transcoder {
                 sb.append(ARRAY_END);
             } else {
                 // must be a bean or map, make sure it is a map
-                Map<String, Object> map = null;
-                if (Map.class.isAssignableFrom(type)) {
-                    map = (Map<String, Object>) object;
+                if (maxLevel <= level) {
+                    // if the max level was reached then stop
+                    sb.append(QUOT);
+                    sb.append( "MAX level reached (" );
+                    sb.append( level );
+                    sb.append( "):" );
+                    sb.append( escapeForJSON(object.toString()) );
+                    sb.append(QUOT);
                 } else {
-                    // reflect over objects
-                    map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
-                }
-                // add in the optional properties if it makes sense to do so
-                if (level == 0 && properties != null && ! properties.isEmpty()) {
-                    map.putAll(properties);
-                }
-                sb.append(OBJ_BEG);
-                boolean first = true;
-                for (Entry<String, Object> entry : map.entrySet()) {
-                    if (entry.getKey() != null) {
-                        Object value = entry.getValue();
-                        if (value != null || includeNulls) {
-                            if (first) {
-                                first = false;
-                            } else {
-                                sb.append(JSON_SEP);
+                    Map<String, Object> map = null;
+                    if (Map.class.isAssignableFrom(type)) {
+                        map = (Map<String, Object>) object;
+                    } else {
+                        // reflect over objects
+                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
+                    }
+                    // add in the optional properties if it makes sense to do so
+                    if (level == 0 && properties != null && ! properties.isEmpty()) {
+                        map.putAll(properties);
+                    }
+                    sb.append(OBJ_BEG);
+                    boolean first = true;
+                    for (Entry<String, Object> entry : map.entrySet()) {
+                        if (entry.getKey() != null) {
+                            Object value = entry.getValue();
+                            if (value != null || includeNulls) {
+                                if (first) {
+                                    first = false;
+                                } else {
+                                    sb.append(JSON_SEP);
+                                }
+                                makeEOL(sb, humanOutput);
+                                makeLevelSpaces(sb, level+1, humanOutput);
+                                sb.append(QUOT);
+                                sb.append(entry.getKey());
+                                sb.append(QUOT);
+                                sb.append(OBJ_SEP);
+                                if (humanOutput) { sb.append(SPACE); }
+                                sb.append( toJSON(value, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                             }
-                            makeEOL(sb, humanOutput);
-                            makeLevelSpaces(sb, level+1, humanOutput);
-                            sb.append(QUOT);
-                            sb.append(entry.getKey());
-                            sb.append(QUOT);
-                            sb.append(OBJ_SEP);
-                            if (humanOutput) { sb.append(SPACE); }
-                            sb.append( toJSON(value, level+1, humanOutput, includeNulls, includeClassField, properties) );
                         }
                     }
+                    makeEOL(sb, humanOutput);
+                    makeLevelSpaces(sb, level, humanOutput);
+                    sb.append(OBJ_END);
                 }
-                makeEOL(sb, humanOutput);
-                makeLevelSpaces(sb, level, humanOutput);
-                sb.append(OBJ_END);
             }
         }
         return sb.toString();
