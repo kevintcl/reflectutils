@@ -42,7 +42,7 @@
   
     
             <div class="xleft">
-        Last Published: 2008-10-01
+        Last Published: 2008-10-02
                       </div>
             <div class="xright">            <a href="">Reflection Utilities</a>
             
@@ -189,7 +189,7 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section"><h2>CPD Results</h2>
-<p>The following document contains the results of PMD's  <a href="http://pmd.sourceforge.net/cpd.html" class="externalLink">CPD</a>
+<p>The following document contains the results of PMD's  <a class="externalLink" href="http://pmd.sourceforge.net/cpd.html">CPD</a>
  4.2.2.</p>
 </div>
 <div class="section"><h2>Duplications</h2>
@@ -377,11 +377,11 @@
 <th>Line</th>
 </tr>
 <tr class="b"><td>org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java</td>
-<td><a href="./xref/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.html#251">251</a>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.html#275">275</a>
 </td>
 </tr>
 <tr class="a"><td>org/azeckoski/reflectutils/transcoders/XMLTranscoder.java</td>
-<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#343">343</a>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#369">369</a>
 </td>
 </tr>
 <tr class="b"><td colspan='2'><div class="source"><pre>        if (includeEOL) {
@@ -663,11 +663,11 @@
 <th>Line</th>
 </tr>
 <tr class="b"><td>org/azeckoski/reflectutils/transcoders/JSONTranscoder.java</td>
-<td><a href="./xref/org/azeckoski/reflectutils/transcoders/JSONTranscoder.html#504">504</a>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/JSONTranscoder.html#524">524</a>
 </td>
 </tr>
 <tr class="a"><td>org/azeckoski/reflectutils/transcoders/XMLTranscoder.java</td>
-<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#681">681</a>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#707">707</a>
 </td>
 </tr>
 <tr class="b"><td colspan='2'><div class="source"><pre>        Number num = null;
@@ -690,6 +690,54 @@
         }
         return num;
     }</pre>
+</div>
+</td></tr>
+<table class="bodyTable"></p>
+<p><table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org/azeckoski/reflectutils/transcoders/HTMLTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/HTMLTranscoder.html#73">73</a>
+</td>
+</tr>
+<tr class="a"><td>org/azeckoski/reflectutils/transcoders/XMLTranscoder.java</td>
+<td><a href="./xref/org/azeckoski/reflectutils/transcoders/XMLTranscoder.html#117">117</a>
+</td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>    }
+
+    private int maxLevel = 7;
+    /**
+     * @param maxLevel the number of objects to follow when traveling through the object,
+     * 0 means only the fields in the initial object, default is 7
+     */
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
+    }
+
+
+    public static final char SPACE = ' ';
+    public static final char AMP   = '&amp;';
+    /**
+     * single quote (')
+     */
+    public static final char APOS  = '\'';
+    public static final char BANG  = '!';
+    public static final char EQ    = '=';
+    public static final char GT    = '&gt;';
+    public static final char LT    = '&lt;';
+    public static final char QUEST = '?';
+    public static final char QUOT  = '&quot;';
+    public static final char SLASH = '/';
+    public static final char EOL   = '\n';
+
+
+    /**
+     * Convert an object into a well-formed, element-normal XML string.
+     * @param object any object
+     * @return the XML string version of the object
+     */
+    public static String makeXML(Object object) {</pre>
 </div>
 </td></tr>
 <table class="bodyTable"></p>

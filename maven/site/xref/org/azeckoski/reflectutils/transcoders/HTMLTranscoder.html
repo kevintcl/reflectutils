@@ -53,7 +53,7 @@
 <a name="44" href="#44">44</a>                  name = DATA_KEY;
 <a name="45" href="#45">45</a>              }
 <a name="46" href="#46">46</a>          }
-<a name="47" href="#47">47</a>          encoded = HTMLTranscoder.makeHTML(object, name, properties, humanOutput, includeNulls, includeClassField);
+<a name="47" href="#47">47</a>          encoded = HTMLTranscoder.makeHTML(object, name, properties, humanOutput, includeNulls, includeClassField, maxLevel);
 <a name="48" href="#48">48</a>          <strong>return</strong> encoded;
 <a name="49" href="#49">49</a>      }
 <a name="50" href="#50">50</a>  
@@ -81,247 +81,271 @@
 <a name="72" href="#72">72</a>          <strong>this</strong>.includeClassField = includeClassField;
 <a name="73" href="#73">73</a>      }
 <a name="74" href="#74">74</a>  
-<a name="75" href="#75">75</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> SPACE = ' ';
-<a name="76" href="#76">76</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> AMP   = '&amp;';
-<a name="77" href="#77">77</a>      <em>/**<em>*</em></em>
-<a name="78" href="#78">78</a>  <em>     * single quote (')</em>
+<a name="75" href="#75">75</a>      <strong>private</strong> <strong>int</strong> maxLevel = 7;
+<a name="76" href="#76">76</a>      <em>/**<em>*</em></em>
+<a name="77" href="#77">77</a>  <em>     * @param maxLevel the number of objects to follow when traveling through the object,</em>
+<a name="78" href="#78">78</a>  <em>     * 0 means only the fields in the initial object, default is 7</em>
 <a name="79" href="#79">79</a>  <em>     */</em>
-<a name="80" href="#80">80</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> APOS  = '\'';
-<a name="81" href="#81">81</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> BANG  = '!';
-<a name="82" href="#82">82</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> EQ    = '=';
-<a name="83" href="#83">83</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> GT    = '>';
-<a name="84" href="#84">84</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> LT    = '&lt;';
-<a name="85" href="#85">85</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> QUEST = '?';
-<a name="86" href="#86">86</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> QUOT  = '&quot;';
-<a name="87" href="#87">87</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> SLASH = '/';
-<a name="88" href="#88">88</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> EOL   = '\n';
-<a name="89" href="#89">89</a>  
-<a name="90" href="#90">90</a>  
-<a name="91" href="#91">91</a>      <em>/**<em>*</em></em>
-<a name="92" href="#92">92</a>  <em>     * Convert an object into a well-formed, element-normal HTML string.</em>
-<a name="93" href="#93">93</a>  <em>     * @param object any object</em>
-<a name="94" href="#94">94</a>  <em>     * @return the HTML string version of the object</em>
-<a name="95" href="#95">95</a>  <em>     */</em>
-<a name="96" href="#96">96</a>      <strong>public</strong> <strong>static</strong> String makeHTML(Object object) {
-<a name="97" href="#97">97</a>          <strong>return</strong> makeHTML(object, <strong>null</strong>, <strong>null</strong>, false, <strong>true</strong>, false);
-<a name="98" href="#98">98</a>      }
+<a name="80" href="#80">80</a>      <strong>public</strong> <strong>void</strong> setMaxLevel(<strong>int</strong> maxLevel) {
+<a name="81" href="#81">81</a>          <strong>this</strong>.maxLevel = maxLevel;
+<a name="82" href="#82">82</a>      }
+<a name="83" href="#83">83</a>  
+<a name="84" href="#84">84</a>  
+<a name="85" href="#85">85</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> SPACE = ' ';
+<a name="86" href="#86">86</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> AMP   = '&amp;';
+<a name="87" href="#87">87</a>      <em>/**<em>*</em></em>
+<a name="88" href="#88">88</a>  <em>     * single quote (')</em>
+<a name="89" href="#89">89</a>  <em>     */</em>
+<a name="90" href="#90">90</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> APOS  = '\'';
+<a name="91" href="#91">91</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> BANG  = '!';
+<a name="92" href="#92">92</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> EQ    = '=';
+<a name="93" href="#93">93</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> GT    = '>';
+<a name="94" href="#94">94</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> LT    = '&lt;';
+<a name="95" href="#95">95</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> QUEST = '?';
+<a name="96" href="#96">96</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> QUOT  = '&quot;';
+<a name="97" href="#97">97</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> SLASH = '/';
+<a name="98" href="#98">98</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> <strong>char</strong> EOL   = '\n';
 <a name="99" href="#99">99</a>  
-<a name="100" href="#100">100</a>     <em>/**<em>*</em></em>
-<a name="101" href="#101">101</a> <em>     * Convert an object into a well-formed, element-normal HTML string.</em>
-<a name="102" href="#102">102</a> <em>     * @param object any object</em>
-<a name="103" href="#103">103</a> <em>     * @param tagName (optional) enclosing root tag</em>
-<a name="104" href="#104">104</a> <em>     * @param humanOutput true of human readable output</em>
-<a name="105" href="#105">105</a> <em>     * @param includeNulls true to include null values when generating tags</em>
-<a name="106" href="#106">106</a> <em>     * @return the HTML string version of the object</em>
-<a name="107" href="#107">107</a> <em>     */</em>
-<a name="108" href="#108">108</a>     <strong>public</strong> <strong>static</strong> String makeHTML(Object object, String tagName, Map&lt;String, Object> properties, <strong>boolean</strong> humanOutput, <strong>boolean</strong> includeNulls, <strong>boolean</strong> includeClassField) {
-<a name="109" href="#109">109</a>         <strong>return</strong> <span class="string">"&lt;table border='1'>\n"</span> 
-<a name="110" href="#110">110</a>             + toHTML(object, tagName, 0, humanOutput, includeNulls, includeClassField, properties) 
-<a name="111" href="#111">111</a>             + <span class="string">"&lt;/table>\n"</span>;
-<a name="112" href="#112">112</a>     }
-<a name="113" href="#113">113</a> 
-<a name="114" href="#114">114</a>     @SuppressWarnings(<span class="string">"unchecked"</span>)
-<a name="115" href="#115">115</a>     <strong>protected</strong> <strong>static</strong> String toHTML(Object object, String tagName, <strong>int</strong> level, <strong>boolean</strong> humanOutput, <strong>boolean</strong> includeNulls, <strong>boolean</strong> includeClassField, Map&lt;String, Object> properties) {
-<a name="116" href="#116">116</a>         StringBuilder sb = <strong>new</strong> StringBuilder();
-<a name="117" href="#117">117</a> 
-<a name="118" href="#118">118</a>         <strong>if</strong> (object == <strong>null</strong>) {
-<a name="119" href="#119">119</a>             <strong>if</strong> (includeNulls) {
-<a name="120" href="#120">120</a>                 <em class="comment">// nulls are empty tags always</em>
-<a name="121" href="#121">121</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"null"</span> : tagName);
-<a name="122" href="#122">122</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="123" href="#123">123</a>                 sb.append(<span class="string">"&lt;tr>&lt;td>"</span>);
-<a name="124" href="#124">124</a>                 sb.append(tagName);
-<a name="125" href="#125">125</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
-<a name="126" href="#126">126</a>                 sb.append(<span class="string">"&lt;i>NULL&lt;/i>"</span>);
-<a name="127" href="#127">127</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
-<a name="128" href="#128">128</a>                 makeEOL(sb, humanOutput);
-<a name="129" href="#129">129</a>             }
-<a name="130" href="#130">130</a>         } <strong>else</strong> {
-<a name="131" href="#131">131</a>             Class&lt;?> type = ConstructorUtils.getWrapper(object.getClass());
-<a name="132" href="#132">132</a>             <strong>if</strong> ( ConstructorUtils.isClassSimple(type) ) {
-<a name="133" href="#133">133</a>                 <em class="comment">// Simple (String, Number, etc.)</em>
-<a name="134" href="#134">134</a>                 tagName = validate(tagName == <strong>null</strong> ? makeElementName(type) : tagName);
-<a name="135" href="#135">135</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="136" href="#136">136</a>                 String value = escapeForXML( object.toString() );
-<a name="137" href="#137">137</a>                 sb.append(<span class="string">"&lt;tr>&lt;td>"</span>);
-<a name="138" href="#138">138</a>                 sb.append(tagName);
-<a name="139" href="#139">139</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
-<a name="140" href="#140">140</a>                 sb.append(value);
-<a name="141" href="#141">141</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
-<a name="142" href="#142">142</a>                 makeEOL(sb, humanOutput);
-<a name="143" href="#143">143</a>             } <strong>else</strong> <strong>if</strong> ( ConstructorUtils.isClassArray(type) ) {
-<a name="144" href="#144">144</a>                 <em class="comment">// ARRAY</em>
-<a name="145" href="#145">145</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"array"</span> : tagName);
-<a name="146" href="#146">146</a>                 <strong>int</strong> length = ArrayUtils.size((Object[])object);
-<a name="147" href="#147">147</a>                 Class&lt;?> elementType = ArrayUtils.type((Object[])object);
-<a name="148" href="#148">148</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="149" href="#149">149</a>                 sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
-<a name="150" href="#150">150</a>                 sb.append(tagName);
-<a name="151" href="#151">151</a>                 sb.append(<span class="string">" type=array"</span>);
-<a name="152" href="#152">152</a>                 sb.append(<span class="string">" length="</span>+length);
-<a name="153" href="#153">153</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
-<a name="154" href="#154">154</a>                 makeEOL(sb, humanOutput);
-<a name="155" href="#155">155</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="156" href="#156">156</a>                 sb.append(<span class="string">"&lt;table border='1'>"</span>);
-<a name="157" href="#157">157</a>                 makeEOL(sb, humanOutput);
-<a name="158" href="#158">158</a>                 <strong>for</strong> (<strong>int</strong> i = 0; i &lt; length; ++i) {
-<a name="159" href="#159">159</a>                     sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, humanOutput, includeNulls, includeClassField, properties) );
-<a name="160" href="#160">160</a>                 }
-<a name="161" href="#161">161</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="162" href="#162">162</a>                 sb.append(<span class="string">"&lt;/table>"</span>);
-<a name="163" href="#163">163</a>                 makeEOL(sb, humanOutput);
-<a name="164" href="#164">164</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="165" href="#165">165</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
-<a name="166" href="#166">166</a>                 makeEOL(sb, humanOutput);
-<a name="167" href="#167">167</a>             } <strong>else</strong> <strong>if</strong> ( ConstructorUtils.isClassCollection(type) ) {
-<a name="168" href="#168">168</a>                 <em class="comment">// COLLECTION</em>
-<a name="169" href="#169">169</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"collection"</span> : tagName);
-<a name="170" href="#170">170</a>                 Collection&lt;Object> collection = (Collection) object;
-<a name="171" href="#171">171</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="172" href="#172">172</a>                 sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
-<a name="173" href="#173">173</a>                 sb.append(tagName);
-<a name="174" href="#174">174</a>                 sb.append(<span class="string">" type=collection"</span>);
-<a name="175" href="#175">175</a>                 sb.append(<span class="string">" size="</span>+collection.size());
-<a name="176" href="#176">176</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="100" href="#100">100</a> 
+<a name="101" href="#101">101</a>     <em>/**<em>*</em></em>
+<a name="102" href="#102">102</a> <em>     * Convert an object into a well-formed, element-normal HTML string.</em>
+<a name="103" href="#103">103</a> <em>     * @param object any object</em>
+<a name="104" href="#104">104</a> <em>     * @return the HTML string version of the object</em>
+<a name="105" href="#105">105</a> <em>     */</em>
+<a name="106" href="#106">106</a>     <strong>public</strong> <strong>static</strong> String makeHTML(Object object) {
+<a name="107" href="#107">107</a>         <strong>return</strong> makeHTML(object, <strong>null</strong>, <strong>null</strong>, false, <strong>true</strong>, false, 7);
+<a name="108" href="#108">108</a>     }
+<a name="109" href="#109">109</a> 
+<a name="110" href="#110">110</a>     <em>/**<em>*</em></em>
+<a name="111" href="#111">111</a> <em>     * Convert an object into a well-formed, element-normal HTML string.</em>
+<a name="112" href="#112">112</a> <em>     * @param object any object</em>
+<a name="113" href="#113">113</a> <em>     * @param tagName (optional) enclosing root tag</em>
+<a name="114" href="#114">114</a> <em>     * @param humanOutput true of human readable output</em>
+<a name="115" href="#115">115</a> <em>     * @param includeNulls true to include null values when generating tags</em>
+<a name="116" href="#116">116</a> <em>     * @param maxLevel TODO</em>
+<a name="117" href="#117">117</a> <em>     * @return the HTML string version of the object</em>
+<a name="118" href="#118">118</a> <em>     */</em>
+<a name="119" href="#119">119</a>     <strong>public</strong> <strong>static</strong> String makeHTML(Object object, String tagName, Map&lt;String, Object> properties, <strong>boolean</strong> humanOutput, <strong>boolean</strong> includeNulls, <strong>boolean</strong> includeClassField, <strong>int</strong> maxLevel) {
+<a name="120" href="#120">120</a>         <strong>return</strong> <span class="string">"&lt;table border='1'>\n"</span> 
+<a name="121" href="#121">121</a>             + toHTML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties) 
+<a name="122" href="#122">122</a>             + <span class="string">"&lt;/table>\n"</span>;
+<a name="123" href="#123">123</a>     }
+<a name="124" href="#124">124</a> 
+<a name="125" href="#125">125</a>     @SuppressWarnings(<span class="string">"unchecked"</span>)
+<a name="126" href="#126">126</a>     <strong>protected</strong> <strong>static</strong> String toHTML(Object object, String tagName, <strong>int</strong> level, <strong>int</strong> maxLevel, <strong>boolean</strong> humanOutput, <strong>boolean</strong> includeNulls, <strong>boolean</strong> includeClassField, Map&lt;String, Object> properties) {
+<a name="127" href="#127">127</a>         StringBuilder sb = <strong>new</strong> StringBuilder();
+<a name="128" href="#128">128</a> 
+<a name="129" href="#129">129</a>         <strong>if</strong> (object == <strong>null</strong>) {
+<a name="130" href="#130">130</a>             <strong>if</strong> (includeNulls) {
+<a name="131" href="#131">131</a>                 <em class="comment">// nulls are empty tags always</em>
+<a name="132" href="#132">132</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"null"</span> : tagName);
+<a name="133" href="#133">133</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="134" href="#134">134</a>                 sb.append(<span class="string">"&lt;tr>&lt;td>"</span>);
+<a name="135" href="#135">135</a>                 sb.append(tagName);
+<a name="136" href="#136">136</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="137" href="#137">137</a>                 sb.append(<span class="string">"&lt;i>NULL&lt;/i>"</span>);
+<a name="138" href="#138">138</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
+<a name="139" href="#139">139</a>                 makeEOL(sb, humanOutput);
+<a name="140" href="#140">140</a>             }
+<a name="141" href="#141">141</a>         } <strong>else</strong> {
+<a name="142" href="#142">142</a>             Class&lt;?> type = ConstructorUtils.getWrapper(object.getClass());
+<a name="143" href="#143">143</a>             <strong>if</strong> ( ConstructorUtils.isClassSimple(type) ) {
+<a name="144" href="#144">144</a>                 <em class="comment">// Simple (String, Number, etc.)</em>
+<a name="145" href="#145">145</a>                 tagName = validate(tagName == <strong>null</strong> ? makeElementName(type) : tagName);
+<a name="146" href="#146">146</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="147" href="#147">147</a>                 String value = escapeForXML( object.toString() );
+<a name="148" href="#148">148</a>                 sb.append(<span class="string">"&lt;tr>&lt;td>"</span>);
+<a name="149" href="#149">149</a>                 sb.append(tagName);
+<a name="150" href="#150">150</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="151" href="#151">151</a>                 sb.append(value);
+<a name="152" href="#152">152</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
+<a name="153" href="#153">153</a>                 makeEOL(sb, humanOutput);
+<a name="154" href="#154">154</a>             } <strong>else</strong> <strong>if</strong> ( ConstructorUtils.isClassArray(type) ) {
+<a name="155" href="#155">155</a>                 <em class="comment">// ARRAY</em>
+<a name="156" href="#156">156</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"array"</span> : tagName);
+<a name="157" href="#157">157</a>                 <strong>int</strong> length = ArrayUtils.size((Object[])object);
+<a name="158" href="#158">158</a>                 Class&lt;?> elementType = ArrayUtils.type((Object[])object);
+<a name="159" href="#159">159</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="160" href="#160">160</a>                 sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
+<a name="161" href="#161">161</a>                 sb.append(tagName);
+<a name="162" href="#162">162</a>                 sb.append(<span class="string">" type=array"</span>);
+<a name="163" href="#163">163</a>                 sb.append(<span class="string">" length="</span>+length);
+<a name="164" href="#164">164</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="165" href="#165">165</a>                 makeEOL(sb, humanOutput);
+<a name="166" href="#166">166</a>                 makeLevelSpaces(sb, level+1, humanOutput);
+<a name="167" href="#167">167</a>                 sb.append(<span class="string">"&lt;table border='1'>"</span>);
+<a name="168" href="#168">168</a>                 makeEOL(sb, humanOutput);
+<a name="169" href="#169">169</a>                 <strong>for</strong> (<strong>int</strong> i = 0; i &lt; length; ++i) {
+<a name="170" href="#170">170</a>                     sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+<a name="171" href="#171">171</a>                 }
+<a name="172" href="#172">172</a>                 makeLevelSpaces(sb, level+1, humanOutput);
+<a name="173" href="#173">173</a>                 sb.append(<span class="string">"&lt;/table>"</span>);
+<a name="174" href="#174">174</a>                 makeEOL(sb, humanOutput);
+<a name="175" href="#175">175</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="176" href="#176">176</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
 <a name="177" href="#177">177</a>                 makeEOL(sb, humanOutput);
-<a name="178" href="#178">178</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="179" href="#179">179</a>                 sb.append(<span class="string">"&lt;table border='1'>"</span>);
-<a name="180" href="#180">180</a>                 makeEOL(sb, humanOutput);
-<a name="181" href="#181">181</a>                 <strong>for</strong> (Object element : collection) {
-<a name="182" href="#182">182</a>                     Class&lt;?> elementType = <strong>null</strong>;
-<a name="183" href="#183">183</a>                     <strong>if</strong> (element != <strong>null</strong>) {
-<a name="184" href="#184">184</a>                         elementType = element.getClass();
-<a name="185" href="#185">185</a>                     }
-<a name="186" href="#186">186</a>                     sb.append( toHTML(element, makeElementName(elementType), level+2, humanOutput, includeNulls, includeClassField, properties) );
-<a name="187" href="#187">187</a>                 }
-<a name="188" href="#188">188</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="189" href="#189">189</a>                 sb.append(<span class="string">"&lt;/table>"</span>);
-<a name="190" href="#190">190</a>                 makeEOL(sb, humanOutput);
-<a name="191" href="#191">191</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="192" href="#192">192</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
-<a name="193" href="#193">193</a>                 makeEOL(sb, humanOutput);
-<a name="194" href="#194">194</a>             } <strong>else</strong> {
-<a name="195" href="#195">195</a>                 <em class="comment">// must be a bean or map, make sure it is a map</em>
-<a name="196" href="#196">196</a>                 tagName = validate(tagName == <strong>null</strong> ? makeElementName(type) : tagName);
-<a name="197" href="#197">197</a>                 String xmlType = <span class="string">"bean"</span>;
-<a name="198" href="#198">198</a>                 Map&lt;String, Object> map = <strong>null</strong>;
-<a name="199" href="#199">199</a>                 <strong>if</strong> (Map.<strong>class</strong>.isAssignableFrom(type)) {
-<a name="200" href="#200">200</a>                     xmlType = <span class="string">"map"</span>;
-<a name="201" href="#201">201</a>                     map = (Map&lt;String, Object>) object;
-<a name="202" href="#202">202</a>                 } <strong>else</strong> {
-<a name="203" href="#203">203</a>                     <em class="comment">// reflect over objects</em>
-<a name="204" href="#204">204</a>                     map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
-<a name="205" href="#205">205</a>                 }
-<a name="206" href="#206">206</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="207" href="#207">207</a>                 sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
-<a name="208" href="#208">208</a>                 sb.append(tagName);
-<a name="209" href="#209">209</a>                 sb.append(<span class="string">" type="</span>+xmlType);
-<a name="210" href="#210">210</a>                 sb.append(<span class="string">" size="</span>+map.size());
-<a name="211" href="#211">211</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
-<a name="212" href="#212">212</a>                 makeEOL(sb, humanOutput);
-<a name="213" href="#213">213</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="214" href="#214">214</a>                 sb.append(<span class="string">"&lt;table border='1'>"</span>);
-<a name="215" href="#215">215</a>                 makeEOL(sb, humanOutput);
-<a name="216" href="#216">216</a>                 <strong>for</strong> (Entry&lt;String, Object> entry : map.entrySet()) {
-<a name="217" href="#217">217</a>                     <strong>if</strong> (entry.getKey() != <strong>null</strong>) {
-<a name="218" href="#218">218</a>                         sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, humanOutput, includeNulls, includeClassField, properties) );
-<a name="219" href="#219">219</a>                     }
-<a name="220" href="#220">220</a>                 }
-<a name="221" href="#221">221</a>                 makeLevelSpaces(sb, level+1, humanOutput);
-<a name="222" href="#222">222</a>                 sb.append(<span class="string">"&lt;/table>"</span>);
-<a name="223" href="#223">223</a>                 makeEOL(sb, humanOutput);
-<a name="224" href="#224">224</a>                 makeLevelSpaces(sb, level, humanOutput);
-<a name="225" href="#225">225</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
-<a name="226" href="#226">226</a>                 makeEOL(sb, humanOutput);
-<a name="227" href="#227">227</a>             }
-<a name="228" href="#228">228</a>         }
-<a name="229" href="#229">229</a>         <strong>return</strong> sb.toString();
-<a name="230" href="#230">230</a>     }
-<a name="231" href="#231">231</a> 
-<a name="232" href="#232">232</a>     <strong>protected</strong> <strong>static</strong> String makeElementName(Class&lt;?> type) {
-<a name="233" href="#233">233</a>         String name = <span class="string">"element"</span>;
-<a name="234" href="#234">234</a>         <strong>if</strong> (type != <strong>null</strong>) {
-<a name="235" href="#235">235</a>             <strong>if</strong> (! Map.<strong>class</strong>.isAssignableFrom(type)) {
-<a name="236" href="#236">236</a>                 name = type.getSimpleName();
-<a name="237" href="#237">237</a>             }
-<a name="238" href="#238">238</a>         }
-<a name="239" href="#239">239</a>         <strong>return</strong> name;
-<a name="240" href="#240">240</a>     }
-<a name="241" href="#241">241</a> 
-<a name="242" href="#242">242</a>     <strong>protected</strong> <strong>static</strong> <strong>void</strong> makeEOL(StringBuilder sb, <strong>boolean</strong> includeEOL) {
-<a name="243" href="#243">243</a>         <strong>if</strong> (includeEOL) {
-<a name="244" href="#244">244</a>             sb.append(EOL);
-<a name="245" href="#245">245</a>         }
-<a name="246" href="#246">246</a>     }
-<a name="247" href="#247">247</a> 
-<a name="248" href="#248">248</a>     <strong>protected</strong> <strong>static</strong> <strong>final</strong> String SPACES = <span class="string">"  "</span>;
-<a name="249" href="#249">249</a>     <strong>protected</strong> <strong>static</strong> <strong>void</strong> makeLevelSpaces(StringBuilder sb, <strong>int</strong> level, <strong>boolean</strong> includeEOL) {
-<a name="250" href="#250">250</a>         level++;
-<a name="251" href="#251">251</a>         <strong>if</strong> (includeEOL) {
-<a name="252" href="#252">252</a>             <strong>for</strong> (<strong>int</strong> i = 0; i &lt; level; i++) {
-<a name="253" href="#253">253</a>                 sb.append(SPACES);
-<a name="254" href="#254">254</a>             }
-<a name="255" href="#255">255</a>         }
-<a name="256" href="#256">256</a>     }
-<a name="257" href="#257">257</a> 
-<a name="258" href="#258">258</a>     <em>/**<em>*</em></em>
-<a name="259" href="#259">259</a> <em>     * Escape a string for XML encoding: replace special characters with XML escapes:</em>
-<a name="260" href="#260">260</a> <em>     * &lt;pre></em>
-<a name="261" href="#261">261</a> <em>     * &amp;amp; &lt;small>(ampersand)&lt;/small> is replaced by &amp;amp;amp;</em>
-<a name="262" href="#262">262</a> <em>     * &amp;lt; &lt;small>(less than)&lt;/small> is replaced by &amp;amp;lt;</em>
-<a name="263" href="#263">263</a> <em>     * &amp;gt; &lt;small>(greater than)&lt;/small> is replaced by &amp;amp;gt;</em>
-<a name="264" href="#264">264</a> <em>     * &amp;quot; &lt;small>(double quote)&lt;/small> is replaced by &amp;amp;quot;</em>
-<a name="265" href="#265">265</a> <em>     * &lt;/pre></em>
-<a name="266" href="#266">266</a> <em>     * @param string The string to be escaped.</em>
-<a name="267" href="#267">267</a> <em>     * @return The escaped string.</em>
-<a name="268" href="#268">268</a> <em>     */</em>
-<a name="269" href="#269">269</a>     <strong>public</strong> <strong>static</strong> String escapeForXML(String string) {
-<a name="270" href="#270">270</a>         StringBuilder sb = <strong>new</strong> StringBuilder();
-<a name="271" href="#271">271</a>         <strong>for</strong> (<strong>int</strong> i = 0, len = string.length(); i &lt; len; i++) {
-<a name="272" href="#272">272</a>             <strong>char</strong> c = string.<strong>char</strong>At(i);
-<a name="273" href="#273">273</a>             <strong>switch</strong> (c) {
-<a name="274" href="#274">274</a>             <strong>case</strong> AMP:
-<a name="275" href="#275">275</a>                 sb.append(<span class="string">"&amp;amp;"</span>);
-<a name="276" href="#276">276</a>                 <strong>break</strong>;
-<a name="277" href="#277">277</a>             <strong>case</strong> LT:
-<a name="278" href="#278">278</a>                 sb.append(<span class="string">"&amp;lt;"</span>);
-<a name="279" href="#279">279</a>                 <strong>break</strong>;
-<a name="280" href="#280">280</a>             <strong>case</strong> GT:
-<a name="281" href="#281">281</a>                 sb.append(<span class="string">"&amp;gt;"</span>);
-<a name="282" href="#282">282</a>                 <strong>break</strong>;
-<a name="283" href="#283">283</a>             <strong>case</strong> QUOT:
-<a name="284" href="#284">284</a>                 sb.append(<span class="string">"&amp;quot;"</span>);
-<a name="285" href="#285">285</a>                 <strong>break</strong>;
-<a name="286" href="#286">286</a>             <strong>default</strong>:
-<a name="287" href="#287">287</a>                 sb.append(c);
-<a name="288" href="#288">288</a>             }
-<a name="289" href="#289">289</a>         }
-<a name="290" href="#290">290</a>         <strong>return</strong> sb.toString();
-<a name="291" href="#291">291</a>     }
-<a name="292" href="#292">292</a> 
-<a name="293" href="#293">293</a>     <em>/**<em>*</em></em>
-<a name="294" href="#294">294</a> <em>     * Validates that a string contains no spaces and is non-null/non-empty</em>
-<a name="295" href="#295">295</a> <em>     * Throw an exception if the string contains whitespace. </em>
-<a name="296" href="#296">296</a> <em>     * Whitespace is not allowed in tagNames and attributes.</em>
-<a name="297" href="#297">297</a> <em>     * @param string any string</em>
-<a name="298" href="#298">298</a> <em>     * @throws IllegalArgumentException</em>
-<a name="299" href="#299">299</a> <em>     */</em>
-<a name="300" href="#300">300</a>     <strong>public</strong> <strong>static</strong> String validate(String string) {
-<a name="301" href="#301">301</a>         <strong>if</strong> (string == <strong>null</strong>) {
-<a name="302" href="#302">302</a>             <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"string is NULL"</span>);
-<a name="303" href="#303">303</a>         }
-<a name="304" href="#304">304</a>         <strong>int</strong> i, length = string.length();
-<a name="305" href="#305">305</a>         <strong>if</strong> (length == 0) {
-<a name="306" href="#306">306</a>             <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"Empty string."</span>);
-<a name="307" href="#307">307</a>         }
-<a name="308" href="#308">308</a>         <strong>for</strong> (i = 0; i &lt; length; i += 1) {
-<a name="309" href="#309">309</a>             <strong>if</strong> (Character.isWhitespace(string.charAt(i))) {
-<a name="310" href="#310">310</a>                 <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"'"</span> + string + <span class="string">"' contains a space character."</span>);
-<a name="311" href="#311">311</a>             }
-<a name="312" href="#312">312</a>         }
-<a name="313" href="#313">313</a>         <strong>return</strong> string;
-<a name="314" href="#314">314</a>     }
-<a name="315" href="#315">315</a> }
+<a name="178" href="#178">178</a>             } <strong>else</strong> <strong>if</strong> ( ConstructorUtils.isClassCollection(type) ) {
+<a name="179" href="#179">179</a>                 <em class="comment">// COLLECTION</em>
+<a name="180" href="#180">180</a>                 tagName = validate(tagName == <strong>null</strong> ? <span class="string">"collection"</span> : tagName);
+<a name="181" href="#181">181</a>                 Collection&lt;Object> collection = (Collection) object;
+<a name="182" href="#182">182</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="183" href="#183">183</a>                 sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
+<a name="184" href="#184">184</a>                 sb.append(tagName);
+<a name="185" href="#185">185</a>                 sb.append(<span class="string">" type=collection"</span>);
+<a name="186" href="#186">186</a>                 sb.append(<span class="string">" size="</span>+collection.size());
+<a name="187" href="#187">187</a>                 sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="188" href="#188">188</a>                 makeEOL(sb, humanOutput);
+<a name="189" href="#189">189</a>                 makeLevelSpaces(sb, level+1, humanOutput);
+<a name="190" href="#190">190</a>                 sb.append(<span class="string">"&lt;table border='1'>"</span>);
+<a name="191" href="#191">191</a>                 makeEOL(sb, humanOutput);
+<a name="192" href="#192">192</a>                 <strong>for</strong> (Object element : collection) {
+<a name="193" href="#193">193</a>                     Class&lt;?> elementType = <strong>null</strong>;
+<a name="194" href="#194">194</a>                     <strong>if</strong> (element != <strong>null</strong>) {
+<a name="195" href="#195">195</a>                         elementType = element.getClass();
+<a name="196" href="#196">196</a>                     }
+<a name="197" href="#197">197</a>                     sb.append( toHTML(element, makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+<a name="198" href="#198">198</a>                 }
+<a name="199" href="#199">199</a>                 makeLevelSpaces(sb, level+1, humanOutput);
+<a name="200" href="#200">200</a>                 sb.append(<span class="string">"&lt;/table>"</span>);
+<a name="201" href="#201">201</a>                 makeEOL(sb, humanOutput);
+<a name="202" href="#202">202</a>                 makeLevelSpaces(sb, level, humanOutput);
+<a name="203" href="#203">203</a>                 sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
+<a name="204" href="#204">204</a>                 makeEOL(sb, humanOutput);
+<a name="205" href="#205">205</a>             } <strong>else</strong> {
+<a name="206" href="#206">206</a>                 <em class="comment">// must be a bean or map, make sure it is a map</em>
+<a name="207" href="#207">207</a>                 tagName = validate(tagName == <strong>null</strong> ? makeElementName(type) : tagName);
+<a name="208" href="#208">208</a>                 <strong>if</strong> ((maxLevel*2) &lt;= level) {
+<a name="209" href="#209">209</a>                     <em class="comment">// if the max level was reached then stop</em>
+<a name="210" href="#210">210</a>                     sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
+<a name="211" href="#211">211</a>                     sb.append(tagName);
+<a name="212" href="#212">212</a>                     sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="213" href="#213">213</a>                     sb.append( <span class="string">"MAX level reached ("</span> );
+<a name="214" href="#214">214</a>                     sb.append( level );
+<a name="215" href="#215">215</a>                     sb.append( <span class="string">"):"</span> );
+<a name="216" href="#216">216</a>                     sb.append( escapeForXML(object.toString()) );
+<a name="217" href="#217">217</a>                     sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
+<a name="218" href="#218">218</a>                     makeEOL(sb, humanOutput);
+<a name="219" href="#219">219</a>                 } <strong>else</strong> {
+<a name="220" href="#220">220</a>                     String xmlType = <span class="string">"bean"</span>;
+<a name="221" href="#221">221</a>                     Map&lt;String, Object> map = <strong>null</strong>;
+<a name="222" href="#222">222</a>                     <strong>if</strong> (Map.<strong>class</strong>.isAssignableFrom(type)) {
+<a name="223" href="#223">223</a>                         xmlType = <span class="string">"map"</span>;
+<a name="224" href="#224">224</a>                         map = (Map&lt;String, Object>) object;
+<a name="225" href="#225">225</a>                     } <strong>else</strong> {
+<a name="226" href="#226">226</a>                         <em class="comment">// reflect over objects</em>
+<a name="227" href="#227">227</a>                         map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
+<a name="228" href="#228">228</a>                     }
+<a name="229" href="#229">229</a>                     makeLevelSpaces(sb, level, humanOutput);
+<a name="230" href="#230">230</a>                     sb.append(<span class="string">"&lt;tr>&lt;td width='3%'>"</span>);
+<a name="231" href="#231">231</a>                     sb.append(tagName);
+<a name="232" href="#232">232</a>                     sb.append(<span class="string">" type="</span>+xmlType);
+<a name="233" href="#233">233</a>                     sb.append(<span class="string">" size="</span>+map.size());
+<a name="234" href="#234">234</a>                     sb.append(<span class="string">"&lt;/td>&lt;td>"</span>);
+<a name="235" href="#235">235</a>                     makeEOL(sb, humanOutput);
+<a name="236" href="#236">236</a>                     makeLevelSpaces(sb, level+1, humanOutput);
+<a name="237" href="#237">237</a>                     sb.append(<span class="string">"&lt;table border='1'>"</span>);
+<a name="238" href="#238">238</a>                     makeEOL(sb, humanOutput);
+<a name="239" href="#239">239</a>                     <strong>for</strong> (Entry&lt;String, Object> entry : map.entrySet()) {
+<a name="240" href="#240">240</a>                         <strong>if</strong> (entry.getKey() != <strong>null</strong>) {
+<a name="241" href="#241">241</a>                             sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+<a name="242" href="#242">242</a>                         }
+<a name="243" href="#243">243</a>                     }
+<a name="244" href="#244">244</a>                     makeLevelSpaces(sb, level+1, humanOutput);
+<a name="245" href="#245">245</a>                     sb.append(<span class="string">"&lt;/table>"</span>);
+<a name="246" href="#246">246</a>                     makeEOL(sb, humanOutput);
+<a name="247" href="#247">247</a>                     makeLevelSpaces(sb, level, humanOutput);
+<a name="248" href="#248">248</a>                     sb.append(<span class="string">"&lt;/td>&lt;/tr>"</span>);
+<a name="249" href="#249">249</a>                     makeEOL(sb, humanOutput);
+<a name="250" href="#250">250</a>                 }
+<a name="251" href="#251">251</a>             }
+<a name="252" href="#252">252</a>         }
+<a name="253" href="#253">253</a>         <strong>return</strong> sb.toString();
+<a name="254" href="#254">254</a>     }
+<a name="255" href="#255">255</a> 
+<a name="256" href="#256">256</a>     <strong>protected</strong> <strong>static</strong> String makeElementName(Class&lt;?> type) {
+<a name="257" href="#257">257</a>         String name = <span class="string">"element"</span>;
+<a name="258" href="#258">258</a>         <strong>if</strong> (type != <strong>null</strong>) {
+<a name="259" href="#259">259</a>             <strong>if</strong> (! Map.<strong>class</strong>.isAssignableFrom(type)) {
+<a name="260" href="#260">260</a>                 name = type.getSimpleName();
+<a name="261" href="#261">261</a>             }
+<a name="262" href="#262">262</a>         }
+<a name="263" href="#263">263</a>         <strong>return</strong> name;
+<a name="264" href="#264">264</a>     }
+<a name="265" href="#265">265</a> 
+<a name="266" href="#266">266</a>     <strong>protected</strong> <strong>static</strong> <strong>void</strong> makeEOL(StringBuilder sb, <strong>boolean</strong> includeEOL) {
+<a name="267" href="#267">267</a>         <strong>if</strong> (includeEOL) {
+<a name="268" href="#268">268</a>             sb.append(EOL);
+<a name="269" href="#269">269</a>         }
+<a name="270" href="#270">270</a>     }
+<a name="271" href="#271">271</a> 
+<a name="272" href="#272">272</a>     <strong>protected</strong> <strong>static</strong> <strong>final</strong> String SPACES = <span class="string">"  "</span>;
+<a name="273" href="#273">273</a>     <strong>protected</strong> <strong>static</strong> <strong>void</strong> makeLevelSpaces(StringBuilder sb, <strong>int</strong> level, <strong>boolean</strong> includeEOL) {
+<a name="274" href="#274">274</a>         level++;
+<a name="275" href="#275">275</a>         <strong>if</strong> (includeEOL) {
+<a name="276" href="#276">276</a>             <strong>for</strong> (<strong>int</strong> i = 0; i &lt; level; i++) {
+<a name="277" href="#277">277</a>                 sb.append(SPACES);
+<a name="278" href="#278">278</a>             }
+<a name="279" href="#279">279</a>         }
+<a name="280" href="#280">280</a>     }
+<a name="281" href="#281">281</a> 
+<a name="282" href="#282">282</a>     <em>/**<em>*</em></em>
+<a name="283" href="#283">283</a> <em>     * Escape a string for XML encoding: replace special characters with XML escapes:</em>
+<a name="284" href="#284">284</a> <em>     * &lt;pre></em>
+<a name="285" href="#285">285</a> <em>     * &amp;amp; &lt;small>(ampersand)&lt;/small> is replaced by &amp;amp;amp;</em>
+<a name="286" href="#286">286</a> <em>     * &amp;lt; &lt;small>(less than)&lt;/small> is replaced by &amp;amp;lt;</em>
+<a name="287" href="#287">287</a> <em>     * &amp;gt; &lt;small>(greater than)&lt;/small> is replaced by &amp;amp;gt;</em>
+<a name="288" href="#288">288</a> <em>     * &amp;quot; &lt;small>(double quote)&lt;/small> is replaced by &amp;amp;quot;</em>
+<a name="289" href="#289">289</a> <em>     * &lt;/pre></em>
+<a name="290" href="#290">290</a> <em>     * @param string The string to be escaped.</em>
+<a name="291" href="#291">291</a> <em>     * @return The escaped string.</em>
+<a name="292" href="#292">292</a> <em>     */</em>
+<a name="293" href="#293">293</a>     <strong>public</strong> <strong>static</strong> String escapeForXML(String string) {
+<a name="294" href="#294">294</a>         StringBuilder sb = <strong>new</strong> StringBuilder();
+<a name="295" href="#295">295</a>         <strong>for</strong> (<strong>int</strong> i = 0, len = string.length(); i &lt; len; i++) {
+<a name="296" href="#296">296</a>             <strong>char</strong> c = string.<strong>char</strong>At(i);
+<a name="297" href="#297">297</a>             <strong>switch</strong> (c) {
+<a name="298" href="#298">298</a>             <strong>case</strong> AMP:
+<a name="299" href="#299">299</a>                 sb.append(<span class="string">"&amp;amp;"</span>);
+<a name="300" href="#300">300</a>                 <strong>break</strong>;
+<a name="301" href="#301">301</a>             <strong>case</strong> LT:
+<a name="302" href="#302">302</a>                 sb.append(<span class="string">"&amp;lt;"</span>);
+<a name="303" href="#303">303</a>                 <strong>break</strong>;
+<a name="304" href="#304">304</a>             <strong>case</strong> GT:
+<a name="305" href="#305">305</a>                 sb.append(<span class="string">"&amp;gt;"</span>);
+<a name="306" href="#306">306</a>                 <strong>break</strong>;
+<a name="307" href="#307">307</a>             <strong>case</strong> QUOT:
+<a name="308" href="#308">308</a>                 sb.append(<span class="string">"&amp;quot;"</span>);
+<a name="309" href="#309">309</a>                 <strong>break</strong>;
+<a name="310" href="#310">310</a>             <strong>default</strong>:
+<a name="311" href="#311">311</a>                 sb.append(c);
+<a name="312" href="#312">312</a>             }
+<a name="313" href="#313">313</a>         }
+<a name="314" href="#314">314</a>         <strong>return</strong> sb.toString();
+<a name="315" href="#315">315</a>     }
+<a name="316" href="#316">316</a> 
+<a name="317" href="#317">317</a>     <em>/**<em>*</em></em>
+<a name="318" href="#318">318</a> <em>     * Validates that a string contains no spaces and is non-null/non-empty</em>
+<a name="319" href="#319">319</a> <em>     * Throw an exception if the string contains whitespace. </em>
+<a name="320" href="#320">320</a> <em>     * Whitespace is not allowed in tagNames and attributes.</em>
+<a name="321" href="#321">321</a> <em>     * @param string any string</em>
+<a name="322" href="#322">322</a> <em>     * @throws IllegalArgumentException</em>
+<a name="323" href="#323">323</a> <em>     */</em>
+<a name="324" href="#324">324</a>     <strong>public</strong> <strong>static</strong> String validate(String string) {
+<a name="325" href="#325">325</a>         <strong>if</strong> (string == <strong>null</strong>) {
+<a name="326" href="#326">326</a>             <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"string is NULL"</span>);
+<a name="327" href="#327">327</a>         }
+<a name="328" href="#328">328</a>         <strong>int</strong> i, length = string.length();
+<a name="329" href="#329">329</a>         <strong>if</strong> (length == 0) {
+<a name="330" href="#330">330</a>             <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"Empty string."</span>);
+<a name="331" href="#331">331</a>         }
+<a name="332" href="#332">332</a>         <strong>for</strong> (i = 0; i &lt; length; i += 1) {
+<a name="333" href="#333">333</a>             <strong>if</strong> (Character.isWhitespace(string.charAt(i))) {
+<a name="334" href="#334">334</a>                 <strong>throw</strong> <strong>new</strong> IllegalArgumentException(<span class="string">"'"</span> + string + <span class="string">"' contains a space character."</span>);
+<a name="335" href="#335">335</a>             }
+<a name="336" href="#336">336</a>         }
+<a name="337" href="#337">337</a>         <strong>return</strong> string;
+<a name="338" href="#338">338</a>     }
+<a name="339" href="#339">339</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

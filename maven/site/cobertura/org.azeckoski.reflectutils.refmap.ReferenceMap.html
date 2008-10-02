@@ -12,14 +12,14 @@
 <div class="separator">&nbsp;</div>
 <table class="report">
 <thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
-  <tr><td class="text"><a href="org.azeckoski.reflectutils.refmap.ReferenceMap.html">ReferenceMap</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>36%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="35"></td><td class="uncovered" width="64"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>42%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="41"></td><td class="uncovered" width="58"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
+  <tr><td class="text"><a href="org.azeckoski.reflectutils.refmap.ReferenceMap.html">ReferenceMap</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>34%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="34"></td><td class="uncovered" width="65"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>38%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="37"></td><td class="uncovered" width="62"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
 </table>
 <div class="separator">&nbsp;</div>
 <table cellspacing="0" cellpadding="0" class="src">
 <tr>
-  <td class="numLineCover">&nbsp;1</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<span class="comment">/**</span></span></pre></td>
+  <td class="numLine">&nbsp;1</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;2</td>
@@ -317,8 +317,8 @@
   <td class="src"><pre class="src">&nbsp;@SuppressWarnings(<span class="string">"unchecked"</span>)</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;61</td>
-  <td class="nbHitsCovered">&nbsp;2712</td>
+  <td class="numLine">&nbsp;61</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> ReferenceMap&lt;K, V&gt; <span class="keyword">implements</span> Map&lt;K, V&gt;, Serializable {</pre></td>
 </tr>
 <tr>
@@ -397,18 +397,18 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">   */</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;77</td>
-  <td class="nbHitsCovered">&nbsp;22</td>
+  <td class="numLine">&nbsp;77</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> ReferenceMap(ReferenceType keyReferenceType,</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;78</td>
-  <td class="nbHitsCovered">&nbsp;44</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;      ReferenceType valueReferenceType) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;79</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;    ensureNotNull(keyReferenceType, valueReferenceType);</pre></td>
 </tr>
 <tr>
@@ -418,12 +418,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;81</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">if</span> (keyReferenceType == ReferenceType.PHANTOM</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;82</td>
-  <td class="nbHitsCovered">&nbsp;22</td>
+  <td class="numLine">&nbsp;82</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        || valueReferenceType == ReferenceType.PHANTOM) {</pre></td>
 </tr>
 <tr>
@@ -443,22 +443,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;86</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">this</span>.delegate = <span class="keyword">new</span> ConcurrentHashMap&lt;Object, Object&gt;();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;87</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">this</span>.keyReferenceType = keyReferenceType;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;88</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">this</span>.valueReferenceType = valueReferenceType;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;89</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;11</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td>
 </tr>
 <tr>
@@ -473,22 +473,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;92</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    Object valueReference = delegate.get(makeKeyReferenceAware(key));</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;93</td>
-  <td class="nbHitsCovered">&nbsp;9520</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> valueReference == <span class="keyword">null</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;94</td>
-  <td class="nbHitsCovered">&nbsp;128</td>
+  <td class="numLine">&nbsp;94</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        ? <span class="keyword">null</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;95</td>
-  <td class="nbHitsCovered">&nbsp;2252</td>
+  <td class="numLine">&nbsp;95</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        : (V) dereferenceValue(valueReference);</pre></td>
 </tr>
 <tr>
@@ -508,12 +508,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;99</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    ensureNotNull(key);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;100</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> internalGet((K) key);</pre></td>
 </tr>
 <tr>
@@ -533,32 +533,32 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;104</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    ensureNotNull(key, value);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;105</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    Object keyReference = referenceKey(key);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;106</td>
-  <td class="nbHitsCovered">&nbsp;5424</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    Object valueReference = strategy.execute(</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;107</td>
-  <td class="nbHitsCovered">&nbsp;1356</td>
+  <td class="numLine">&nbsp;107</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">this</span>,</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;108</td>
-  <td class="nbHitsCovered">&nbsp;1356</td>
+  <td class="numLine">&nbsp;108</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      keyReference,</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;109</td>
-  <td class="nbHitsCovered">&nbsp;1356</td>
+  <td class="numLine">&nbsp;109</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      referenceValue(keyReference, value)</pre></td>
 </tr>
 <tr>
@@ -568,13 +568,13 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;111</td>
-  <td class="nbHitsCovered">&nbsp;5424</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> valueReference == <span class="keyword">null</span> ? <span class="keyword">null</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;112</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        : (V) dereferenceValue(valueReference);</span></pre></td>
+  <td class="numLine">&nbsp;112</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        : (V) dereferenceValue(valueReference);</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;113</td>
@@ -593,7 +593,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;116</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> execute(putStrategy(), key, value);</pre></td>
 </tr>
 <tr>
@@ -632,9 +632,9 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> valueReference == <span class="keyword">null</span> ? <span class="keyword">null</span></span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;124</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        : (V) dereferenceValue(valueReference);</span></pre></td>
+  <td class="numLine">&nbsp;124</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        : (V) dereferenceValue(valueReference);</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;125</td>
@@ -803,12 +803,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;158</td>
-  <td class="nbHitsCovered">&nbsp;114</td>
+  <td class="nbHitsCovered">&nbsp;19</td>
   <td class="src"><pre class="src">&nbsp;    delegate.clear();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;159</td>
-  <td class="nbHitsCovered">&nbsp;114</td>
+  <td class="nbHitsCovered">&nbsp;19</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td>
 </tr>
 <tr>
@@ -847,9 +847,9 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> Collections.unmodifiableSet(</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;167</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        dereferenceKeySet(delegate.keySet()));</span></pre></td>
+  <td class="numLine">&nbsp;167</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        dereferenceKeySet(delegate.keySet()));</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;168</td>
@@ -892,9 +892,9 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> Collections.unmodifiableCollection(</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;176</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        dereferenceValues(delegate.values()));</span></pre></td>
+  <td class="numLine">&nbsp;176</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        dereferenceValues(delegate.values()));</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;177</td>
@@ -1002,19 +1002,19 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> delegate.replace(</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;198</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      keyReference,</span></pre></td>
+  <td class="numLine">&nbsp;198</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      keyReference,</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;199</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      referenceAwareOldValue,</span></pre></td>
+  <td class="numLine">&nbsp;199</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      referenceAwareOldValue,</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;200</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      referenceValue(keyReference, newValue)</span></pre></td>
+  <td class="numLine">&nbsp;200</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      referenceValue(keyReference, newValue)</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;201</td>
@@ -1172,14 +1172,14 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>)</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;232</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        ? <span class="keyword">null</span></span></pre></td>
+  <td class="numLine">&nbsp;232</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        ? <span class="keyword">null</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;233</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        : <span class="keyword">new</span> Entry(key, value);</span></pre></td>
+  <td class="numLine">&nbsp;233</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        : <span class="keyword">new</span> Entry(key, value);</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;234</td>
@@ -1213,7 +1213,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;240</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">switch</span> (keyReferenceType) {</pre></td>
 </tr>
 <tr>
@@ -1228,7 +1228,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;243</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">case</span> WEAK: <span class="keyword">return</span> <span class="keyword">new</span> WeakKeyReference(key);</pre></td>
 </tr>
 <tr>
@@ -1308,7 +1308,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;259</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> (V) dereference(valueReferenceType, o);</pre></td>
 </tr>
 <tr>
@@ -1343,7 +1343,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;266</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> referenceType == STRONG ? reference : ((Reference) reference).get();</pre></td>
 </tr>
 <tr>
@@ -1378,17 +1378,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;273</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">switch</span> (valueReferenceType) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;274</td>
-  <td class="nbHitsCovered">&nbsp;4002</td>
+  <td class="nbHitsCovered">&nbsp;667</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">case</span> STRONG: <span class="keyword">return</span> value;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;275</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">case</span> SOFT: <span class="keyword">return</span> <span class="keyword">new</span> SoftValueReference(keyReference, value);</pre></td>
 </tr>
 <tr>
@@ -1442,14 +1442,14 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> keyReferenceType == STRONG</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;286</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        ? keyReferences</span></pre></td>
+  <td class="numLine">&nbsp;286</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        ? keyReferences</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;287</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        : dereferenceCollection(keyReferenceType, keyReferences, <span class="keyword">new</span> HashSet());</span></pre></td>
+  <td class="numLine">&nbsp;287</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        : dereferenceCollection(keyReferenceType, keyReferences, <span class="keyword">new</span> HashSet());</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;288</td>
@@ -1487,19 +1487,19 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> valueReferenceType == STRONG</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;295</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        ? valueReferences</span></pre></td>
+  <td class="numLine">&nbsp;295</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        ? valueReferences</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;296</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        : dereferenceCollection(valueReferenceType, valueReferences,</span></pre></td>
+  <td class="numLine">&nbsp;296</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        : dereferenceCollection(valueReferenceType, valueReferences,</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;297</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">new</span> ArrayList(valueReferences.size()));</span></pre></td>
+  <td class="numLine">&nbsp;297</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">new</span> ArrayList(valueReferences.size()));</pre></td>
 </tr>
 <tr>
   <td class="numLine">&nbsp;298</td>
@@ -1533,7 +1533,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;304</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> keyReferenceType == STRONG ? o : <span class="keyword">new</span> KeyReferenceAwareWrapper(o);</pre></td>
 </tr>
 <tr>
@@ -1678,7 +1678,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;333</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> System.identityHashCode(key);</pre></td>
 </tr>
 <tr>
@@ -1738,7 +1738,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;345</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">if</span> (o <span class="keyword">instanceof</span> InternalReference) {</pre></td>
 </tr>
 <tr>
@@ -1798,7 +1798,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;357</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> ((ReferenceAwareWrapper) o).unwrap() == r.get();</pre></td>
 </tr>
 <tr>
@@ -1853,17 +1853,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;368</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    ReferenceAwareWrapper(Object wrapped) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;369</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">this</span>.wrapped = wrapped;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;370</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -1878,7 +1878,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;373</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> wrapped;</pre></td>
 </tr>
 <tr>
@@ -1923,7 +1923,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;382</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> obj == <span class="keyword">null</span> ? <span class="keyword">false</span> : obj.equals(<span class="keyword">this</span>);</pre></td>
 </tr>
 <tr>
@@ -1973,12 +1973,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;392</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">super</span>(wrapped);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;393</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -1993,7 +1993,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;396</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> System.identityHashCode(wrapped);</pre></td>
 </tr>
 <tr>
@@ -2008,7 +2008,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;399</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">super</span>.equals(arg0);</pre></td>
 </tr>
 <tr>
@@ -2168,22 +2168,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;431</td>
-  <td class="nbHitsCovered">&nbsp;2712</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> WeakKeyReference(Object key) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;432</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">super</span>(key);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;433</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">this</span>.hashCode = keyHashCode(key);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;434</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -2218,7 +2218,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;441</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> <span class="keyword">this</span>.hashCode;</pre></td>
 </tr>
 <tr>
@@ -2238,7 +2238,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;445</td>
-  <td class="nbHitsCovered">&nbsp;6756</td>
+  <td class="nbHitsCovered">&nbsp;1888</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> referenceEquals(<span class="keyword">this</span>, o);</pre></td>
 </tr>
 <tr>
@@ -2283,22 +2283,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;454</td>
-  <td class="nbHitsCovered">&nbsp;44</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> SoftValueReference(Object keyReference, Object value) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;455</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">super</span>(value);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;456</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">this</span>.keyReference = keyReference;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;457</td>
-  <td class="nbHitsCovered">&nbsp;66</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td>
 </tr>
 <tr>
@@ -2508,7 +2508,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;499</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> PutStrategy.PUT;</pre></td>
 </tr>
 <tr>
@@ -2563,17 +2563,17 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;510</td>
-  <td class="nbHitsCovered">&nbsp;42</td>
+  <td class="nbHitsCovered">&nbsp;7</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">protected</span> enum PutStrategy <span class="keyword">implements</span> Strategy {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;511</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;    PUT {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;512</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">public</span> Object execute(ReferenceMap map, Object keyReference,</pre></td>
 </tr>
 <tr>
@@ -2583,7 +2583,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;514</td>
-  <td class="nbHitsCovered">&nbsp;4068</td>
+  <td class="nbHitsCovered">&nbsp;680</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> map.delegate.put(keyReference, valueReference);</pre></td>
 </tr>
 <tr>
@@ -2603,12 +2603,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;518</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;    REPLACE {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;519</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">public</span> Object execute(ReferenceMap map, Object keyReference,</pre></td>
 </tr>
 <tr>
@@ -2638,12 +2638,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;525</td>
-  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;    PUT_IF_ABSENT {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;526</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">public</span> Object execute(ReferenceMap map, Object keyReference,</pre></td>
 </tr>
 <tr>
@@ -2928,7 +2928,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;583</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">if</span> (o == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -2943,7 +2943,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;586</td>
-  <td class="nbHitsCovered">&nbsp;7140</td>
+  <td class="nbHitsCovered">&nbsp;1954</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td>
 </tr>
 <tr>
@@ -2958,12 +2958,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;589</td>
-  <td class="nbHitsCovered">&nbsp;12402</td>
+  <td class="nbHitsCovered">&nbsp;2073</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; array.length; i++) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;590</td>
-  <td class="nbHitsCovered">&nbsp;8268</td>
+  <td class="nbHitsCovered">&nbsp;1382</td>
   <td class="src"><pre class="src">&nbsp;      <span class="keyword">if</span> (array[i] == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -2983,7 +2983,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;594</td>
-  <td class="nbHitsCovered">&nbsp;4134</td>
+  <td class="nbHitsCovered">&nbsp;691</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td>
 </tr>
 <tr>
@@ -3097,9 +3097,9 @@
   <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">this</span>.delegate = <span class="keyword">new</span> ConcurrentHashMap&lt;Object, Object&gt;(size);</span></pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;617</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">while</span> (<span class="keyword">true</span>) {</span></pre></td>
+  <td class="numLine">&nbsp;617</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">while</span> (<span class="keyword">true</span>) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;618</td>

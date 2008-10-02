@@ -12,13 +12,13 @@
 <div class="separator">&nbsp;</div>
 <table class="report">
 <thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
-  <tr><td class="text"><a href="org.azeckoski.reflectutils.converters.EnumConverter.html">EnumConverter</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>87%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="86"></td><td class="uncovered" width="13"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>100%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="100"></td><td class="uncovered" width="0"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
+  <tr><td class="text"><a href="org.azeckoski.reflectutils.converters.EnumConverter.html">EnumConverter</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>86%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="85"></td><td class="uncovered" width="14"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>100%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="100"></td><td class="uncovered" width="0"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
 </table>
 <div class="separator">&nbsp;</div>
 <table cellspacing="0" cellpadding="0" class="src">
 <tr>
-  <td class="numLineCover">&nbsp;1</td>
-  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="numLine">&nbsp;1</td>
+  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
 </tr>
 <tr>
@@ -163,7 +163,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;30</td>
-  <td class="nbHitsCovered">&nbsp;182</td>
+  <td class="nbHitsCovered">&nbsp;31</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> EnumConverter <span class="keyword">implements</span> InterfaceConverter&lt;Enum&gt; {</pre></td>
 </tr>
 <tr>
@@ -203,7 +203,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;38</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> FieldUtils.getInstance();</pre></td>
 </tr>
 <tr>
@@ -223,12 +223,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;42</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        Enum convert = <span class="keyword">null</span>;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;43</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        String name = value.toString(); <span class="comment">// can only deal with strings</span></pre></td>
 </tr>
 <tr>
@@ -238,22 +238,22 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;45</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        ClassFields&lt;Enum&gt; cf = (ClassFields&lt;Enum&gt;) getFieldUtils().analyzeClass(implementationType);</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;46</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        List&lt;Enum&gt; enumConstants = cf.getClassData().getEnumConstants();</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;47</td>
-  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">for</span> (Enum e : enumConstants) {</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;48</td>
-  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> (e.name().equals(name)) {</pre></td>
 </tr>
 <tr>
@@ -263,12 +263,12 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;50</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;                convert = e;</pre></td>
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;51</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;54</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> (convert == <span class="keyword">null</span>) {</pre></td>
 </tr>
 <tr>
@@ -298,7 +298,7 @@
 </tr>
 <tr>
   <td class="numLineCover">&nbsp;57</td>
-  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> convert;</pre></td>
 </tr>
 <tr>

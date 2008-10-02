@@ -1,1 +1,1 @@
-/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/bin/javadoc @options @packages
+"cd /opt/mytools/reflectutils/target/checkout/target/site/testapidocs && /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/bin/javadoc" @options @packages
