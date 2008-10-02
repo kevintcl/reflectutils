@@ -65,7 +65,7 @@ public class XMLTranscoder implements Transcoder {
                 name = DATA_KEY;
             }
         }
-        encoded = XMLTranscoder.makeXML(object, name, properties, humanOutput, includeNulls, includeClass, includeClassField);
+        encoded = XMLTranscoder.makeXML(object, name, properties, humanOutput, includeNulls, includeClass, includeClassField, maxLevel);
         return encoded;
     }
 
@@ -116,6 +116,15 @@ public class XMLTranscoder implements Transcoder {
         this.includeClass = includeClass;
     }
 
+    private int maxLevel = 7;
+    /**
+     * @param maxLevel the number of objects to follow when traveling through the object,
+     * 0 means only the fields in the initial object, default is 7
+     */
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
+    }
+
 
     public static final char SPACE = ' ';
     public static final char AMP   = '&';
@@ -139,7 +148,7 @@ public class XMLTranscoder implements Transcoder {
      * @return the XML string version of the object
      */
     public static String makeXML(Object object) {
-        return makeXML(object, null, null, false, true, false, false);
+        return makeXML(object, null, null, false, true, false, false, 7);
     }
 
     /**
@@ -149,14 +158,15 @@ public class XMLTranscoder implements Transcoder {
      * @param properties (optional) optional properties to add into the encoded data
      * @param humanOutput true of human readable output
      * @param includeNulls true to include null values when generating tags
+     * @param maxLevel TODO
      * @return the XML string version of the object
      */
-    public static String makeXML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField) {
-        return toXML(object, tagName, 0, humanOutput, includeNulls, includeClass, includeClassField, properties);
+    public static String makeXML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, int maxLevel) {
+        return toXML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties);
     }
 
     @SuppressWarnings("unchecked")
-    protected static String toXML(Object object, String tagName, int level, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, Map<String, Object> properties) {
+    protected static String toXML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, Map<String, Object> properties) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
@@ -231,7 +241,7 @@ public class XMLTranscoder implements Transcoder {
                 sb.append(GT);
                 makeEOL(sb, humanOutput);
                 for (int i = 0; i < length; ++i) {
-                    sb.append( toXML(Array.get(object, i), makeElementName(elementType), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                    sb.append( toXML(Array.get(object, i), makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties) );
                 }
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -259,7 +269,7 @@ public class XMLTranscoder implements Transcoder {
                     if (element != null) {
                         elementType = element.getClass();
                     }
-                    sb.append( toXML(element, makeElementName(elementType), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                    sb.append( toXML(element, makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties) );
                 }
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -270,44 +280,60 @@ public class XMLTranscoder implements Transcoder {
             } else {
                 // must be a bean or map, make sure it is a map
                 tagName = validate(tagName == null ? makeElementName(type) : tagName);
-                String xmlType = "bean";
-                Map<String, Object> map = null;
-                if (Map.class.isAssignableFrom(type)) {
-                    xmlType = "map";
-                    map = (Map<String, Object>) object;
+                if (maxLevel <= level) {
+                    // if the max level was reached then stop
+                    sb.append(LT);
+                    sb.append(tagName);
+                    sb.append(GT);
+                    sb.append( "MAX level reached (" );
+                    sb.append( level );
+                    sb.append( "):" );
+                    sb.append( escapeForXML(object.toString()) );
+                    sb.append(LT);
+                    sb.append(SLASH);
+                    sb.append(tagName);
+                    sb.append(GT);
+                    makeEOL(sb, humanOutput);
                 } else {
-                    // reflect over objects
-                    map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, false);
-                }
-                // add in the optional properties if it makes sense to do so
-                if (level == 0 && properties != null && ! properties.isEmpty()) {
-                    map.putAll(properties);
-                }
-                makeLevelSpaces(sb, level, humanOutput);
-                sb.append(LT);
-                sb.append(tagName);
-                sb.append(" type='");
-                sb.append(xmlType);
-                sb.append(APOS);
-                sb.append(" size='");
-                sb.append(map.size());
-                sb.append(APOS);
-                if (includeClass) {
-                    makeClassName(sb, ConstructorUtils.getTypeFromInnerCollection(type));
-                }
-                sb.append(GT);
-                makeEOL(sb, humanOutput);
-                for (Entry<String, Object> entry : map.entrySet()) {
-                    if (entry.getKey() != null) {
-                        sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                    String xmlType = "bean";
+                    Map<String, Object> map = null;
+                    if (Map.class.isAssignableFrom(type)) {
+                        xmlType = "map";
+                        map = (Map<String, Object>) object;
+                    } else {
+                        // reflect over objects
+                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, false);
                     }
+                    // add in the optional properties if it makes sense to do so
+                    if (level == 0 && properties != null && ! properties.isEmpty()) {
+                        map.putAll(properties);
+                    }
+                    makeLevelSpaces(sb, level, humanOutput);
+                    sb.append(LT);
+                    sb.append(tagName);
+                    sb.append(" type='");
+                    sb.append(xmlType);
+                    sb.append(APOS);
+                    sb.append(" size='");
+                    sb.append(map.size());
+                    sb.append(APOS);
+                    if (includeClass) {
+                        makeClassName(sb, ConstructorUtils.getTypeFromInnerCollection(type));
+                    }
+                    sb.append(GT);
+                    makeEOL(sb, humanOutput);
+                    for (Entry<String, Object> entry : map.entrySet()) {
+                        if (entry.getKey() != null) {
+                            sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                        }
+                    }
+                    makeLevelSpaces(sb, level, humanOutput);
+                    sb.append(LT);
+                    sb.append(SLASH);
+                    sb.append(tagName);
+                    sb.append(GT);
+                    makeEOL(sb, humanOutput);
                 }
-                makeLevelSpaces(sb, level, humanOutput);
-                sb.append(LT);
-                sb.append(SLASH);
-                sb.append(tagName);
-                sb.append(GT);
-                makeEOL(sb, humanOutput);
             }
         }
         return sb.toString();

@@ -565,9 +565,11 @@ public class ClassFields<T> {
         // check for reflect annotations on the class
         List<Annotation> annotations = classData.getAnnotations();
         for (Annotation annotation : annotations) {
-            if (annotation.annotationType().equals(ReflectIncludeStaticFields.class)) {
+            // note that we compare the simple name to avoid issues with cross classloader types
+            if (ReflectIncludeStaticFields.class.getSimpleName().equals(annotation.annotationType().getSimpleName())) {
                 includeStaticFields = true;
-            } else if (annotation.annotationType().equals(ReflectIgnoreClassFields.class)) {
+            } else if (ReflectIgnoreClassFields.class.getSimpleName().equals(annotation.annotationType().getSimpleName())) {
+                // this does not work if the classloader of the annotation is not our classloader
                 String[] ignore = ((ReflectIgnoreClassFields)annotation).value();
                 for (String name : ignore) {
                     ignoredFieldNames.add(name);

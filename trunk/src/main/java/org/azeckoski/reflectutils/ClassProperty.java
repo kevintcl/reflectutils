@@ -67,7 +67,8 @@ public class ClassProperty {
                 // only add an annotation in the first time it is encountered
                 propertyAnnotations.put(c, annotation);
             }
-            if (ReflectTransient.class.equals(c)) {
+            // note that we compare the simple name to avoid issues with cross classloader types
+            if (ReflectTransient.class.getSimpleName().equals(c.getSimpleName())) {
                 transientField = true; // pretend to be transient
             }
         }
