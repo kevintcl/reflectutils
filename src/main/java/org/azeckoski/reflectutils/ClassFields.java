@@ -21,6 +21,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -35,6 +36,7 @@ import java.util.Map.Entry;
 
 import org.azeckoski.reflectutils.annotations.ReflectIgnoreClassFields;
 import org.azeckoski.reflectutils.annotations.ReflectIncludeStaticFields;
+import org.azeckoski.reflectutils.annotations.ReflectTransientClassFields;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
 import org.azeckoski.reflectutils.map.OrderedMap;
@@ -421,6 +423,10 @@ public class ClassFields<T> {
      * includes all the field names which should be ignored for reflection
      */
     private final Set<String> ignoredFieldNames = new HashSet<String>();
+    /**
+     * includes all the field names which should be marked as transient
+     */
+    private final Set<String> transientFieldNames = new HashSet<String>();
     // WARNING: all these things can hold open a ClassLoader
     private final ClassData<T> classData;
     private final OrderedMap<String, ClassProperty> namesToProperties; // this contains all properties data (includes partials)
@@ -570,9 +576,51 @@ public class ClassFields<T> {
                 includeStaticFields = true;
             } else if (ReflectIgnoreClassFields.class.getSimpleName().equals(annotation.annotationType().getSimpleName())) {
                 // this does not work if the classloader of the annotation is not our classloader
-                String[] ignore = ((ReflectIgnoreClassFields)annotation).value();
+                String[] ignore = new String[0];
+                if (ReflectIgnoreClassFields.class.equals(annotation.annotationType())) {
+                    ignore = ((ReflectIgnoreClassFields)annotation).value();
+                } else {
+                    // get the value out by reflection on the annotation
+                    ClassData<?> cd = ClassDataCacher.getInstance().getClassData(annotation);
+                    List<Method> methods = cd.getMethods();
+                    for (Method method : methods) {
+                        if (method.getName().equals("value")) {
+                            try {
+                                Object o = method.invoke(annotation, new Object[] {});
+                                ignore = (String[]) o;
+                            } catch (Exception e) {
+                                throw new RuntimeException("Annotation of the same name has invalid value() method ("+method+") and is not of the right type: " + ReflectIgnoreClassFields.class);
+                            }
+                            break;
+                        }
+                    }
+                }
                 for (String name : ignore) {
                     ignoredFieldNames.add(name);
+                }
+            } else if (ReflectTransientClassFields.class.getSimpleName().equals(annotation.annotationType().getSimpleName())) {
+                // this does not work if the classloader of the annotation is not our classloader
+                String[] transients = new String[0];
+                if (ReflectTransientClassFields.class.equals(annotation.annotationType())) {
+                    transients = ((ReflectTransientClassFields)annotation).value();
+                } else {
+                    // get the value out by reflection on the annotation
+                    ClassData<?> cd = ClassDataCacher.getInstance().getClassData(annotation);
+                    List<Method> methods = cd.getMethods();
+                    for (Method method : methods) {
+                        if (method.getName().equals("value")) {
+                            try {
+                                Object o = method.invoke(annotation, new Object[] {});
+                                transients = (String[]) o;
+                            } catch (Exception e) {
+                                throw new RuntimeException("Annotation of the same name has invalid value() method ("+method+") and is not of the right type: " + ReflectTransientClassFields.class);
+                            }
+                            break;
+                        }
+                    }
+                }
+                for (String name : transients) {
+                    transientFieldNames.add(name);
                 }
             }
         }
@@ -942,15 +990,19 @@ public class ClassFields<T> {
     private void populateAnnotationsFields() {
         // get the annotations from all class methods
         for (Method method : classData.getMethods()) {
-            try {
-                String name = makeFieldNameFromMethod(method.getName());
-                ClassProperty cp = getAnyPropertyOrFail(name);
-                Annotation[] annotations = method.getAnnotations();
-                for (Annotation annotation : annotations) {
-                    if (annotation != null) cp.addAnnotation(annotation);
+            int paramCount = method.getParameterTypes().length;
+            // only include annotations on methods which *might* be fields (no args, 1 arg, or 2 args for the special ones)
+            if (paramCount <= 2) {
+                try {
+                    String name = makeFieldNameFromMethod(method.getName());
+                    ClassProperty cp = getAnyPropertyOrFail(name);
+                    Annotation[] annotations = method.getAnnotations();
+                    for (Annotation annotation : annotations) {
+                        if (annotation != null) cp.addAnnotation(annotation);
+                    }
+                } catch (FieldnameNotFoundException e) {
+                    // nothing to do but keep going
                 }
-            } catch (FieldnameNotFoundException e) {
-                // nothing to do but keep going
             }
         }
         // get the annotations from all class fields
@@ -973,6 +1025,15 @@ public class ClassFields<T> {
                 for (Annotation annotation : annotations) {
                     if (annotation != null) cp.addAnnotation(annotation);
                 }
+            } catch (FieldnameNotFoundException e) {
+                // nothing to do but keep going
+            }
+        }
+        // now mark the transient fields as such
+        for (String fieldName : transientFieldNames) {
+            try {
+                ClassProperty cp = getAnyPropertyOrFail(fieldName);
+                cp.transientField = true;
             } catch (FieldnameNotFoundException e) {
                 // nothing to do but keep going
             }
