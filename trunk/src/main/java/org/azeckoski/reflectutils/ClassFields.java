@@ -285,6 +285,8 @@ public class ClassFields<T> {
     // ANNOTATIONS
 
     /**
+     * Get all annotations present on the represented class
+     * 
      * @return the set of all annotations on the class this refers to
      */
     public Set<Annotation> getClassAnnotations() {
@@ -292,6 +294,31 @@ public class ClassFields<T> {
     }
 
     /**
+     * Gets the annotation from the represented class if one exists of the type specified
+     * 
+     * @param annotationType
+     *            the annotation type to look for on this class
+     * @return the annotation if found OR null if none found
+     */
+    @SuppressWarnings({ "unchecked", "hiding" })
+    public <T extends Annotation> T getClassAnnotation(Class<T> annotationType) {
+        if (annotationType == null) {
+            throw new IllegalArgumentException("annotationType must not be null");
+        }
+        T annote = null;
+        List<Annotation> annotations = classData.getAnnotations();
+        for (Annotation annotation : annotations) {
+            if (annotationType.equals(annotation.annotationType())) {
+                annote = (T) annotation;
+                break;
+            }
+        }
+        return annote;
+    }
+
+    /**
+     * Get all annotations on the field in the represented class
+     * 
      * @param name the fieldName
      * @return the set of all annotations on this field
      * @throws FieldnameNotFoundException if this fieldName is invalid
@@ -310,12 +337,13 @@ public class ClassFields<T> {
      * @return the annotation if found OR null if none found
      * @throws FieldnameNotFoundException if this fieldName is invalid
      */
-    public Annotation getFieldAnnotation(Class<? extends Annotation> annotationType, String name) {
+    @SuppressWarnings("hiding")
+    public <T extends Annotation> T getFieldAnnotation(Class<T> annotationType, String name) {
         if (annotationType == null) {
             throw new IllegalArgumentException("annotationType must not be null");
         }
         ClassProperty cp = getAnyPropertyOrFail(name);
-        Annotation a = cp.getAnnotation(annotationType);
+        T a = cp.getAnnotation(annotationType);
         return a;
     }
 

@@ -87,10 +87,11 @@ public class ClassProperty {
      * @param annotationType the annotation type to look for on this field
      * @return the annotation of this type for this field OR null if none found
      */
-    public Annotation getAnnotation(Class<? extends Annotation> annotationType) {
-        Annotation a = null;
+    @SuppressWarnings("unchecked")
+    public <T extends Annotation> T getAnnotation(Class<T> annotationType) {
+        T a = null;
         if (propertyAnnotations != null) {
-            a = propertyAnnotations.get(annotationType);
+            a = (T) propertyAnnotations.get(annotationType);
         }
         return a;
     }
