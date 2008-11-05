@@ -33,6 +33,7 @@ import junit.framework.TestCase;
 import org.azeckoski.reflectutils.classes.TestBean;
 import org.azeckoski.reflectutils.classes.TestExtendBean;
 import org.azeckoski.reflectutils.classes.TestNesting;
+import org.azeckoski.reflectutils.classes.TestNoPubConstructor;
 import org.azeckoski.reflectutils.classes.TestPea;
 import org.azeckoski.reflectutils.classes.TestUltraNested;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
@@ -385,6 +386,14 @@ public class ConstructorUtilsTest extends TestCase {
         } catch (IllegalArgumentException e) {
             assertNotNull(e.getMessage());
         }
+    }
+
+    public void testConstructNoPublic() {
+        ConstructorUtils constructUtils = new ConstructorUtils();
+
+        TestNoPubConstructor t1 = constructUtils.constructClass(TestNoPubConstructor.class);
+        assertNotNull(t1);
+        assertEquals("prot", t1.getConstructed());
     }
 
 }
