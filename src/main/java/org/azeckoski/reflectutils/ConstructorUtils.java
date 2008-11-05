@@ -606,7 +606,7 @@ public class ConstructorUtils {
             try {
                 // this should work 99% of the time
                 newC = (T) type.newInstance();
-            } catch (InstantiationException e) {
+            } catch (Exception e) {
                 // now we will try to use the various constructors by giving them null values to construct the object
                 List<Constructor<T>> constructors = null;
                 if ( ConstructorUtils.isClassBean(type) ) {
@@ -641,10 +641,8 @@ public class ConstructorUtils {
                 }
                 if (newC == null) {
                     // all attempts failed
-                    throw new IllegalArgumentException("Could not construct object for class (" + type.getName() + ") using newInstance or using any of the constructors", e);
+                    throw new IllegalArgumentException("Could not construct object for class (" + type.getName() + ") using newInstance or using any of the constructors: " + e.getMessage(), e);
                 }
-            } catch (IllegalAccessException e) {
-                throw new IllegalArgumentException("Could not construct object for class (" + type.getName() + "): " + e.getMessage(), e);
             }
         }
         return newC;
