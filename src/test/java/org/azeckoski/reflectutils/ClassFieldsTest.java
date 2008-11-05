@@ -1548,6 +1548,37 @@ public class ClassFieldsTest extends TestCase {
     }
 
     /**
+     * Test getting a single annotation from a class by type
+     */
+    public void testGetClassAnnotation() {
+        ClassFields<?> cf = null;
+
+        cf = new ClassFields(TestBean.class);
+        assertNotNull(cf);
+        TestAnnoteClass1 tac1 = cf.getClassAnnotation(TestAnnoteClass1.class);
+        assertNotNull(tac1);
+
+        TestAnnoteClass2 tac2 = cf.getClassAnnotation(TestAnnoteClass2.class);
+        assertNull(tac2);
+
+        cf = new ClassFields(TestPea.class);
+        assertNotNull(cf);
+        tac1 = cf.getClassAnnotation(TestAnnoteClass1.class);
+        assertNull(tac1);
+
+        tac2 = cf.getClassAnnotation(TestAnnoteClass2.class);
+        assertNotNull(tac2);
+
+        cf = new ClassFields(TestCompound.class);
+        assertNotNull(cf);
+        tac1 = cf.getClassAnnotation(TestAnnoteClass1.class);
+        assertNotNull(tac1);
+
+        tac2 = cf.getClassAnnotation(TestAnnoteClass2.class);
+        assertNotNull(tac2);
+    }
+
+    /**
      * Test method for {@link org.azeckoski.reflectutils.ClassFields#getFieldAnnotations(java.lang.String)}.
      */
     public void testGetFieldAnnotations() {
