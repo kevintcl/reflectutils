@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>reflectutils</name>
+	<comment>A set of reflection utilities and miscellaneous utilities related to working with classes and their fields with no dependencies which is compatible with java 1.5 and generics.
+        The package was originally created by Aaron Zeckoski for the Sakai Project and Generic DAO
+        project but was repackaged to make it distributable by request. It is used in the
+        RSF framework (http://www2.caret.cam.ac.uk/rsfwiki/) and the EntityBroker among other things. Note about the BeanUtils
+        provided dependency: BeanUtils is not required if you are not using it in your
+        project. Note about the Hibernate provided dependency: Hibernate is not required
+        if you are not using it in your project.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.maven.ide.eclipse.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.maven.ide.eclipse.maven2Nature</nature>
+	</natures>
+</projectDescription>
