@@ -53,6 +53,8 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class XMLTranscoder implements Transcoder {
 
+    private static final String ELEMENT = "element";
+
     public String getHandledFormat() {
         return "xml";
     }
@@ -280,59 +282,81 @@ public class XMLTranscoder implements Transcoder {
             } else {
                 // must be a bean or map, make sure it is a map
                 tagName = validate(tagName == null ? makeElementName(type) : tagName);
-                if (maxLevel <= level) {
-                    // if the max level was reached then stop
-                    sb.append(LT);
-                    sb.append(tagName);
-                    sb.append(GT);
-                    sb.append( "MAX level reached (" );
-                    sb.append( level );
-                    sb.append( "):" );
-                    sb.append( escapeForXML(object.toString()) );
-                    sb.append(LT);
-                    sb.append(SLASH);
-                    sb.append(tagName);
-                    sb.append(GT);
-                    makeEOL(sb, humanOutput);
-                } else {
-                    String xmlType = "bean";
-                    Map<String, Object> map = null;
-                    if (Map.class.isAssignableFrom(type)) {
-                        xmlType = "map";
-                        map = (Map<String, Object>) object;
+                // special handling for certain object types
+                String special = TranscoderUtils.checkObjectSpecial(object);
+                if (special != null) {
+                    if ("".equals(special)) {
+                        // skip this one entirely
                     } else {
-                        // reflect over objects
-                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, false);
+                        // just use the value in special to represent this
+                        sb.append(LT);
+                        sb.append(tagName);
+                        sb.append(GT);
+                        sb.append(QUOT);
+                        sb.append( escapeForXML(special) );
+                        sb.append(QUOT);
+                        sb.append(LT);
+                        sb.append(SLASH);
+                        sb.append(tagName);
+                        sb.append(GT);
+                        makeEOL(sb, humanOutput);
                     }
-                    // add in the optional properties if it makes sense to do so
-                    if (level == 0 && properties != null && ! properties.isEmpty()) {
-                        map.putAll(properties);
-                    }
-                    makeLevelSpaces(sb, level, humanOutput);
-                    sb.append(LT);
-                    sb.append(tagName);
-                    sb.append(" type='");
-                    sb.append(xmlType);
-                    sb.append(APOS);
-                    sb.append(" size='");
-                    sb.append(map.size());
-                    sb.append(APOS);
-                    if (includeClass) {
-                        makeClassName(sb, ConstructorUtils.getTypeFromInnerCollection(type));
-                    }
-                    sb.append(GT);
-                    makeEOL(sb, humanOutput);
-                    for (Entry<String, Object> entry : map.entrySet()) {
-                        if (entry.getKey() != null) {
-                            sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                } else {
+                    // normal handling
+                    if (maxLevel <= level) {
+                        // if the max level was reached then stop
+                        sb.append(LT);
+                        sb.append(tagName);
+                        sb.append(GT);
+                        sb.append( "MAX level reached (" );
+                        sb.append( level );
+                        sb.append( "):" );
+                        sb.append( escapeForXML(object.toString()) );
+                        sb.append(LT);
+                        sb.append(SLASH);
+                        sb.append(tagName);
+                        sb.append(GT);
+                        makeEOL(sb, humanOutput);
+                    } else {
+                        String xmlType = "bean";
+                        Map<String, Object> map = null;
+                        if (Map.class.isAssignableFrom(type)) {
+                            xmlType = "map";
+                            map = (Map<String, Object>) object;
+                        } else {
+                            // reflect over objects
+                            map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, false);
                         }
+                        // add in the optional properties if it makes sense to do so
+                        if (level == 0 && properties != null && ! properties.isEmpty()) {
+                            map.putAll(properties);
+                        }
+                        makeLevelSpaces(sb, level, humanOutput);
+                        sb.append(LT);
+                        sb.append(tagName);
+                        sb.append(" type='");
+                        sb.append(xmlType);
+                        sb.append(APOS);
+                        sb.append(" size='");
+                        sb.append(map.size());
+                        sb.append(APOS);
+                        if (includeClass) {
+                            makeClassName(sb, ConstructorUtils.getTypeFromInnerCollection(type));
+                        }
+                        sb.append(GT);
+                        makeEOL(sb, humanOutput);
+                        for (Entry<String, Object> entry : map.entrySet()) {
+                            if (entry.getKey() != null) {
+                                sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties) );
+                            }
+                        }
+                        makeLevelSpaces(sb, level, humanOutput);
+                        sb.append(LT);
+                        sb.append(SLASH);
+                        sb.append(tagName);
+                        sb.append(GT);
+                        makeEOL(sb, humanOutput);
                     }
-                    makeLevelSpaces(sb, level, humanOutput);
-                    sb.append(LT);
-                    sb.append(SLASH);
-                    sb.append(tagName);
-                    sb.append(GT);
-                    makeEOL(sb, humanOutput);
                 }
             }
         }
@@ -340,11 +364,23 @@ public class XMLTranscoder implements Transcoder {
     }
 
     protected static String makeElementName(Class<?> type) {
-        String name = "element";
+        String name = ELEMENT;
         if (type != null) {
-            if (! Map.class.isAssignableFrom(type)) {
-                // TODO maybe handle this prettier with by adding in "-" and stuff?
-                name = type.getSimpleName().toLowerCase();
+            if (Map.class.isAssignableFrom(type)) {
+                // use the default "element"
+            } else {
+                String simpleName = type.getSimpleName().toLowerCase();
+                // strip off the [] for arrays
+                int index = simpleName.indexOf('[');
+                if (index == 0) {
+                    // weird to have [] at the beginning so just use default
+                } else if (index > 0) {
+                    name = simpleName.substring(0, index);
+                } else {
+                    // not array so just use the class name
+                    // TODO maybe handle this prettier with by adding in "-" and stuff?
+                    name = simpleName;
+                }
             }
         }
         return name;

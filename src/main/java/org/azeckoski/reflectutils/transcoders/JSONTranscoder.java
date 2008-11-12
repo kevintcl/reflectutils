@@ -237,51 +237,66 @@ public class JSONTranscoder implements Transcoder {
                 sb.append(ARRAY_END);
             } else {
                 // must be a bean or map, make sure it is a map
-                if (maxLevel <= level) {
-                    // if the max level was reached then stop
-                    sb.append(QUOT);
-                    sb.append( "MAX level reached (" );
-                    sb.append( level );
-                    sb.append( "):" );
-                    sb.append( escapeForJSON(object.toString()) );
-                    sb.append(QUOT);
-                } else {
-                    Map<String, Object> map = null;
-                    if (Map.class.isAssignableFrom(type)) {
-                        map = (Map<String, Object>) object;
+                // special handling for certain object types
+                String special = TranscoderUtils.checkObjectSpecial(object);
+                if (special != null) {
+                    if ("".equals(special)) {
+                        // skip this one entirely
+                        sb.append(NULL);
                     } else {
-                        // reflect over objects
-                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
+                        // just use the value in special to represent this
+                        sb.append(QUOT);
+                        sb.append( escapeForJSON(special) );
+                        sb.append(QUOT);
                     }
-                    // add in the optional properties if it makes sense to do so
-                    if (level == 0 && properties != null && ! properties.isEmpty()) {
-                        map.putAll(properties);
-                    }
-                    sb.append(OBJ_BEG);
-                    boolean first = true;
-                    for (Entry<String, Object> entry : map.entrySet()) {
-                        if (entry.getKey() != null) {
-                            Object value = entry.getValue();
-                            if (value != null || includeNulls) {
-                                if (first) {
-                                    first = false;
-                                } else {
-                                    sb.append(JSON_SEP);
+                } else {
+                    // normal handling
+                    if (maxLevel <= level) {
+                        // if the max level was reached then stop
+                        sb.append(QUOT);
+                        sb.append( "MAX level reached (" );
+                        sb.append( level );
+                        sb.append( "):" );
+                        sb.append( escapeForJSON(object.toString()) );
+                        sb.append(QUOT);
+                    } else {
+                        Map<String, Object> map = null;
+                        if (Map.class.isAssignableFrom(type)) {
+                            map = (Map<String, Object>) object;
+                        } else {
+                            // reflect over objects
+                            map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
+                        }
+                        // add in the optional properties if it makes sense to do so
+                        if (level == 0 && properties != null && ! properties.isEmpty()) {
+                            map.putAll(properties);
+                        }
+                        sb.append(OBJ_BEG);
+                        boolean first = true;
+                        for (Entry<String, Object> entry : map.entrySet()) {
+                            if (entry.getKey() != null) {
+                                Object value = entry.getValue();
+                                if (value != null || includeNulls) {
+                                    if (first) {
+                                        first = false;
+                                    } else {
+                                        sb.append(JSON_SEP);
+                                    }
+                                    makeEOL(sb, humanOutput);
+                                    makeLevelSpaces(sb, level+1, humanOutput);
+                                    sb.append(QUOT);
+                                    sb.append(entry.getKey());
+                                    sb.append(QUOT);
+                                    sb.append(OBJ_SEP);
+                                    if (humanOutput) { sb.append(SPACE); }
+                                    sb.append( toJSON(value, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                                 }
-                                makeEOL(sb, humanOutput);
-                                makeLevelSpaces(sb, level+1, humanOutput);
-                                sb.append(QUOT);
-                                sb.append(entry.getKey());
-                                sb.append(QUOT);
-                                sb.append(OBJ_SEP);
-                                if (humanOutput) { sb.append(SPACE); }
-                                sb.append( toJSON(value, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
                             }
                         }
+                        makeEOL(sb, humanOutput);
+                        makeLevelSpaces(sb, level, humanOutput);
+                        sb.append(OBJ_END);
                     }
-                    makeEOL(sb, humanOutput);
-                    makeLevelSpaces(sb, level, humanOutput);
-                    sb.append(OBJ_END);
                 }
             }
         }
