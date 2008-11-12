@@ -294,7 +294,9 @@ public class DeepUtils {
         if ( bean != null ) {
             Class<?> beanClass = bean.getClass();
             // always copy the simple types if possible
-            if (ConstructorUtils.isClassSimple(beanClass)) {
+            if (ConstructorUtils.isClassSimple(beanClass) 
+                    || ConstructorUtils.isClassSpecial(beanClass)) {
+                // simple and special types are just ref copied
                 copy = bean;
             } else {
                 if (currentDepth <= maxDepth) {
@@ -459,7 +461,10 @@ public class DeepUtils {
         // check if copy is possible first
         if (ConstructorUtils.getImmutableTypes().contains(destClass)) {
             // cannot copy to an immutable object
-            throw new IllegalArgumentException("Cannot copy to an immutable object");
+            throw new IllegalArgumentException("Cannot copy to an immutable object ("+destClass+")");
+        } else if (ConstructorUtils.isClassSpecial(origClass)) {
+            // cannot copy special objects
+            throw new IllegalArgumentException("Cannot copy a special object ("+origClass+")");
         }
         if (autoConvert && ! ConstructorUtils.isClassBean(origClass) ) {
             // attempt to convert non-beans into the type we are copying to, fail if it does not work

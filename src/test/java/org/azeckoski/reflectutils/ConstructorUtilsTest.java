@@ -14,6 +14,7 @@
 
 package org.azeckoski.reflectutils;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -396,4 +397,13 @@ public class ConstructorUtilsTest extends TestCase {
         assertEquals("prot", t1.getConstructed());
     }
 
+    public void testSpecialCheck() {
+        assertTrue( ConstructorUtils.isClassSpecial(Class.class) );
+        assertTrue( ConstructorUtils.isClassSpecial(ClassLoader.class) );
+        assertTrue( ConstructorUtils.isClassSpecial(InputStream.class) );
+
+        assertFalse( ConstructorUtils.isClassSpecial(String.class) );
+        assertFalse( ConstructorUtils.isClassSpecial(int.class) );
+        assertFalse( ConstructorUtils.isClassSpecial(TestBean.class) );
+    }
 }
