@@ -205,48 +205,67 @@ public class HTMLTranscoder implements Transcoder {
             } else {
                 // must be a bean or map, make sure it is a map
                 tagName = validate(tagName == null ? makeElementName(type) : tagName);
-                if ((maxLevel*2) <= level) {
-                    // if the max level was reached then stop
-                    sb.append("<tr><td width='3%'>");
-                    sb.append(tagName);
-                    sb.append("</td><td>");
-                    sb.append( "MAX level reached (" );
-                    sb.append( level );
-                    sb.append( "):" );
-                    sb.append( escapeForXML(object.toString()) );
-                    sb.append("</td></tr>");
-                    makeEOL(sb, humanOutput);
-                } else {
-                    String xmlType = "bean";
-                    Map<String, Object> map = null;
-                    if (Map.class.isAssignableFrom(type)) {
-                        xmlType = "map";
-                        map = (Map<String, Object>) object;
+                // special handling for certain object types
+                String special = TranscoderUtils.checkObjectSpecial(object);
+                if (special != null) {
+                    if ("".equals(special)) {
+                        // skip this one entirely
                     } else {
-                        // reflect over objects
-                        map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
+                        // just use the value in special to represent this
+                        makeLevelSpaces(sb, level, humanOutput);
+                        String value = escapeForXML( special );
+                        sb.append("<tr><td>");
+                        sb.append(tagName);
+                        sb.append("</td><td>");
+                        sb.append(value);
+                        sb.append("</td></tr>");
+                        makeEOL(sb, humanOutput);
                     }
-                    makeLevelSpaces(sb, level, humanOutput);
-                    sb.append("<tr><td width='3%'>");
-                    sb.append(tagName);
-                    sb.append(" type="+xmlType);
-                    sb.append(" size="+map.size());
-                    sb.append("</td><td>");
-                    makeEOL(sb, humanOutput);
-                    makeLevelSpaces(sb, level+1, humanOutput);
-                    sb.append("<table border='1'>");
-                    makeEOL(sb, humanOutput);
-                    for (Entry<String, Object> entry : map.entrySet()) {
-                        if (entry.getKey() != null) {
-                            sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                } else {
+                    // normal handling
+                    if ((maxLevel*2) <= level) {
+                        // if the max level was reached then stop
+                        sb.append("<tr><td width='3%'>");
+                        sb.append(tagName);
+                        sb.append("</td><td>");
+                        sb.append( "MAX level reached (" );
+                        sb.append( level );
+                        sb.append( "):" );
+                        sb.append( escapeForXML(object.toString()) );
+                        sb.append("</td></tr>");
+                        makeEOL(sb, humanOutput);
+                    } else {
+                        String xmlType = "bean";
+                        Map<String, Object> map = null;
+                        if (Map.class.isAssignableFrom(type)) {
+                            xmlType = "map";
+                            map = (Map<String, Object>) object;
+                        } else {
+                            // reflect over objects
+                            map = ReflectUtils.getInstance().getObjectValues(object, FieldsFilter.SERIALIZABLE, includeClassField);
                         }
+                        makeLevelSpaces(sb, level, humanOutput);
+                        sb.append("<tr><td width='3%'>");
+                        sb.append(tagName);
+                        sb.append(" type="+xmlType);
+                        sb.append(" size="+map.size());
+                        sb.append("</td><td>");
+                        makeEOL(sb, humanOutput);
+                        makeLevelSpaces(sb, level+1, humanOutput);
+                        sb.append("<table border='1'>");
+                        makeEOL(sb, humanOutput);
+                        for (Entry<String, Object> entry : map.entrySet()) {
+                            if (entry.getKey() != null) {
+                                sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                            }
+                        }
+                        makeLevelSpaces(sb, level+1, humanOutput);
+                        sb.append("</table>");
+                        makeEOL(sb, humanOutput);
+                        makeLevelSpaces(sb, level, humanOutput);
+                        sb.append("</td></tr>");
+                        makeEOL(sb, humanOutput);
                     }
-                    makeLevelSpaces(sb, level+1, humanOutput);
-                    sb.append("</table>");
-                    makeEOL(sb, humanOutput);
-                    makeLevelSpaces(sb, level, humanOutput);
-                    sb.append("</td></tr>");
-                    makeEOL(sb, humanOutput);
                 }
             }
         }
