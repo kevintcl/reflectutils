@@ -14,7 +14,11 @@
 
 package org.azeckoski.reflectutils;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.io.Serializable;
+import java.io.Writer;
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -39,6 +43,8 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
+
+import com.sun.javadoc.Type;
 
 /**
  * Class which provides methods for dealing with class constructors,
@@ -239,6 +245,38 @@ public class ConstructorUtils {
             simple = true;
         }
         return simple;
+    }
+
+    /**
+     * Indicates that this class is a special type which we should not attempt to reflect over,
+     * especially which doing deep copies or clones,
+     * reflection over special types is generally slow or extremely costly or unpredictable
+     * 
+     * @param type any class
+     * @return true if this is a special type which is non-reflectable
+     */
+    public static boolean isClassSpecial(Class<?> type) {
+        boolean special = false;
+        if (Class.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (Type.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (Package.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (ClassLoader.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (InputStream.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (OutputStream.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (InputStream.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (Writer.class.isAssignableFrom(type)) {
+            special = true;
+        } else if (Reader.class.isAssignableFrom(type)) {
+            special = true;
+        }
+        return special;
     }
 
     /**
