@@ -289,12 +289,11 @@ public class XMLTranscoder implements Transcoder {
                         // skip this one entirely
                     } else {
                         // just use the value in special to represent this
+                        makeLevelSpaces(sb, level, humanOutput);
                         sb.append(LT);
                         sb.append(tagName);
                         sb.append(GT);
-                        sb.append(QUOT);
                         sb.append( escapeForXML(special) );
-                        sb.append(QUOT);
                         sb.append(LT);
                         sb.append(SLASH);
                         sb.append(tagName);

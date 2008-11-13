@@ -24,6 +24,7 @@ import junit.framework.TestCase;
 import org.azeckoski.reflectutils.classes.TestBaseOne;
 import org.azeckoski.reflectutils.classes.TestBean;
 import org.azeckoski.reflectutils.classes.TestCompound;
+import org.azeckoski.reflectutils.classes.TestHibernateLikeBean;
 import org.azeckoski.reflectutils.classes.TestNesting;
 import org.azeckoski.reflectutils.classes.TestPea;
 import org.azeckoski.reflectutils.classes.TestUltraNested;
@@ -1189,5 +1190,31 @@ public class TranscodersTest extends TestCase {
         assertTrue(size < 200000);
         
     }
-    
+
+    public void testCrazyClassesJSON() {
+        TestHibernateLikeBean crazy = new TestHibernateLikeBean();
+
+        Transcoder transcoder = new JSONTranscoder(true, true, false);
+        String encoded = null;
+
+        encoded = transcoder.encode(crazy, null, null);
+        int size = encoded.length();
+        assertNotNull(encoded);
+        assertTrue(size > 100);
+        assertTrue(size < 1000);
+    }
+
+    public void testCrazyClassesXML() {
+        TestHibernateLikeBean crazy = new TestHibernateLikeBean();
+
+        Transcoder transcoder = new XMLTranscoder(true, true, false);
+        String encoded = null;
+
+        encoded = transcoder.encode(crazy, null, null);
+        int size = encoded.length();
+        assertNotNull(encoded);
+        assertTrue(size > 100);
+        assertTrue(size < 1000);
+    }
+
 }
