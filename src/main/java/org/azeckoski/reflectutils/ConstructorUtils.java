@@ -23,6 +23,7 @@ import java.lang.ref.SoftReference;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
@@ -43,8 +44,6 @@ import java.util.TreeSet;
 import java.util.Vector;
 
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
-
-import com.sun.javadoc.Type;
 
 /**
  * Class which provides methods for dealing with class constructors,

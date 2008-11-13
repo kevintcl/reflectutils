@@ -19,8 +19,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
-
-import com.sun.javadoc.Type;
+import java.lang.reflect.Type;
 
 
 /**
@@ -47,8 +46,8 @@ public class TranscoderUtils {
                 // class objects are serialized as the full name
                 special = ((Class<?>)object).getName();
             } else if (Type.class.isAssignableFrom(type)) {
-                // type uses the qualified name
-                special = ((Type)object).qualifiedTypeName();
+                // type just does to string
+                special = ((Type)object).toString();
             } else if (Package.class.isAssignableFrom(type)) {
                 // package uses name only
                 special = ((Package)object).getName();
