@@ -1,5 +1,5 @@
-/**
- * Copyright (C) 2006 Google Inc.
+/*
+ * Copyright (C) 2007 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,13 @@
 package org.azeckoski.reflectutils.refmap;
 
 /**
- * Package-private interface implemented by references that have code to run
- * after garbage collection of their referents.
+ * Implemented by references that have code to run after garbage collection of
+ * their referents.
  *
- * @author crazybob@google.com (Bob Lee)
+ * @see FinalizableReferenceQueue
+ * @author Bob Lee
  */
-interface FinalizableReference {
+public interface FinalizableReference {
 
   /**
    * Invoked on a background thread after the referent has been garbage

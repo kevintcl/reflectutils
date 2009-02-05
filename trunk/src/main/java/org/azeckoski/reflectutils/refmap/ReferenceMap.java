@@ -27,11 +27,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
 
 /**
  * Concurrent hash map that wraps keys and/or values in soft or weak
@@ -54,7 +55,23 @@ import java.util.concurrent.ConcurrentMap;
  * create duplicate values for a given key.
  *
  * <p>In other words, this class is great for caching but not atomicity.
+ * 
+ * <p>To determine equality to a key, this implementation uses
+ * {@link Object#equals} for strong references, and identity-based equality for
+ * soft and weak references. In other words, for a map with weak or soft key
+ * references, {@link #get} returns {@code null} when passed an object that
+ * equals a map key, but isn't the same instance. This behavior is similar to
+ * the way {@link IdentityHashMap} handles key lookups. However, to determine
+ * value equality, as occurs when {@link #containsValue} is called, the
+ * {@code ReferenceMap} always uses {@code equals}, regardless of the value
+ * reference type.
  *
+ * <p><b>Note:</b> {@code new ReferenceMap(WEAK, STRONG)} is very nearly a
+ * drop-in replacement for {@link WeakHashMap}, but improves upon this by using
+ * only identity-based equality for keys. When possible, {@code ReferenceMap}
+ * should be preferred over the JDK collection, for its concurrency and greater
+ * flexibility.
+ * 
  * @author crazybob@google.com (Bob Lee)
  */
 @SuppressWarnings("unchecked")
@@ -324,11 +341,6 @@ public class ReferenceMap<K, V> implements Map<K, V>, Serializable {
     return out;
   }
 
-  /**
-   * Marker interface to differentiate external and internal references.
-   */
-  interface InternalReference {}
-
   static int keyHashCode(Object key) {
     return System.identityHashCode(key);
   }
@@ -399,94 +411,103 @@ public class ReferenceMap<K, V> implements Map<K, V>, Serializable {
         return super.equals(arg0);
     }
   }
+  /**
+   * Lazy initialization holder for finalizable reference queue.
+   */
+  private static class ReferenceQueue {
+    private static final FinalizableReferenceQueue instance
+        = new FinalizableReferenceQueue();
+  }
 
-  class SoftKeyReference extends FinalizableSoftReference<Object>
+  /*
+   * Marker interface to differentiate external and internal references. Also
+   * duplicates finalizeReferent() and Reference.get() for internal use.
+   */
+  private interface InternalReference {
+    void finalizeReferent();
+    Object get();
+  }
+
+  private class SoftKeyReference extends FinalizableSoftReference<Object>
       implements InternalReference {
-
     final int hashCode;
 
-    public SoftKeyReference(Object key) {
-      super(key);
-      this.hashCode = keyHashCode(key);
+    SoftKeyReference(Object key) {
+      super(key, ReferenceQueue.instance);
+      hashCode = System.identityHashCode(key);
     }
-
     public void finalizeReferent() {
       delegate.remove(this);
     }
-
     @Override public int hashCode() {
-      return this.hashCode;
+      return hashCode;
     }
-
-    @Override public boolean equals(Object o) {
-      return referenceEquals(this, o);
+    @Override public boolean equals(Object object) {
+      return referenceEquals(this, object);
     }
   }
 
-  class WeakKeyReference extends FinalizableWeakReference<Object>
+  private class SoftValueReference extends FinalizableSoftReference<Object>
       implements InternalReference {
+    final Object keyReference;
 
+    SoftValueReference(Object keyReference, Object value) {
+      super(value, ReferenceQueue.instance);
+      this.keyReference = keyReference;
+    }
+    public void finalizeReferent() {
+      delegate.remove(keyReference, this);
+    }
+    @Override public int hashCode() {
+      // It's hard to define a useful hash code, so we're careful not to use it.
+      throw new AssertionError("don't hash me");
+    }
+    @Override public boolean equals(Object obj) {
+      return referenceEquals(this, obj);
+    }
+  }
+
+  /*
+   * WeakKeyReference/WeakValueReference are absolutely identical to
+   * SoftKeyReference/SoftValueReference except for which classes they extend.
+   */
+
+  private class WeakKeyReference extends FinalizableWeakReference<Object>
+      implements InternalReference {
     final int hashCode;
 
-    public WeakKeyReference(Object key) {
-      super(key);
-      this.hashCode = keyHashCode(key);
+    WeakKeyReference(Object key) {
+      super(key, ReferenceQueue.instance);
+      hashCode = System.identityHashCode(key);
     }
-
     public void finalizeReferent() {
       delegate.remove(this);
     }
-
     @Override public int hashCode() {
-      return this.hashCode;
+      return hashCode;
     }
-
-    @Override public boolean equals(Object o) {
-      return referenceEquals(this, o);
+    @Override public boolean equals(Object object) {
+      return referenceEquals(this, object);
     }
   }
 
-  class SoftValueReference extends FinalizableSoftReference<Object>
+  private class WeakValueReference extends FinalizableWeakReference<Object>
       implements InternalReference {
-
     final Object keyReference;
 
-    public SoftValueReference(Object keyReference, Object value) {
-      super(value);
+    WeakValueReference(Object keyReference, Object value) {
+      super(value, ReferenceQueue.instance);
       this.keyReference = keyReference;
     }
-
     public void finalizeReferent() {
       delegate.remove(keyReference, this);
     }
-
+    @Override public int hashCode() {
+      // It's hard to define a useful hash code, so we're careful not to use it.
+      throw new AssertionError("don't hash me");
+    }
     @Override public boolean equals(Object obj) {
       return referenceEquals(this, obj);
-    }
-    @Override public int hashCode() {
-        return super.hashCode() + 5093;
-    }
-  }
-
-  class WeakValueReference extends FinalizableWeakReference<Object>
-      implements InternalReference {
-
-    final Object keyReference;
-
-    public WeakValueReference(Object keyReference, Object value) {
-      super(value);
-      this.keyReference = keyReference;
-    }
-
-    public void finalizeReferent() {
-      delegate.remove(keyReference, this);
-    }
-
-    @Override public boolean equals(Object obj) {
-      return referenceEquals(this, obj);
-    }
-    @Override public int hashCode() {
-        return super.hashCode() + 41301;
     }
   }
 
