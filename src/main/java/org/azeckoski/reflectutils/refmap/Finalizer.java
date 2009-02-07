@@ -16,6 +16,9 @@
 
 package org.azeckoski.reflectutils.refmap;
 
+import org.azeckoski.reflectutils.Lifecycle;
+import org.azeckoski.reflectutils.LifecycleManager;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.lang.ref.ReferenceQueue;
@@ -23,6 +26,7 @@ import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.lang.ref.PhantomReference;
 import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Thread that finalizes referents. All references should implement
@@ -45,7 +49,7 @@ import java.lang.reflect.Method;
  * class loader from getting garbage collected, and this class can detect when
  * the main class loader has been garbage collected and stop itself.
  */
-public class Finalizer extends Thread {
+public class Finalizer extends Thread implements Lifecycle {
 
   private static final Logger logger
       = Logger.getLogger(Finalizer.class.getName());
@@ -64,7 +68,7 @@ public class Finalizer extends Thread {
    * @return ReferenceQueue which Finalizer will poll
    */
   public static ReferenceQueue<Object> startFinalizer(
-      Class<?> finalizableReferenceClass, Object frq) {
+      Class<?> finalizableReferenceClass, Object frq, boolean registerForLifecycle) {
     /*
      * We use FinalizableReference.class for two things:
      *
@@ -78,9 +82,20 @@ public class Finalizer extends Thread {
           "Expected " + FINALIZABLE_REFERENCE + ".");
     }
 
-    Finalizer finalizer = new Finalizer(finalizableReferenceClass, frq);
-    finalizer.start();
-    return finalizer.queue;
+    Finalizer finalizerThread = new Finalizer(finalizableReferenceClass, frq);
+    finalizerThread.start();
+
+    // If we are running under the LifeCycleManager, register the created Thread
+    try {
+        if (registerForLifecycle) {
+            LifecycleManager.register(finalizerThread);
+        }
+    } catch (Exception e) {
+        System.err.println("Unable to register for lifecycle events: " + e.getMessage());
+        // Ignore
+    }
+
+      return finalizerThread.queue;
   }
 
   private final WeakReference<Class<?>> finalizableReferenceClassReference;
@@ -111,7 +126,20 @@ public class Finalizer extends Thread {
       while (true) {
         try {
           cleanUp(queue.remove());
-        } catch (InterruptedException e) { /* ignore */ }
+        } catch (InterruptedException e) {
+            // Thread has been interrupted, so do local cleanup
+            frqReference.clear();
+
+            // Ensure that anything that may be remaining on the queue is cleaned up
+            Reference<?> reference = queue.poll();
+            while (reference != null) {
+                cleanUp(reference);
+                reference = queue.poll();
+            }
+
+            // Shut down the current thread
+            throw new ShutDown();
+        }
       }
     } catch (ShutDown shutDown) { /* ignore */ }
   }
@@ -173,6 +201,14 @@ public class Finalizer extends Thread {
     }
   }
 
-  /** Indicates that it's time to shut down the Finalizer. */
+  /**
+   * Lifecycle method to destroy the finalizer thread
+   */
+  public void shutdown() {
+      // Thread will shut itself down when interrupted
+      this.interrupt();
+  }
+
+    /** Indicates that it's time to shut down the Finalizer. */
   private class ShutDown extends Exception {}
 }

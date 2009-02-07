@@ -16,6 +16,8 @@
 
 package org.azeckoski.reflectutils.refmap;
 
+import org.azeckoski.reflectutils.LifecycleManager;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
@@ -98,8 +100,17 @@ public class FinalizableReferenceQueue {
   /** Reference to Finalizer.startFinalizer(). */
   private static final Method startFinalizer;
   static {
-    Class<?> finalizer = loadFinalizer(
-        new SystemLoader(), new DecoupledLoader(), new DirectLoader());
+    Class<?> finalizer;
+
+    // If the LifeCycleManager has been activated, then load the Finalizer in the current ClassLoader
+    // so that the Finalizer thread can register to receive shutdown notification
+    if (LifecycleManager.isActive()) {
+        finalizer = loadFinalizer(new DirectLoader());
+    } else {
+         finalizer = loadFinalizer(
+            new SystemLoader(), new DecoupledLoader(), new DirectLoader());
+    }
+      
     startFinalizer = getStartFinalizer(finalizer);
   }
 
@@ -116,7 +127,7 @@ public class FinalizableReferenceQueue {
     // We could start the finalizer lazily, but I'd rather it blow up early.
     try {
       this.queue = (ReferenceQueue<Object>) startFinalizer.invoke(null,
-          FinalizableReference.class, this);
+          FinalizableReference.class, this, LifecycleManager.isActive());
     } catch (IllegalAccessException e) {
       // Finalizer.startFinalizer() is public.
       throw new AssertionError(e);
@@ -266,7 +277,7 @@ public class FinalizableReferenceQueue {
    */
   static Method getStartFinalizer(Class<?> finalizer) {
     try {
-      return finalizer.getMethod("startFinalizer", Class.class, Object.class);
+      return finalizer.getMethod("startFinalizer", Class.class, Object.class, boolean.class);
     } catch (NoSuchMethodException e) {
       throw new AssertionError(e);
     }
