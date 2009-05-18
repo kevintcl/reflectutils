@@ -41,14 +41,14 @@ public class FieldAdapterManager {
             path = path.replace(FieldAdapter.class.getSimpleName(), DYNABEAN_ADAPTER);
             Class<?> adapterClass = ClassLoaderUtils.getClassFromString(path);
             if (adapterClass == null) {
-                System.err.println("WARN: Could not find adapter class: " + path);
+                System.err.println("WARN: Could not find adapter class: " + path + ", will continue without the dynabean adapter");
                 //throw new IllegalStateException("Could not find adapter class: " + DYNABEAN_ADAPTER);
             } else {
                 // found the adapter class
                 try {
                     fieldAdapter = (FieldAdapter) adapterClass.newInstance();
                 } catch (Exception e) {
-                    System.err.println("WARN: Failed to instantiate field adapter ("+adapterClass+"): "+e);
+                    System.err.println("WARN: Failed to instantiate field adapter ("+adapterClass+"), will continue without the dynabean adapter: "+e);
                     //throw new RuntimeException("Failed to instantiate field adapter ("+adapterClass+"): "+e, e);
                 }
             }
