@@ -26,7 +26,6 @@ import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.lang.ref.PhantomReference;
 import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Thread that finalizes referents. All references should implement
