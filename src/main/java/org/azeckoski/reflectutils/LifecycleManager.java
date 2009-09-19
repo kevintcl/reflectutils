@@ -22,7 +22,7 @@ public class LifecycleManager
 
     /**
      * Test to see if the manager is active
-     * @return
+     * @return true if active
      */
     public static boolean isActive() {
         return isActive;
