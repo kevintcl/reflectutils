@@ -652,8 +652,8 @@ public class ConstructorUtils {
                 } else {
                     // simpler type
                     try {
-                        Constructor<T>[] c = type.getConstructors();
-                        constructors = Arrays.asList(c);
+                        Constructor<?>[] c = type.getConstructors();
+                        constructors = Arrays.asList((Constructor<T>[])c);
                     } catch (SecurityException e1) {
                         throw new IllegalArgumentException("Could not construct object for class (" + type.getName() + "): " + e1.getMessage(), e1);
                     }
@@ -711,8 +711,8 @@ public class ConstructorUtils {
                 constructors = getClassDataCacher().getClassData(type).getConstructors();
             } catch (IllegalArgumentException e) {
                 try {
-                    Constructor<T>[] c = type.getConstructors();
-                    constructors = Arrays.asList(c);
+                    Constructor<?>[] c = type.getConstructors();
+                    constructors = Arrays.asList((Constructor<T>[])c);
                 } catch (SecurityException e1) {
                     throw new IllegalArgumentException("Could not construct object for class (" + type.getName() + ")", e1);
                 }
