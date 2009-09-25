@@ -173,13 +173,13 @@ public class ClassData<T> {
                 }
             }
         }
-        Constructor<T>[] constructors = type.getDeclaredConstructors();
-        for (final Constructor<T> constructor : constructors) {
+        Constructor<?>[] constructors = type.getDeclaredConstructors();
+        for (final Constructor<?> constructor : constructors) {
             // need to avoid the Object constructor
             if (!Object.class.equals(type) && constructor != null) {
                 int modifiers = constructor.getModifiers();
                 if (Modifier.isPublic(modifiers)) {
-                    cList.add(constructor);
+                    cList.add((Constructor<T>)constructor);
                 } else {
                     try {
                         AccessController.doPrivileged(new PrivilegedAction<T>() {
@@ -188,7 +188,7 @@ public class ClassData<T> {
                                 return null;
                             }
                         });
-                        cList.add(constructor);
+                        cList.add((Constructor<T>)constructor);
                     } catch (SecurityException e) {
                         // oh well, this does not get added then
                     }
