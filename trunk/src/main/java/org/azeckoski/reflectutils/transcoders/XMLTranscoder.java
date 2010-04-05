@@ -490,6 +490,14 @@ public class XMLTranscoder implements Transcoder {
             parserFactory.setValidating(true);
             parserFactory.setNamespaceAware(true);
         }
+        if (parser != null) {
+            try {
+                parser.reset();
+            } catch (UnsupportedOperationException e) {
+                // could not reset it so we have to make a new one
+                parser = null;
+            }
+        }
         if (parser == null) {
             try {
                 parser = parserFactory.newSAXParser();
@@ -498,8 +506,6 @@ public class XMLTranscoder implements Transcoder {
             } catch (SAXException e) {
                 throw new RuntimeException("Failed to get XML parser from factory: " + parserFactory, e);
             }
-        } else {
-            parser.reset();
         }
         return parser;
     }
