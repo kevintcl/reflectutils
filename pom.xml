@@ -56,7 +56,7 @@
         <site>
             <id>local</id>
             <name>Local Test</name>
-            <url>file:///tmp/genericdao/site</url>
+            <url>file:///tmp/reflectutils/site</url>
         </site>
     </distributionManagement>
 
