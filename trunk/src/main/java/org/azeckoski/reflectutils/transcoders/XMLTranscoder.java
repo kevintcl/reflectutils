@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -208,14 +208,9 @@ public class XMLTranscoder implements Transcoder {
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
                 sb.append(tagName);
-                if (Date.class.isAssignableFrom(type) || Calendar.class.isAssignableFrom(type)) {
+                if (Date.class.isAssignableFrom(type) || Timestamp.class.isAssignableFrom(type)) {
                     // date
-                    Date d = null;
-                    if (Date.class.isAssignableFrom(type)) {
-                        d = (Date) object;
-                    } else {
-                        d = ((Calendar) object).getTime();
-                    }
+                    Date d = (Date) object;
                     value = d.getTime()+"";
                     sb.append(" type='date' date='");
                     sb.append( DateUtils.makeDateISO8601(d) );
