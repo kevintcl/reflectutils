@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -28,6 +29,36 @@ import java.lang.reflect.Type;
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
 public class TranscoderUtils {
+
+    /**
+     * This will handle the encoding of special and user specific objects,
+     * this allows there to be added control over the way certain types of objects are encoded
+     * 
+     * @param object
+     * @return a null if the current object is not special, an empty string to indicate the 
+     * object should be skipped over with no output, and any string value to indicate the
+     * return value to use instead of attempting to encode the object
+     */
+    public static String handleObjectEncoding(Object object, List<ObjectEncoder> encoders) {
+        String encoded = null;
+        if (encoders != null) {
+            for (ObjectEncoder encoder : encoders) {
+                try {
+                    encoded = encoder.encodeObject(object);
+                } catch (Exception e) {
+                    // nothing to do here but skip to the next one
+                    encoded = null;
+                }
+                if (encoded != null) {
+                    break; // break out of the loop because we are done
+                }
+            }
+        }
+        if (encoded == null) {
+            encoded = checkObjectSpecial(object);
+        }
+        return encoded;
+    }
 
     /**
      * This will ensure that no objects that are known to be impossible to serialize properly will

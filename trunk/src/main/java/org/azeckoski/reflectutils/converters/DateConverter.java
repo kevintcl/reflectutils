@@ -102,7 +102,7 @@ public class DateConverter extends BaseDateFormatHolder implements Converter<Dat
         }
 
         // Handle Date (includes java.sql.Date & java.sql.Time)
-        if ( Date.class.isAssignableFrom(value.getClass()) ) {
+        if (value instanceof Date) {
             long time = ((Date)value).getTime();
             return (T) toDate(targetType, time);
         }

@@ -14,6 +14,7 @@
 
 package org.azeckoski.reflectutils;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -131,9 +132,11 @@ public class ConversionUtilsTest extends TestCase {
         calendar.set(1975, 9, 29);
         Date d = calendar.getTime();
         long l = d.getTime();
+        Timestamp t = new Timestamp(l);
 
         assertEquals(d, convertUtils.convert(l, Date.class));
         assertEquals(d, convertUtils.convert("19751029", Date.class));
+        assertEquals(d, convertUtils.convert(t, Date.class));
 
         assertEquals(calendar, convertUtils.convert(l, Calendar.class));
         assertEquals(calendar, convertUtils.convert("19751029", Calendar.class));

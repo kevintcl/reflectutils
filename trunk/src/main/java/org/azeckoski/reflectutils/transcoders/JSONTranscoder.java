@@ -17,10 +17,10 @@ package org.azeckoski.reflectutils.transcoders;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class JSONTranscoder implements Transcoder {
 //            }
 //        }
         // allow the transcoder to deal with the data directly, no need to convert it to a map first
-        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField, maxLevel);
+        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField, maxLevel, null);
         return encoded;
     }
 
@@ -83,6 +83,20 @@ public class JSONTranscoder implements Transcoder {
      * See other constructors for options
      */
     public JSONTranscoder() {}
+
+    private List<ObjectEncoder> encoders = null;    
+    public void setEncoders(List<ObjectEncoder> encoders) {
+        this.encoders = encoders;
+    }
+    public List<ObjectEncoder> getEncoders() {
+        return encoders;
+    }
+    public void addEncoder(ObjectEncoder objectEncoder) {
+        if (this.encoders == null) {
+            this.encoders = new ArrayList<ObjectEncoder>();
+        }
+        this.encoders.add(objectEncoder);
+    }
 
     private boolean humanOutput = false;
     private boolean includeNulls = true;
@@ -145,7 +159,7 @@ public class JSONTranscoder implements Transcoder {
      * @return the JSON string version of the object
      */
     public static String makeJSON(Object object) {
-        return makeJSON(object, null, false, true, false, 10);
+        return makeJSON(object, null, false, true, false, 10, null);
     }
 
     /**
@@ -154,15 +168,16 @@ public class JSONTranscoder implements Transcoder {
      * @param humanOutput true of human readable output
      * @param includeNulls true to include null values when generating tags
      * @param includeClassField if true then include the value from the "getClass()" method as "class" when encoding beans and maps
-     * @param maxLevel TODO
+     * @param maxLevel maximum level to traverse the objects before stopping
+     * @param encoders the external encoders to allow to process complex objects
      * @return the JSON string version of the object
      */
-    public static String makeJSON(Object object, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel) {
-        return toJSON(object, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties);
+    public static String makeJSON(Object object, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel, List<ObjectEncoder> encoders) {
+        return toJSON(object, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders);
     }
 
     @SuppressWarnings("unchecked")
-    protected static String toJSON(Object object, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
+    protected static String toJSON(Object object, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties, List<ObjectEncoder> encoders) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
@@ -174,14 +189,9 @@ public class JSONTranscoder implements Transcoder {
             Class<?> type = ConstructorUtils.getWrapper(object.getClass());
             if ( ConstructorUtils.isClassSimple(type) ) {
                 // Simple (String, Number, etc.)
-                if (Date.class.isAssignableFrom(type) || Calendar.class.isAssignableFrom(type)) {
+                if (Date.class.isAssignableFrom(type) || Timestamp.class.isAssignableFrom(type)) {
                     // date
-                    Date d = null;
-                    if (Date.class.isAssignableFrom(type)) {
-                        d = (Date) object;
-                    } else {
-                        d = ((Calendar) object).getTime();
-                    }
+                    Date d = (Date) object;
                     sb.append(d.getTime());
                 } else if (Number.class.isAssignableFrom(type)) {
                     // number
@@ -209,7 +219,7 @@ public class JSONTranscoder implements Transcoder {
                         }
                         makeEOL(sb, humanOutput);
                         makeLevelSpaces(sb, level+1, humanOutput);
-                        sb.append( toJSON(Array.get(object, i), level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                        sb.append( toJSON(Array.get(object, i), level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                     }
                     makeEOL(sb, humanOutput);
                     makeLevelSpaces(sb, level, humanOutput);
@@ -229,7 +239,7 @@ public class JSONTranscoder implements Transcoder {
                         }
                         makeEOL(sb, humanOutput);
                         makeLevelSpaces(sb, level+1, humanOutput);
-                        sb.append( toJSON(element, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                        sb.append( toJSON(element, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                     }
                     makeEOL(sb, humanOutput);
                     makeLevelSpaces(sb, level, humanOutput);
@@ -238,7 +248,7 @@ public class JSONTranscoder implements Transcoder {
             } else {
                 // must be a bean or map, make sure it is a map
                 // special handling for certain object types
-                String special = TranscoderUtils.checkObjectSpecial(object);
+                String special = TranscoderUtils.handleObjectEncoding(object, encoders);
                 if (special != null) {
                     if ("".equals(special)) {
                         // skip this one entirely
@@ -289,7 +299,7 @@ public class JSONTranscoder implements Transcoder {
                                     sb.append(QUOT);
                                     sb.append(OBJ_SEP);
                                     if (humanOutput) { sb.append(SPACE); }
-                                    sb.append( toJSON(value, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                                    sb.append( toJSON(value, level+1, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                                 }
                             }
                         }
