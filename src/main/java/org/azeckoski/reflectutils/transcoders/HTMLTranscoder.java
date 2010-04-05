@@ -15,7 +15,9 @@
 package org.azeckoski.reflectutils.transcoders;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -44,7 +46,7 @@ public class HTMLTranscoder implements Transcoder {
                 name = DATA_KEY;
             }
         }
-        encoded = HTMLTranscoder.makeHTML(object, name, properties, humanOutput, includeNulls, includeClassField, maxLevel);
+        encoded = HTMLTranscoder.makeHTML(object, name, properties, this.humanOutput, this.includeNulls, this.includeClassField, this.maxLevel, this.encoders);
         return encoded;
     }
 
@@ -57,6 +59,20 @@ public class HTMLTranscoder implements Transcoder {
      * See other constructors for options
      */
     public HTMLTranscoder() {}
+
+    private List<ObjectEncoder> encoders = null;    
+    public void setEncoders(List<ObjectEncoder> encoders) {
+        this.encoders = encoders;
+    }
+    public List<ObjectEncoder> getEncoders() {
+        return encoders;
+    }
+    public void addEncoder(ObjectEncoder objectEncoder) {
+        if (this.encoders == null) {
+            this.encoders = new ArrayList<ObjectEncoder>();
+        }
+        this.encoders.add(objectEncoder);
+    }
 
     private boolean humanOutput = true;
     private boolean includeNulls = true;
@@ -104,7 +120,7 @@ public class HTMLTranscoder implements Transcoder {
      * @return the HTML string version of the object
      */
     public static String makeHTML(Object object) {
-        return makeHTML(object, null, null, false, true, false, 7);
+        return makeHTML(object, null, null, false, true, false, 7, null);
     }
 
     /**
@@ -116,14 +132,14 @@ public class HTMLTranscoder implements Transcoder {
      * @param maxLevel TODO
      * @return the HTML string version of the object
      */
-    public static String makeHTML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel) {
+    public static String makeHTML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClassField, int maxLevel, List<ObjectEncoder> encoders) {
         return "<table border='1'>\n" 
-            + toHTML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties) 
+            + toHTML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) 
             + "</table>\n";
     }
 
     @SuppressWarnings("unchecked")
-    protected static String toHTML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties) {
+    protected static String toHTML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties, List<ObjectEncoder> encoders) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
@@ -167,7 +183,7 @@ public class HTMLTranscoder implements Transcoder {
                 sb.append("<table border='1'>");
                 makeEOL(sb, humanOutput);
                 for (int i = 0; i < length; ++i) {
-                    sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                    sb.append( toHTML(Array.get(object, i), makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                 }
                 makeLevelSpaces(sb, level+1, humanOutput);
                 sb.append("</table>");
@@ -194,7 +210,7 @@ public class HTMLTranscoder implements Transcoder {
                     if (element != null) {
                         elementType = element.getClass();
                     }
-                    sb.append( toHTML(element, makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                    sb.append( toHTML(element, makeElementName(elementType), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                 }
                 makeLevelSpaces(sb, level+1, humanOutput);
                 sb.append("</table>");
@@ -256,7 +272,7 @@ public class HTMLTranscoder implements Transcoder {
                         makeEOL(sb, humanOutput);
                         for (Entry<String, Object> entry : map.entrySet()) {
                             if (entry.getKey() != null) {
-                                sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties) );
+                                sb.append( toHTML(entry.getValue(), entry.getKey().toString(), level+2, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders) );
                             }
                         }
                         makeLevelSpaces(sb, level+1, humanOutput);
