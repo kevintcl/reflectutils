@@ -14,6 +14,7 @@
 
 package org.azeckoski.reflectutils;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,10 +103,12 @@ public class TranscodersTest extends TestCase {
 
         Map<String, Object> m2 = new ArrayOrderedMap<String, Object>();
         m2.put("name", "aaron");
-        m2.put("date", new Date());
         m2.put("num", 456);
         m2.put("array", new String[] {"A","B","C"});
         m.put("map", m2);
+        m.put("date", new Date(1255129200000l));
+        m.put("timestamp", new Timestamp(1255129200000l));
+        //m.put("calendar", new GregorianCalendar(2009,9,10));
 
         encoded = transcoder.encode(m, null, null);
         assertNotNull(encoded);
