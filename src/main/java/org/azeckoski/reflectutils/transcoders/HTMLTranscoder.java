@@ -33,6 +33,7 @@ import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class HTMLTranscoder implements Transcoder {
 
     public String getHandledFormat() {
@@ -138,7 +139,6 @@ public class HTMLTranscoder implements Transcoder {
             + "</table>\n";
     }
 
-    @SuppressWarnings("unchecked")
     protected static String toHTML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties, List<ObjectEncoder> encoders) {
         StringBuilder sb = new StringBuilder();
 

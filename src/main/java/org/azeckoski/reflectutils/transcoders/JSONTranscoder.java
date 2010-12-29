@@ -41,6 +41,7 @@ import org.azeckoski.reflectutils.map.ArrayOrderedMap;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class JSONTranscoder implements Transcoder {
 
     public String getHandledFormat() {
@@ -64,7 +65,6 @@ public class JSONTranscoder implements Transcoder {
         return encoded;
     }
 
-    @SuppressWarnings("unchecked")
     public Map<String, Object> decode(String string) {
         Map<String, Object> decoded = null;
         Object decode = new JsonReader().read(string);
@@ -176,7 +176,6 @@ public class JSONTranscoder implements Transcoder {
         return toJSON(object, 0, maxLevel, humanOutput, includeNulls, includeClassField, properties, encoders);
     }
 
-    @SuppressWarnings("unchecked")
     protected static String toJSON(Object object, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClassField, Map<String, Object> properties, List<ObjectEncoder> encoders) {
         StringBuilder sb = new StringBuilder();
 
