@@ -43,7 +43,7 @@ The maven dependency to add to your dependencies section of your pom.xml:
             <dependency>
                 <groupId>org.azeckoski</groupId>
                 <artifactId>reflectutils</artifactId>
-                <version>0.9</version>
+                <version>0.9.15</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
