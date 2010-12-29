@@ -53,6 +53,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * 
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class XMLTranscoder implements Transcoder {
 
     private static final String ELEMENT = "element";
@@ -70,7 +71,7 @@ public class XMLTranscoder implements Transcoder {
             }
         }
         encoded = XMLTranscoder.makeXML(object, name, properties, this.humanOutput, this.includeNulls, 
-                this.includeClass, this.includeClassField, this.maxLevel, this.encoders);
+                this.includeClass, this.includeClassField, this.maxLevel, this.fixTags, this.encoders);
         return encoded;
     }
 
@@ -110,6 +111,7 @@ public class XMLTranscoder implements Transcoder {
     private boolean includeNulls = true;
     private boolean includeClass = false;
     private boolean includeClassField = false;
+    private boolean fixTags = true;
 
     /**
      * @param humanOutput if true then enable human readable output (includes indentation and line breaks)
@@ -144,6 +146,56 @@ public class XMLTranscoder implements Transcoder {
         this.maxLevel = maxLevel;
     }
 
+    /**
+     * @param fixTags if true then fix up any invalid xml tag names, else just throw exception
+     */
+    public void setFixTags(boolean fixTags) {
+        this.fixTags = fixTags;
+    }
+
+    public boolean isHumanOutput() {
+        return humanOutput;
+    }
+
+    public void setHumanOutput(boolean humanOutput) {
+        this.humanOutput = humanOutput;
+    }
+
+    public boolean isIncludeNulls() {
+        return includeNulls;
+    }
+
+    public void setIncludeNulls(boolean includeNulls) {
+        this.includeNulls = includeNulls;
+    }
+
+    public boolean isIncludeClass() {
+        return includeClass;
+    }
+
+    public void setIncludeClass(boolean includeClass) {
+        this.includeClass = includeClass;
+    }
+
+    public boolean isIncludeClassField() {
+        return includeClassField;
+    }
+
+    public void setIncludeClassField(boolean includeClassField) {
+        this.includeClassField = includeClassField;
+    }
+
+    public boolean isFixTags() {
+        return fixTags;
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }    
+
+
+
+    // STATICS
 
     public static final char SPACE = ' ';
     public static final char AMP   = '&';
@@ -167,7 +219,7 @@ public class XMLTranscoder implements Transcoder {
      * @return the XML string version of the object
      */
     public static String makeXML(Object object) {
-        return makeXML(object, null, null, false, true, false, false, 7, null);
+        return makeXML(object, null, null, false, true, false, false, 7, true, null);
     }
 
     /**
@@ -181,17 +233,31 @@ public class XMLTranscoder implements Transcoder {
      * @return the XML string version of the object
      */
     public static String makeXML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, int maxLevel, List<ObjectEncoder> encoders) {
-        return toXML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties, encoders);
+        return toXML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, true, properties, encoders);
     }
 
-    @SuppressWarnings("unchecked")
-    protected static String toXML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, Map<String, Object> properties, List<ObjectEncoder> encoders) {
+    /**
+     * Convert an object into a well-formed, element-normal XML string.
+     * @param object any object
+     * @param tagName (optional) enclosing root tag
+     * @param properties (optional) optional properties to add into the encoded data
+     * @param humanOutput true of human readable output
+     * @param includeNulls true to include null values when generating tags
+     * @param maxLevel the maximum number of levels of objects to encode before stopping
+     * @param fixTags fix up tag names (instead of throwing an exception)
+     * @return the XML string version of the object
+     */
+    public static String makeXML(Object object, String tagName, Map<String, Object> properties, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, int maxLevel, boolean fixTags, List<ObjectEncoder> encoders) {
+        return toXML(object, tagName, 0, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, fixTags, properties, encoders);
+    }
+
+    protected static String toXML(Object object, String tagName, int level, int maxLevel, boolean humanOutput, boolean includeNulls, boolean includeClass, boolean includeClassField, boolean fixTags, Map<String, Object> properties, List<ObjectEncoder> encoders) {
         StringBuilder sb = new StringBuilder();
 
         if (object == null) {
             if (includeNulls) {
                 // nulls are empty tags always
-                tagName = validate(tagName == null ? "null" : tagName);
+                tagName = validate(tagName == null ? "null" : tagName, fixTags);
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
                 sb.append(tagName);
@@ -203,7 +269,7 @@ public class XMLTranscoder implements Transcoder {
             Class<?> type = ConstructorUtils.getWrapper(object.getClass());
             if ( ConstructorUtils.isClassSimple(type) ) {
                 // Simple (String, Number, etc.)
-                tagName = validate(tagName == null ? makeElementName(type) : tagName);
+                tagName = validate(tagName == null ? makeElementName(type) : tagName, fixTags);
                 String value = "";
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -238,7 +304,7 @@ public class XMLTranscoder implements Transcoder {
                 makeEOL(sb, humanOutput);
             } else if ( ConstructorUtils.isClassArray(type) ) {
                 // ARRAY
-                tagName = validate(tagName == null ? "array" : tagName);
+                tagName = validate(tagName == null ? "array" : tagName, fixTags);
                 int length = ArrayUtils.size((Object[])object);
                 Class<?> elementType = ArrayUtils.type((Object[])object);
                 makeLevelSpaces(sb, level, humanOutput);
@@ -255,7 +321,7 @@ public class XMLTranscoder implements Transcoder {
                 sb.append(GT);
                 makeEOL(sb, humanOutput);
                 for (int i = 0; i < length; ++i) {
-                    sb.append( toXML(Array.get(object, i), makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties, encoders) );
+                    sb.append( toXML(Array.get(object, i), makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, fixTags, properties, encoders) );
                 }
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -265,7 +331,7 @@ public class XMLTranscoder implements Transcoder {
                 makeEOL(sb, humanOutput);
             } else if ( ConstructorUtils.isClassCollection(type) ) {
                 // COLLECTION
-                tagName = validate(tagName == null ? "collection" : tagName);
+                tagName = validate(tagName == null ? "collection" : tagName, fixTags);
                 Collection<Object> collection = (Collection) object;
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -283,7 +349,7 @@ public class XMLTranscoder implements Transcoder {
                     if (element != null) {
                         elementType = element.getClass();
                     }
-                    sb.append( toXML(element, makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties, encoders) );
+                    sb.append( toXML(element, makeElementName(elementType), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, fixTags, properties, encoders) );
                 }
                 makeLevelSpaces(sb, level, humanOutput);
                 sb.append(LT);
@@ -293,7 +359,7 @@ public class XMLTranscoder implements Transcoder {
                 makeEOL(sb, humanOutput);
             } else {
                 // must be a bean or map, make sure it is a map
-                tagName = validate(tagName == null ? makeElementName(type) : tagName);
+                tagName = validate(tagName == null ? makeElementName(type) : tagName, fixTags);
                 // special handling for certain object types
                 String special = TranscoderUtils.handleObjectEncoding(object, encoders);
                 if (special != null) {
@@ -358,7 +424,7 @@ public class XMLTranscoder implements Transcoder {
                         makeEOL(sb, humanOutput);
                         for (Entry<String, Object> entry : map.entrySet()) {
                             if (entry.getKey() != null) {
-                                sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, properties, encoders) );
+                                sb.append( toXML(entry.getValue(), entry.getKey().toString(), level+1, maxLevel, humanOutput, includeNulls, includeClass, includeClassField, fixTags, properties, encoders) );
                             }
                         }
                         makeLevelSpaces(sb, level, humanOutput);
@@ -456,13 +522,16 @@ public class XMLTranscoder implements Transcoder {
     }
 
     /**
-     * Validates that a string contains no spaces and is non-null/non-empty
-     * Throw an exception if the string contains whitespace. 
+     * Validates that a string is a valid tag or attribute name
+     * i.e. it contains no spaces and is non-null/non-empty
      * Whitespace is not allowed in tagNames and attributes.
+     * 
      * @param string any string
-     * @throws IllegalArgumentException
+     * @param correct if true then correct any errors found (if possible)
+     * @return the valid string
+     * @throws IllegalArgumentException if the string is invalid (and cannot be corrected)
      */
-    public static String validate(String string) {
+    public static String validate(String string, boolean correct) {
         if (string == null) {
             throw new IllegalArgumentException("string is NULL");
         }
@@ -470,12 +539,26 @@ public class XMLTranscoder implements Transcoder {
         if (length == 0) {
             throw new IllegalArgumentException("Empty string.");
         }
+        StringBuilder sb = new StringBuilder();
         for (i = 0; i < length; i += 1) {
-            if (Character.isWhitespace(string.charAt(i))) {
-                throw new IllegalArgumentException("'" + string + "' contains a space character.");
+            char c = string.charAt(i);
+            if (Character.isWhitespace(c)) {
+                if (correct) {
+                    sb.append('_');
+                } else {
+                    throw new IllegalArgumentException("'" + string + "' contains a whitespace character.");
+                }
+            } else if ('=' == c || '\'' == c || '\"' == c || '>' == c || '<' == c || '&' == c) {
+                if (correct) {
+                    sb.append('_');
+                } else {
+                    throw new IllegalArgumentException("'" + string + "' contains an illegal xml character (=,',\",>,<,&).");
+                }
+            } else {
+                sb.append(c);
             }
         }
-        return string;
+        return sb.toString();
     }
 
 
@@ -551,7 +634,6 @@ public class XMLTranscoder implements Transcoder {
          * over to a collection and its contents moved, then the stack needs to be updated,
          * and finally the parent container needs to have it's value replaced
          */
-        @SuppressWarnings("unchecked")
         protected void add(Container container, String key, Object value) {
             // first we need to make sure this container is on the stack
 //            if (containerStack.peek() != container) {
@@ -680,7 +762,23 @@ public class XMLTranscoder implements Transcoder {
     }
 
     public static String unescapeXML(String string) {
-        return string.replace("&lt;","<").replace("&gt;", ">").replace("&quot;", "\"").replace("&amp;", "&");
+        if (string != null && string.length() > 0) {
+            string = string.replace("&lt;","<").replace("&gt;", ">").replace("&quot;", "\"").replace("&amp;", "&").replace("&apos;","'");
+        }
+        return string;
+    }
+
+    /**
+     * This will force a tag or attribute to be valid in XML by replacing the invalid chars with "_",
+     * invalid chars are ' ' (space), =, ', ", >, <, &
+     * @param string any string
+     * @return a valid string
+     */
+    public static String convertInvalidChars(String string) {
+        if (string != null && string.length() > 0) {
+            string = string.replace(' ','_').replace('=','_').replace('"','_').replace('\'','_').replace('<','_').replace('>','_').replace('&','_');
+        }
+        return string;
     }
 
     private static enum Types {STRING,NUMBER,BOOLEAN,DATE,ARRAY,COLLECTION,MAP,BEAN}; 

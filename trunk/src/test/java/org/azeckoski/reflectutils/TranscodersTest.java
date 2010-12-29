@@ -638,6 +638,32 @@ public class TranscodersTest extends TestCase {
 
     }
 
+    public void testXMLEncodeSpecial() {
+        Transcoder transcoder = new XMLTranscoder(false, true, false);
+        String encoded = null;
+
+        // test maps
+        Map<String, Object> m = new ArrayOrderedMap<String, Object>();
+        m.put("A_1", 111);
+        m.put("B 2", 222);
+        m.put("C&3", 333);
+        m.put("D\"4", 444);
+        m.put("E'5", 555);
+        m.put("F<6", 666);
+        m.put("G>7", 777);
+        m.put("H=8", 888);
+        encoded = transcoder.encode(m, null, null);
+        assertNotNull(encoded);
+        assertTrue(encoded.contains("111"));
+        assertTrue(encoded.contains("222"));
+        assertTrue(encoded.contains("333"));
+        assertTrue(encoded.contains("444"));
+        assertTrue(encoded.contains("555"));
+        assertTrue(encoded.contains("666"));
+        assertTrue(encoded.contains("777"));
+        assertTrue(encoded.contains("888"));
+    }
+
     public void testXMLEncodeProperties() {
         Transcoder transcoder = new XMLTranscoder(true, true, false);
         String encoded = null;
