@@ -3,7 +3,7 @@
     <groupId>org.azeckoski</groupId>
     <artifactId>reflectutils</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.15-SNAPSHOT</version>
+    <version>0.9.15</version>
     <name>Reflection Utilities</name>
     <url>http://code.google.com/p/reflectutils/</url>
     <inceptionYear>2006</inceptionYear>
@@ -62,9 +62,9 @@
 
     <!-- define source code repository location -->
     <scm>
-        <connection>scm:svn:http://reflectutils.googlecode.com/svn/tags/reflectutils-0.9.11</connection>
-        <developerConnection>scm:svn:https://reflectutils.googlecode.com/svn/tags/reflectutils-0.9.11</developerConnection>
-        <url>http://code.google.com/p/reflectutils/source/browse/tags/reflectutils-0.9.11</url>
+        <connection>scm:svn:http://reflectutils.googlecode.com/svn/tags/reflectutils-0.9.15</connection>
+        <developerConnection>scm:svn:https://reflectutils.googlecode.com/svn/tags/reflectutils-0.9.15</developerConnection>
+        <url>http://code.google.com/p/reflectutils/source/browse/tags/reflectutils-0.9.15</url>
     </scm>
     <dependencies>
         <!--
