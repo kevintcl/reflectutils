@@ -63,6 +63,10 @@ public class XMLTranscoder implements Transcoder {
     }
 
     public String encode(Object object, String name, Map<String, Object> properties) {
+    	return encode(object, name, properties, this.maxLevel);
+    }
+    
+    public String encode(Object object, String name, Map<String, Object> properties, int maxDepth) {
         String encoded = "";
         if (object != null) {
             // only set the name if this is not null to preserve the "null" tag
@@ -71,7 +75,7 @@ public class XMLTranscoder implements Transcoder {
             }
         }
         encoded = XMLTranscoder.makeXML(object, name, properties, this.humanOutput, this.includeNulls, 
-                this.includeClass, this.includeClassField, this.maxLevel, this.fixTags, this.encoders);
+                this.includeClass, this.includeClassField, maxDepth, this.fixTags, this.encoders);
         return encoded;
     }
 

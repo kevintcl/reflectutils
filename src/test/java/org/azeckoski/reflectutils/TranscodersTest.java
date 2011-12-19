@@ -1246,4 +1246,27 @@ public class TranscodersTest extends TestCase {
         assertTrue(size < 1000);
     }
 
+    public void testDateEncoding() {
+        Transcoder transcoder = new JSONTranscoder(false, true, false);
+        String encoded = null;
+
+        Date d = new Date(1255129200000l);
+        encoded = transcoder.encode(d, "date", null);
+        assertNotNull(encoded);
+        assertEquals("1255129200000", encoded);
+
+        Timestamp t = new Timestamp(1255129200000l);
+        encoded = transcoder.encode(t, "date", null);
+        assertNotNull(encoded);
+        assertEquals("1255129200000", encoded);
+
+        /* sql date is not immutable
+        java.sql.Date sd = new java.sql.Date(1255129200000l);
+        encoded = transcoder.encode(sd, "date", null);
+        assertNotNull(encoded);
+        assertEquals("1255129200000", encoded);
+        */
+
+    }
+
 }

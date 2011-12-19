@@ -49,6 +49,10 @@ public class JSONTranscoder implements Transcoder {
     }
 
     public String encode(Object object, String name, Map<String, Object> properties) {
+    	return encode(object, name, properties, this.maxLevel);
+    }
+    
+    public String encode(Object object, String name, Map<String, Object> properties, int maxDepth) {
 //        Object data = object;
 //        String encoded = "";
 //        if (object != null) {
@@ -61,7 +65,7 @@ public class JSONTranscoder implements Transcoder {
 //            }
 //        }
         // allow the transcoder to deal with the data directly, no need to convert it to a map first
-        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField, maxLevel, null);
+        String encoded = JSONTranscoder.makeJSON(object, properties, humanOutput, includeNulls, includeClassField, maxDepth, null);
         return encoded;
     }
 
