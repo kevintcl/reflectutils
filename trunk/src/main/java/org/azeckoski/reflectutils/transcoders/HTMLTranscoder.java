@@ -41,13 +41,17 @@ public class HTMLTranscoder implements Transcoder {
     }
 
     public String encode(Object object, String name, Map<String, Object> properties) {
+    	return encode(object, name, properties, this.maxLevel);
+    }
+    
+    public String encode(Object object, String name, Map<String, Object> properties, int maxDepth) {
         String encoded = "";
         if (object != null) {
             if (name == null || "".equals(name)) {
                 name = DATA_KEY;
             }
         }
-        encoded = HTMLTranscoder.makeHTML(object, name, properties, this.humanOutput, this.includeNulls, this.includeClassField, this.maxLevel, this.encoders);
+        encoded = HTMLTranscoder.makeHTML(object, name, properties, this.humanOutput, this.includeNulls, this.includeClassField, maxDepth, this.encoders);
         return encoded;
     }
 

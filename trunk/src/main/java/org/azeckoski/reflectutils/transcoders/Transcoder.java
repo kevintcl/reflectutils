@@ -54,6 +54,17 @@ public interface Transcoder {
      * @return the object encoded into the handled format
      */
     public String encode(Object object, String name, Map<String, Object> properties);
+    
+    /**
+     * @param object any java object (should not be null)
+     * @param name (optional) the name of the data, will be handled differently by the encoders (null for default: {@link #DATA_KEY})
+     * @param properties (optional) additional properties which will be added to the encoding
+     * as if it were a property of the bean or map being encoded, if the object being encoded is not a bean
+     * or a map then the properties are ignored
+     * @param maxDepth the maximum traversal depth to use for this specific object
+     * @return the object encoded into the handled format
+     */
+    public String encode(Object object, String name, Map<String, Object> properties, int maxDepth);
 
     /**
      * Decode the data string into a map of java objects (typically simple objects like String, Integer, etc.)
