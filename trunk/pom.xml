@@ -35,10 +35,10 @@
         <developer>
             <id>aaronz@vt.edu</id>
             <name>Aaron Zeckoski</name>
-            <email>aaron@caret.cam.ac.uk</email>
-            <url> http://confluence.sakaiproject.org/confluence/display/~aaronz </url>
-            <organization>CARET</organization>
-            <organizationUrl> http://www.caret.cam.ac.uk/ </organizationUrl>
+            <email>azeckoski@vt.edu</email>
+            <url>http://tinyurl.com/azprofile</url>
+            <organization>Zeckoski</organization>
+            <organizationUrl> http://zeckoski.org/ </organizationUrl>
             <roles>
                 <role>Project Manager</role>
                 <role>Architect</role>
