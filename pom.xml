@@ -3,7 +3,7 @@
     <groupId>org.azeckoski</groupId>
     <artifactId>reflectutils</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.17-SNAPSHOT</version>
+    <version>0.9.16-SNAPSHOT</version>
     <name>Reflection Utilities</name>
     <url>http://code.google.com/p/reflectutils/</url>
     <inceptionYear>2006</inceptionYear>
@@ -49,7 +49,7 @@
     </developers>
     <distributionManagement>
         <repository>
-            <id>Sakai-Maven2</id>
+            <id>sakai-maven2-scp</id>
             <name>Sakaiproject Maven 2 repository</name>
             <!-- <url>dav:https://source.sakaiproject.org/maven2</url> -->
             <url>scpexe://source.sakaiproject.org/var/www/html/maven2</url>
