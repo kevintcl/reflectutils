@@ -427,7 +427,7 @@ public class TranscodersTest extends TestCase {
         assertEquals("[]", encoded); //json
         decoded = transcoder.decode(encoded);
         assertNotNull(decoded);
-        assertEquals(0, ((List)decoded.get(Transcoder.DATA_KEY)).size());
+        assertEquals(0, ((List<?>)decoded.get(Transcoder.DATA_KEY)).size());
 
         array = new TestBean[] {new TestBean(888), new TestBean(777)};
         encoded = transcoder.encode(array, null, null);
@@ -436,7 +436,7 @@ public class TranscodersTest extends TestCase {
         assertTrue(encoded.contains("777"));
         decoded = transcoder.decode(encoded);
         assertNotNull(decoded);
-        List<Map<String, Object>> decodeArray = ((List)decoded.get(Transcoder.DATA_KEY));
+        List<Map<String, Object>> decodeArray = ((List<Map<String, Object>>)decoded.get(Transcoder.DATA_KEY));
         assertEquals(2, decodeArray.size());
         assertEquals(array[0].getMyInt(), decodeArray.get(0).get("myInt"));
         assertEquals(array[1].getMyString(), decodeArray.get(1).get("myString"));
@@ -635,6 +635,34 @@ public class TranscodersTest extends TestCase {
         assertTrue(encoded.contains("999"));
         assertTrue(encoded.contains("bztitle"));
         assertTrue(encoded.contains("ZZ"));
+
+        // test names with illegal chars in them
+        /*
+        XML elements must follow these naming rules:
+            Names can contain letters, numbers, and other characters
+            Names cannot start with a number or punctuation character
+            Names cannot start with the letters xml (or XML, or Xml, etc)
+            Names cannot contain spaces
+        */
+        Map<String, Object> m3 = new ArrayOrderedMap<String, Object>();
+        m3.put("totally-valid_name", "VALUE");
+        m3.put("valid1with.num-andSTUFF", "VALUE");
+        m3.put("1numberStart", "VALUE");
+        m3.put(".periodStart", "VALUE");
+        m3.put("xmlAtStart", "VALUE");
+        m3.put("XMLUpAtStart", "VALUE");
+        m3.put("has spaces in it", "VALUE");
+        m3.put("no=or'or\"or<or>or&allowed", "VALUE");
+        encoded = transcoder.encode(m3, "root", null);
+        assertNotNull(encoded);
+        assertTrue(encoded.contains("totally-valid_name"));
+        assertTrue(encoded.contains("valid1with.num-andSTUFF"));
+        assertTrue(encoded.contains("_numberStart"));
+        assertTrue(encoded.contains("_periodStart"));
+        assertTrue(encoded.contains("_AtStart"));
+        assertTrue(encoded.contains("_UpAtStart"));
+        assertTrue(encoded.contains("has_spaces_in_it"));
+        assertTrue(encoded.contains("no_or_or_or_or_or_allowed"));
 
     }
 

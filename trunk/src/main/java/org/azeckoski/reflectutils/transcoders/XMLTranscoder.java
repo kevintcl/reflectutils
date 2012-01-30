@@ -530,6 +530,12 @@ public class XMLTranscoder implements Transcoder {
      * i.e. it contains no spaces and is non-null/non-empty
      * Whitespace is not allowed in tagNames and attributes.
      * 
+     * XML elements must follow these naming rules:
+     *    Names can contain letters, numbers, and other characters
+     *    Names cannot start with a number or punctuation character
+     *    Names cannot start with the letters xml (or XML, or Xml, etc)
+     *    Names cannot contain spaces
+     * 
      * @param string any string
      * @param correct if true then correct any errors found (if possible)
      * @return the valid string
@@ -546,6 +552,34 @@ public class XMLTranscoder implements Transcoder {
         StringBuilder sb = new StringBuilder();
         for (i = 0; i < length; i += 1) {
             char c = string.charAt(i);
+            if (i==0) {
+                // check for invalid start chars
+                if (Character.isDigit(c)) {
+                    if (correct) {
+                        sb.append('_');
+                    } else {
+                        throw new IllegalArgumentException("'" + string + "' starts with a number.");
+                    }
+                    continue; // skip ahead
+                } else if ('.' == c) {
+                    if (correct) {
+                        sb.append('_');
+                    } else {
+                        throw new IllegalArgumentException("'" + string + "' starts with a period ('.').");
+                    }
+                    continue; // skip ahead
+                } else if ('x' == c || 'X' == c) {
+                    if (string.toLowerCase().startsWith("xml")) {
+                        if (correct) {
+                            sb.append('_');
+                            i += 2; // skip ahead
+                        } else {
+                            throw new IllegalArgumentException("'" + string + "' starts with 'xml' or 'XML'.");
+                        }
+                    }
+                    continue; // skip ahead
+                }
+            }
             if (Character.isWhitespace(c)) {
                 if (correct) {
                     sb.append('_');
