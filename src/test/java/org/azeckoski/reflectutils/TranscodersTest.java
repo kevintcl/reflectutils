@@ -640,12 +640,16 @@ public class TranscodersTest extends TestCase {
         /*
         XML elements must follow these naming rules:
             Names can contain letters, numbers, and other characters
-            Names cannot start with a number or punctuation character
+            Names cannot start with a number or punctuation character (and some others)
             Names cannot start with the letters xml (or XML, or Xml, etc)
             Names cannot contain spaces
+
+            See http://www.w3.org/TR/REC-xml/#sec-common-syn
+            Names beginning with the string "xml", or with any string which would match (('X'|'x') ('M'|'m') ('L'|'l')), 
+            are reserved for standardization in this or future versions of this specification.
         */
         Map<String, Object> m3 = new ArrayOrderedMap<String, Object>();
-        m3.put("totally-valid_name", "VALUE");
+        m3.put("totally-valid_name.1", "VALUE");
         m3.put("valid1with.num-andSTUFF", "VALUE");
         m3.put("1numberStart", "VALUE");
         m3.put(".periodStart", "VALUE");
@@ -653,9 +657,12 @@ public class TranscodersTest extends TestCase {
         m3.put("XMLUpAtStart", "VALUE");
         m3.put("has spaces in it", "VALUE");
         m3.put("no=or'or\"or<or>or&allowed", "VALUE");
+        m3.put("#HashStart", "VALUE");
+        m3.put("-DashStart", "VALUE");
+        m3.put("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=<>,.:;\"'[]{}|\\~`01234567890", "VALUE");
         encoded = transcoder.encode(m3, "root", null);
         assertNotNull(encoded);
-        assertTrue(encoded.contains("totally-valid_name"));
+        assertTrue(encoded.contains("totally-valid_name.1"));
         assertTrue(encoded.contains("valid1with.num-andSTUFF"));
         assertTrue(encoded.contains("_numberStart"));
         assertTrue(encoded.contains("_periodStart"));
@@ -663,7 +670,53 @@ public class TranscodersTest extends TestCase {
         assertTrue(encoded.contains("_UpAtStart"));
         assertTrue(encoded.contains("has_spaces_in_it"));
         assertTrue(encoded.contains("no_or_or_or_or_or_allowed"));
+        assertTrue(encoded.contains("_DashStart"));
+        assertTrue(encoded.contains("_UpAtStart"));
+        assertTrue(encoded.contains("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ____________-____.:___________01234567890"));
 
+        // test with auto-correct off
+        XMLTranscoder transcoder3 = new XMLTranscoder(false, true, false, false);
+        transcoder3.setFixTags(false);
+        
+        Map<String, Object> m4 = new ArrayOrderedMap<String, Object>();
+        m4.clear();
+        m4.put("totally-valid_name.1", "VALUE");
+        encoded = transcoder3.encode(m4, "root", null);
+        assertNotNull(encoded);
+        assertTrue(encoded.contains("totally-valid_name.1"));
+
+        try {
+            m4.clear();
+            m4.put("1numberStart", "VALUE");
+            encoded = transcoder3.encode(m4, "root", null);
+            fail("Should have caused exception");
+        } catch (Exception e) {
+            assertNotNull(e.getMessage());
+        }
+        try {
+            m4.clear();
+            m4.put("xmlAtStart", "VALUE");
+            encoded = transcoder3.encode(m4, "root", null);
+            fail("Should have caused exception");
+        } catch (Exception e) {
+            assertNotNull(e.getMessage());
+        }
+        try {
+            m4.clear();
+            m4.put("has spaces in it", "VALUE");
+            encoded = transcoder3.encode(m4, "root", null);
+            fail("Should have caused exception");
+        } catch (Exception e) {
+            assertNotNull(e.getMessage());
+        }
+        try {
+            m4.clear();
+            m4.put("no=or'or\"or<or>or&allowed", "VALUE");
+            encoded = transcoder3.encode(m3, "root", null);
+            fail("Should have caused exception");
+        } catch (Exception e) {
+            assertNotNull(e.getMessage());
+        }
     }
 
     public void testXMLEncodeSpecial() {
