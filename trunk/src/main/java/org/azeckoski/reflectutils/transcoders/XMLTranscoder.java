@@ -532,9 +532,13 @@ public class XMLTranscoder implements Transcoder {
      * 
      * XML elements must follow these naming rules:
      *    Names can contain letters, numbers, and other characters
-     *    Names cannot start with a number or punctuation character
+     *    Names cannot start with a number or punctuation character (and a few others)
      *    Names cannot start with the letters xml (or XML, or Xml, etc)
      *    Names cannot contain spaces
+     * 
+     * See http://www.w3.org/TR/REC-xml/#sec-common-syn
+     * Names beginning with the string "xml", or with any string which would match (('X'|'x') ('M'|'m') ('L'|'l')), 
+     *      are reserved for standardization in this or future versions of this specification.
      * 
      * @param string any string
      * @param correct if true then correct any errors found (if possible)
@@ -554,25 +558,21 @@ public class XMLTranscoder implements Transcoder {
             char c = string.charAt(i);
             if (i==0) {
                 // check for invalid start chars
-                if (Character.isDigit(c)) {
+                if (!Character.isLetter(c) && '_' != c && ':' != c) {
+                    // XML names MUST start with a letter OR _ or :, anything else is invalid
+                    // technically: ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
                     if (correct) {
                         sb.append('_');
                     } else {
-                        throw new IllegalArgumentException("'" + string + "' starts with a number.");
-                    }
-                    continue; // skip ahead
-                } else if ('.' == c) {
-                    if (correct) {
-                        sb.append('_');
-                    } else {
-                        throw new IllegalArgumentException("'" + string + "' starts with a period ('.').");
+                        throw new IllegalArgumentException("'" + string + "' starts with a non-letter ("+c+") which is also not an underscore (_) or colon (:).");
                     }
                     continue; // skip ahead
                 } else if ('x' == c || 'X' == c) {
+                    // XML names special case - cannot start with "xml" (in any case)
                     if (string.toLowerCase().startsWith("xml")) {
                         if (correct) {
                             sb.append('_');
-                            i += 2; // skip ahead
+                            i += 2; // skip chars
                         } else {
                             throw new IllegalArgumentException("'" + string + "' starts with 'xml' or 'XML'.");
                         }
@@ -586,11 +586,13 @@ public class XMLTranscoder implements Transcoder {
                 } else {
                     throw new IllegalArgumentException("'" + string + "' contains a whitespace character.");
                 }
-            } else if ('=' == c || '\'' == c || '\"' == c || '>' == c || '<' == c || '&' == c) {
+            } else if (!Character.isLetterOrDigit(c) && ':' != c && '-' != c && '.' != c && '_' != c) {
+                // technically: ":" | [A-Z] | "_" | [a-z] | "-" | "." | [0-9] plus #xB7 | [#x0300-#x036F] | [#x203F-#x2040] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+                // old check - if ('=' == c || '\'' == c || '\"' == c || '>' == c || '<' == c || '&' == c)
                 if (correct) {
                     sb.append('_');
                 } else {
-                    throw new IllegalArgumentException("'" + string + "' contains an illegal xml character (=,',\",>,<,&).");
+                    throw new IllegalArgumentException("'" + string + "' contains an illegal xml character ("+c+") such as (=,',\",>,<,&), valid chars are (A-Za-z0-9:._-).");
                 }
             } else {
                 sb.append(c);
