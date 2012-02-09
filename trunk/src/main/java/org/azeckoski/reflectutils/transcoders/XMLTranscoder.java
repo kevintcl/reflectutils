@@ -576,8 +576,8 @@ public class XMLTranscoder implements Transcoder {
                         } else {
                             throw new IllegalArgumentException("'" + string + "' starts with 'xml' or 'XML'.");
                         }
+                        continue; // skip ahead
                     }
-                    continue; // skip ahead
                 }
             }
             if (Character.isWhitespace(c)) {

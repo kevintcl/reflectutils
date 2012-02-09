@@ -653,6 +653,7 @@ public class TranscodersTest extends TestCase {
         m3.put("valid1with.num-andSTUFF", "VALUE");
         m3.put("1numberStart", "VALUE");
         m3.put(".periodStart", "VALUE");
+        m3.put("xAtStart", "VALUE");
         m3.put("xmlAtStart", "VALUE");
         m3.put("XMLUpAtStart", "VALUE");
         m3.put("has spaces in it", "VALUE");
@@ -666,6 +667,7 @@ public class TranscodersTest extends TestCase {
         assertTrue(encoded.contains("valid1with.num-andSTUFF"));
         assertTrue(encoded.contains("_numberStart"));
         assertTrue(encoded.contains("_periodStart"));
+        assertTrue(encoded.contains("xAtStart"));
         assertTrue(encoded.contains("_AtStart"));
         assertTrue(encoded.contains("_UpAtStart"));
         assertTrue(encoded.contains("has_spaces_in_it"));
