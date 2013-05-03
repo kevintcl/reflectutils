@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import junit.framework.TestCase;
 
@@ -32,6 +33,7 @@ import org.azeckoski.reflectutils.classes.TestUltraNested;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
 import org.azeckoski.reflectutils.transcoders.HTMLTranscoder;
 import org.azeckoski.reflectutils.transcoders.JSONTranscoder;
+import org.azeckoski.reflectutils.transcoders.JSONTranscoder.JsonReader;
 import org.azeckoski.reflectutils.transcoders.Transcoder;
 import org.azeckoski.reflectutils.transcoders.XMLTranscoder;
 
@@ -179,6 +181,72 @@ public class TranscodersTest extends TestCase {
         assertTrue(encoded.contains("bztitle"));
         assertTrue(encoded.contains("ZZ"));
 
+    }
+
+    public void testJSONEncodeInvalid() {
+        JSONTranscoder transcoder = new JSONTranscoder();
+        JsonReader reader = transcoder.new JsonReader();
+        Map<?,?> map;
+        Object read;
+
+        // invalid (becomes null)
+        read = reader.read("");
+        assertNull(read);
+        read = reader.read("       ");
+        assertNull(read);
+        read = reader.read(":");
+        assertNull(read);
+        read = reader.read("{");
+        assertNull(read);
+        read = reader.read("[");
+        assertNull(read);
+        read = reader.read("{\"nonterminating string}");
+        assertNull(read);
+        read = reader.read("{{{{");
+        assertNull(read);
+
+        // empty
+        read = reader.read("{ }");
+        assertNotNull(read);
+        assertTrue(read instanceof Map);
+
+        read = reader.read("{ \"key\" : \"string\" }");
+        assertNotNull(read);
+        assertTrue(read instanceof Map);
+        map = (Map<?,?>) read;
+        assertEquals(1, map.size());
+
+        map = (Map<?,?>) reader.read("{ \"number\": 12345 }");
+        assertEquals(12345, map.get("number"));
+
+        map = (Map<?,?>) reader.read("{ \"number\": -1.212345 }");
+        // I think this should be a double really according to the JSON spec
+        assertEquals(-1.212345f, map.get("number"));
+
+        map = (Map<?,?>) reader.read("{ \"object\": { \"key\": 5} }");
+        assertEquals(5, ((Map<?,?>) map.get("object")).get("key"));
+
+        map = (Map<?,?>) reader.read("{ \"key1\": 1, \"key2\": 2 }");
+        assertEquals(1, map.get("key1"));
+        assertEquals(2, map.get("key2"));
+
+        List<?> list = (List<?>) reader.read("[ 0,1,2,3,4,5 ]");
+        assertEquals(1, list.get(1));
+        assertEquals(5, list.get(5));
+
+        String rnd = generateString(new Random(),
+                "abcdefghijklmnopqrstuvwxyz012344567789{}[]'\";;&<>\\!?",
+                10000000);
+        reader.read(rnd);
+    }
+
+    public static String generateString(Random rng, String characters,
+            int length) {
+        char[] text = new char[length];
+        for (int i = 0; i < length; i++) {
+            text[i] = characters.charAt(rng.nextInt(characters.length()));
+        }
+        return new String(text);
     }
 
     public void testJSONEncodeProperties() {

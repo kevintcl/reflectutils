@@ -5,8 +5,8 @@
  **************************************************************************
  * Copyright (c) 2008 Aaron Zeckoski
  * Licensed under the Apache License, Version 2.0
- * 
- * A copy of the Apache License has been included in this 
+ *
+ * A copy of the Apache License has been included in this
  * distribution and is available at: http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Aaron Zeckoski (azeckoski @ gmail.com) (aaronz @ vt.edu) (aaron @ caret.cam.ac.uk)
@@ -38,7 +38,7 @@ import org.azeckoski.reflectutils.map.ArrayOrderedMap;
 
 /**
  * Provides methods for encoding and decoding JSON
- * 
+ *
  * @author Aaron Zeckoski (azeckoski @ gmail.com)
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -49,9 +49,9 @@ public class JSONTranscoder implements Transcoder {
     }
 
     public String encode(Object object, String name, Map<String, Object> properties) {
-    	return encode(object, name, properties, this.maxLevel);
+        return encode(object, name, properties, this.maxLevel);
     }
-    
+
     public String encode(Object object, String name, Map<String, Object> properties, int maxDepth) {
 //        Object data = object;
 //        String encoded = "";
@@ -88,7 +88,7 @@ public class JSONTranscoder implements Transcoder {
      */
     public JSONTranscoder() {}
 
-    private List<ObjectEncoder> encoders = null;    
+    private List<ObjectEncoder> encoders = null;
     public void setEncoders(List<ObjectEncoder> encoders) {
         this.encoders = encoders;
     }
@@ -125,7 +125,7 @@ public class JSONTranscoder implements Transcoder {
         this.maxLevel = maxLevel;
     }
 
-    
+
     // Encoder
 
     public static final char OBJ_BEG    = '{';
@@ -391,6 +391,7 @@ public class JSONTranscoder implements Transcoder {
     private static final Object MARK_ARRAY_END = new Object();
     private static final Object MARK_COLON = new Object();
     private static final Object MARK_COMMA = new Object();
+    private static final Object MARK_END_INPUT = new Object();
     public static final int FIRST = 0;
     public static final int CURRENT = 1;
     public static final int NEXT = 2;
@@ -416,7 +417,7 @@ public class JSONTranscoder implements Transcoder {
      * floating point is handled similarly: float, double, BigDecimal <br/>
      * JSON arrays come back as a List always, similarly, any collection or array that was output will come back as a list <br/>
      * You can use the {@link ConversionUtils} to help with conversion if needed <br/>
-     * 
+     *
      * Derived from code at:
      * https://svn.sourceforge.net/svnroot/stringtree/trunk/src/delivery/java/org/stringtree/json/JSONWriter.java
      */
@@ -438,6 +439,22 @@ public class JSONTranscoder implements Transcoder {
             }
         }
 
+        public Object read(CharacterIterator it) {
+            return read(it, NEXT);
+        }
+
+        public Object read(String string) {
+            CharacterIterator ci = new StringCharacterIterator(string);
+            return read(ci, FIRST);
+        }
+
+        /**
+         * 3rd public input method, should mostly not be used directly
+         * Called ONLY by the other 2 read methods ({@link #read(String)} and {@link #read(CharacterIterator)})
+         * @param ci
+         * @param start
+         * @return the Object which represents the JSON string, null for invalid
+         */
         public Object read(CharacterIterator ci, int start) {
             it = ci;
             switch (start) {
@@ -451,15 +468,11 @@ public class JSONTranscoder implements Transcoder {
                 c = it.next();
                 break;
             }
-            return read();
-        }
-
-        public Object read(CharacterIterator it) {
-            return read(it, NEXT);
-        }
-
-        public Object read(String string) {
-            return read(new StringCharacterIterator(string), FIRST);
+            Object o = read();
+            if (MARK_END_INPUT.equals(o) || MARK_COLON.equals(o)) {
+                o = null; // SPECIAL cases - empty or invalid input
+            }
+            return o;
         }
 
         private Object read() {
@@ -486,20 +499,24 @@ public class JSONTranscoder implements Transcoder {
                     next(); next(); next(); // assumed u-l-l
                     token = null;
                     break;
+                case StringCharacterIterator.DONE:
+                    token = MARK_END_INPUT;
+                    break;
                 default:
-                    c = it.previous();
-                    if (Character.isDigit(c) || c == '-') {
+                    if (Character.isDigit(ch) || ch == '-') {
+                        // Push this back on so it's part of the number
+                        c = it.previous();
                         token = number();
                     }
             }
             // System.out.println("token: " + token); // enable this line to see the token stream
             return token;
         }
-        
+
         private Object object() {
             Map<Object, Object> ret = new ArrayOrderedMap<Object, Object>();
             Object key = read();
-            while (token != MARK_OBJECT_END) {
+            while (token != MARK_OBJECT_END && token != MARK_END_INPUT) {
                 read(); // should be a colon
                 if (token != MARK_OBJECT_END) {
                     ret.put(key, read());
@@ -508,18 +525,23 @@ public class JSONTranscoder implements Transcoder {
                     }
                 }
             }
-
+            if (MARK_END_INPUT.equals(token)) {
+                ret = null; // did not end the object in a valid way
+            }
             return ret;
         }
 
         private Object array() {
             List<Object> ret = new ArrayList<Object>();
             Object value = read();
-            while (token != MARK_ARRAY_END) {
+            while (token != MARK_ARRAY_END && token != MARK_END_INPUT) {
                 ret.add(value);
                 if (read() == MARK_COMMA) {
                     value = read();
                 }
+            }
+            if (MARK_END_INPUT.equals(token)) {
+                ret = null; // did not end the array in a valid way
             }
             return ret;
         }
@@ -528,7 +550,7 @@ public class JSONTranscoder implements Transcoder {
             int length = 0;
             boolean isFloatingPoint = false;
             buf.setLength(0);
-            
+
             if (c == '-') {
                 add();
             }
@@ -546,7 +568,7 @@ public class JSONTranscoder implements Transcoder {
                 addDigits();
                 isFloatingPoint = true;
             }
-     
+
             String s = buf.toString();
             // more friendly handling of numbers
             Object num = null;
@@ -569,7 +591,7 @@ public class JSONTranscoder implements Transcoder {
             }
             return num;
         }
-     
+
         private int addDigits() {
             int ret;
             for (ret = 0; Character.isDigit(c); ++ret) {
@@ -580,7 +602,7 @@ public class JSONTranscoder implements Transcoder {
 
         private Object string() {
             buf.setLength(0);
-            while (c != '"') {
+            while (c != '"' && c != StringCharacterIterator.DONE) {
                 if (c == '\\') {
                     next();
                     if (c == 'u') {
@@ -595,8 +617,8 @@ public class JSONTranscoder implements Transcoder {
                     add();
                 }
             }
+            // unterminated string will terminate automatically
             next();
-
             return buf.toString();
         }
 
@@ -613,7 +635,7 @@ public class JSONTranscoder implements Transcoder {
             int value = 0;
             for (int i = 0; i < 4; ++i) {
                 switch (next()) {
-                case '0': case '1': case '2': case '3': case '4': 
+                case '0': case '1': case '2': case '3': case '4':
                 case '5': case '6': case '7': case '8': case '9':
                     value = (value << 4) + c - '0';
                     break;
