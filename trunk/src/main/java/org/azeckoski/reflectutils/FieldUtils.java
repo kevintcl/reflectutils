@@ -303,7 +303,9 @@ public class FieldUtils {
 
     private ClassFields.FieldFindMode findFieldFindMode(FieldsFilter filter) {
         ClassFields.FieldFindMode mode = ClassFields.FieldFindMode.HYBRID; // default
-        if (FieldsFilter.ALL.equals(filter) || FieldsFilter.SERIALIZABLE.equals(filter)) {
+        if (FieldsFilter.ALL.equals(filter)) {
+            mode = ClassFields.FieldFindMode.ALL;
+        } else if (FieldsFilter.SERIALIZABLE_FIELDS.equals(filter)) {
             mode = ClassFields.FieldFindMode.FIELD;
         }
         return mode;

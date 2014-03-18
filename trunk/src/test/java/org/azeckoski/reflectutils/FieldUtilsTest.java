@@ -1066,17 +1066,30 @@ public class FieldUtilsTest extends TestCase {
         assertTrue(m.containsKey("sArray"));
         assertTrue(m.containsKey("bool"));
         assertTrue(m.containsKey("fieldOnly"));
-        assertTrue(m.containsKey("privateFieldOnly"));
+        assertTrue(m.containsKey("prefix"));
 
-        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.ALL, false );
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.SERIALIZABLE_FIELDS, false );
         assertNotNull(m);
-        assertEquals(8, m.size());
+        assertEquals(7, m.size());
         assertTrue(m.containsKey("id"));
         assertTrue(m.containsKey("entityId"));
         assertTrue(m.containsKey("extra"));
         assertTrue(m.containsKey("sArray"));
         assertTrue(m.containsKey("bool"));
         assertTrue(m.containsKey("fieldOnly"));
+        assertTrue(m.containsKey("privateFieldOnly"));
+
+
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.ALL, false );
+        assertNotNull(m);
+        assertEquals(9, m.size());
+        assertTrue(m.containsKey("id"));
+        assertTrue(m.containsKey("entityId"));
+        assertTrue(m.containsKey("extra"));
+        assertTrue(m.containsKey("sArray"));
+        assertTrue(m.containsKey("bool"));
+        assertTrue(m.containsKey("fieldOnly"));
+        assertTrue(m.containsKey("privateFieldOnly"));
         assertTrue(m.containsKey("transStr"));
         assertTrue(m.containsKey("prefix"));
 

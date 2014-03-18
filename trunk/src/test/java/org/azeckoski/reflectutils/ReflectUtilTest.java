@@ -14,32 +14,15 @@
 
 package org.azeckoski.reflectutils;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-
 import junit.framework.TestCase;
-
 import org.azeckoski.reflectutils.annotations.TestAnnote;
-import org.azeckoski.reflectutils.classes.TestBean;
-import org.azeckoski.reflectutils.classes.TestDateSpecial;
-import org.azeckoski.reflectutils.classes.TestEntity;
-import org.azeckoski.reflectutils.classes.TestImplFour;
-import org.azeckoski.reflectutils.classes.TestImplOne;
-import org.azeckoski.reflectutils.classes.TestNesting;
-import org.azeckoski.reflectutils.classes.TestNone;
-import org.azeckoski.reflectutils.classes.TestPea;
-import org.azeckoski.reflectutils.classes.TestUltraNested;
+import org.azeckoski.reflectutils.classes.*;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.azeckoski.reflectutils.interfaces.TestInterfaceFour;
 import org.azeckoski.reflectutils.interfaces.TestInterfaceOne;
+
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Testing the reflection utils
@@ -537,7 +520,7 @@ public class ReflectUtilTest extends TestCase {
 
         m = reflectUtil.getObjectValues( new TestEntity() );
         assertNotNull(m);
-        assertEquals(6, m.size());
+        assertEquals(8, m.size());
         assertTrue(m.containsKey("id"));
         assertTrue(m.containsKey("entityId"));
         assertTrue(m.containsKey("extra"));
