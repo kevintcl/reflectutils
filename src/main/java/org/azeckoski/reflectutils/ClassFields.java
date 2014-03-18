@@ -14,31 +14,21 @@
 
 package org.azeckoski.reflectutils;
 
-import java.beans.BeanInfo;
-import java.beans.IndexedPropertyDescriptor;
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-
 import org.azeckoski.reflectutils.annotations.ReflectIgnoreClassFields;
 import org.azeckoski.reflectutils.annotations.ReflectIncludeStaticFields;
 import org.azeckoski.reflectutils.annotations.ReflectTransientClassFields;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
 import org.azeckoski.reflectutils.map.OrderedMap;
+
+import java.beans.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Member;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * @param <T> the class type
@@ -90,7 +80,7 @@ public class ClassFields<T> {
          * all fields including ones that are partial (read or write only)
          */
         ALL
-    };
+    }
 
     /**
      * @param cp the {@link ClassProperty} object which represents a field
@@ -141,13 +131,13 @@ public class ClassFields<T> {
          * find all matched getters and setters only, ignores fields
          */
         PROPERTY
-    };
+    }
 
     // PUBLIC access methods
 
     /**
      * @return the class that this {@link ClassFields} object represents the fields for
-     * @throws ClassLoadingException
+     * @throws java.lang.Exception class loading exception,
      *             if the class this refers to has been garbage collected
      */
     public Class<T> getFieldClass() {
@@ -217,7 +207,7 @@ public class ClassFields<T> {
      * @return the number of fields
      */
     public int size(FieldsFilter filter) {
-        int size = 0;
+        int size;
         if (FieldsFilter.ALL.equals(filter)) {
             size = namesToProperties.size();
         } else {
@@ -477,8 +467,7 @@ public class ClassFields<T> {
      * @param publicFields
      *            array of public fields
      */
-    public ClassFields(Class<T> fieldClass, Method[] getterMethods, Method[] setterMethods,
-            Field[] publicFields) {
+    public ClassFields(Class<T> fieldClass, Method[] getterMethods, Method[] setterMethods, Field[] publicFields) {
         if (fieldClass == null || getterMethods == null || setterMethods == null
                 || publicFields == null) {
             throw new IllegalArgumentException("None of the params can be null");
@@ -613,7 +602,7 @@ public class ClassFields<T> {
                     for (Method method : methods) {
                         if (method.getName().equals("value")) {
                             try {
-                                Object o = method.invoke(annotation, new Object[] {});
+                                @SuppressWarnings("RedundantArrayCreation") Object o = method.invoke(annotation, new Object[] {});
                                 ignore = (String[]) o;
                             } catch (Exception e) {
                                 throw new RuntimeException("Annotation of the same name has invalid value() method ("+method+") and is not of the right type: " + ReflectIgnoreClassFields.class);
@@ -622,9 +611,7 @@ public class ClassFields<T> {
                         }
                     }
                 }
-                for (String name : ignore) {
-                    ignoredFieldNames.add(name);
-                }
+                Collections.addAll(ignoredFieldNames, ignore);
             } else if (ReflectTransientClassFields.class.getSimpleName().equals(annotation.annotationType().getSimpleName())) {
                 // this does not work if the classloader of the annotation is not our classloader
                 String[] transients = new String[0];
@@ -637,7 +624,7 @@ public class ClassFields<T> {
                     for (Method method : methods) {
                         if (method.getName().equals("value")) {
                             try {
-                                Object o = method.invoke(annotation, new Object[] {});
+                                @SuppressWarnings("RedundantArrayCreation") Object o = method.invoke(annotation, new Object[] {});
                                 transients = (String[]) o;
                             } catch (Exception e) {
                                 throw new RuntimeException("Annotation of the same name has invalid value() method ("+method+") and is not of the right type: " + ReflectTransientClassFields.class);
@@ -646,9 +633,7 @@ public class ClassFields<T> {
                         }
                     }
                 }
-                for (String name : transients) {
-                    transientFieldNames.add(name);
-                }
+                Collections.addAll(transientFieldNames, transients);
             }
         }
 
@@ -788,8 +773,7 @@ public class ClassFields<T> {
      * @param descriptors
      */
     private void populateProperties(PropertyDescriptor[] descriptors) {
-        for (int i = 0; i < descriptors.length; i++) {
-            PropertyDescriptor pd = descriptors[i];
+        for (PropertyDescriptor pd : descriptors) {
             String fieldName = pd.getName();
             if (!namesToProperties.containsKey(fieldName)) {
                 Method getter = pd.getReadMethod();
@@ -802,8 +786,7 @@ public class ClassFields<T> {
                         Method iGetter = ipd.getIndexedReadMethod();
                         Method iSetter = ipd.getIndexedWriteMethod();
                         if (iGetter != null && iSetter != null) {
-                            p = new ClassProperty.IndexedProperty(fieldName, getter, setter,
-                                    iGetter, iSetter);
+                            p = new ClassProperty.IndexedProperty(fieldName, getter, setter, iGetter, iSetter);
                         }
                     }
                     if (p == null) {
@@ -840,7 +823,7 @@ public class ClassFields<T> {
         if (name != null) {
             boolean validSetter = false;
             String sName = setter.getName();
-            Class<?> sType = null;
+            Class<?> sType;
             if (sName.startsWith(PREFIX_SET)) {
                 Class<?>[] sParamTypes = setter.getParameterTypes();
                 if (sParamTypes.length == 1) {
@@ -872,13 +855,12 @@ public class ClassFields<T> {
      * because the sun Introspector is so slow, note that this will also return all the non-matching
      * getters or setters if requested
      * 
-     * @param fieldClass
-     *            the class to reflect over
      * @param includePartial
      *            if true then includes getters and setters that do not match, if false then ONLY
      *            include the getters and setters which match exactly
      * @return a list Property objects
      */
+    @SuppressWarnings("SameParameterValue")
     private List<ClassProperty> findProperties(boolean includePartial) {
         // find the property methods from all public methods
         Map<String, ClassProperty> propertyMap = new ArrayOrderedMap<String, ClassProperty>();
@@ -897,7 +879,7 @@ public class ClassFields<T> {
                     if (returnType != null) {
                         try {
                             String fieldName = makeFieldNameFromMethod(method.getName());
-                            ClassProperty p = null;
+                            ClassProperty p;
                             if (propertyMap.containsKey(fieldName)) {
                                 p = propertyMap.get(fieldName);
                                 p.setGetter(method);
@@ -914,7 +896,7 @@ public class ClassFields<T> {
                 if (name.startsWith(PREFIX_SET)) {
                     // setter (one param)
                     String fieldName = makeFieldNameFromMethod(method.getName());
-                    ClassProperty p = null;
+                    ClassProperty p;
                     if (propertyMap.containsKey(fieldName)) {
                         p = propertyMap.get(fieldName);
                         p.setSetter(method);
@@ -955,7 +937,7 @@ public class ClassFields<T> {
      */
     private void populateFields(boolean includeNonPublic) {
         // set the fields
-        List<Field> fields = null;
+        List<Field> fields;
         if (includeNonPublic) {
             fields = classData.getFields();
         } else {
@@ -993,11 +975,11 @@ public class ClassFields<T> {
      */
     private void populateFields(Field[] publicFields) {
         // set the fields
-        for (int i = 0; i < publicFields.length; i++) {
-            if (publicFields[i] != null) {
-                String fieldName = publicFields[i].getName();
+        for (Field publicField : publicFields) {
+            if (publicField != null) {
+                String fieldName = publicField.getName();
                 if (!namesToProperties.containsKey(fieldName)) {
-                    ClassProperty p = new ClassProperty(fieldName, publicFields[i]);
+                    ClassProperty p = new ClassProperty(fieldName, publicField);
                     namesToProperties.put(fieldName, p);
                 }
             }
@@ -1009,10 +991,7 @@ public class ClassFields<T> {
      * methods so we are going through everything on this class and all the super classes<br/>
      * WARNING: this is NOT cheap and the results need to be cached badly<br/>
      * NOTE: This also populates all the fields in every property and checks and removes
-     * all staics or excluded fields if any slipped through the previous processes
-     * 
-     * @param fieldClass
-     *            the class to analyze
+     * all statics or excluded fields if any slipped through the previous processes
      */
     private void populateAnnotationsFields() {
         // get the annotations from all class methods
@@ -1080,7 +1059,7 @@ public class ClassFields<T> {
      * @return the fieldName equivalent (thing, stuff, type)
      */
     public static String makeFieldNameFromMethod(String methodName) {
-        String name = null;
+        String name;
         if (methodName.startsWith(PREFIX_IS)) {
             name = unCapitalize(methodName.substring(2));
         } else if (methodName.startsWith(PREFIX_GET) || methodName.startsWith(PREFIX_SET)) {
@@ -1100,7 +1079,7 @@ public class ClassFields<T> {
      * @return the string capitalized (e.g. myString -> MyString)
      */
     public static String capitalize(String input) {
-        String cap = null;
+        String cap;
         if (input.length() == 0) {
             cap = "";
         } else {
@@ -1122,7 +1101,7 @@ public class ClassFields<T> {
      * @return the string uncapitalized (e.g. MyString -> myString)
      */
     public static String unCapitalize(String input) {
-        String cap = null;
+        String cap;
         if (input.length() == 0) {
             cap = "";
         } else {
