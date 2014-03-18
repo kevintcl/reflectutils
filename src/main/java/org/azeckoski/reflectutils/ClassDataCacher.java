@@ -178,6 +178,9 @@ public class ClassDataCacher {
         }
         lookups++;
         ClassFields<T> cf = getReflectionCache().get(cls);
+        if (cf != null && !mode.equals(cf.getFieldFindMode())) {
+            cf = null;
+        }
         if (cf == null) {
             // make new and put in cache
             cf = new ClassFields<T>(cls, mode, false, this.includeClassField);

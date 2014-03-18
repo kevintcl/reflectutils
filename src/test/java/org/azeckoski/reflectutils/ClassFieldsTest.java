@@ -14,6 +14,12 @@
 
 package org.azeckoski.reflectutils;
 
+import junit.framework.TestCase;
+import org.azeckoski.reflectutils.ClassFields.FieldFindMode;
+import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
+import org.azeckoski.reflectutils.annotations.*;
+import org.azeckoski.reflectutils.classes.*;
+
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -24,35 +30,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.azeckoski.reflectutils.ClassFields.FieldFindMode;
-import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
-import org.azeckoski.reflectutils.annotations.TestAnnote;
-import org.azeckoski.reflectutils.annotations.TestAnnoteClass1;
-import org.azeckoski.reflectutils.annotations.TestAnnoteClass2;
-import org.azeckoski.reflectutils.annotations.TestAnnoteField1;
-import org.azeckoski.reflectutils.annotations.TestAnnoteField2;
-import org.azeckoski.reflectutils.classes.TestBean;
-import org.azeckoski.reflectutils.classes.TestBeanAndGetters;
-import org.azeckoski.reflectutils.classes.TestCompound;
-import org.azeckoski.reflectutils.classes.TestEntity;
-import org.azeckoski.reflectutils.classes.TestExcludeFields;
-import org.azeckoski.reflectutils.classes.TestExtendBean;
-import org.azeckoski.reflectutils.classes.TestFilter;
-import org.azeckoski.reflectutils.classes.TestGettersOnly;
-import org.azeckoski.reflectutils.classes.TestImplFour;
-import org.azeckoski.reflectutils.classes.TestImplOne;
-import org.azeckoski.reflectutils.classes.TestNesting;
-import org.azeckoski.reflectutils.classes.TestNone;
-import org.azeckoski.reflectutils.classes.TestPea;
-import org.azeckoski.reflectutils.classes.TestPeaAndSetters;
-import org.azeckoski.reflectutils.classes.TestSettersOnly;
-import org.azeckoski.reflectutils.classes.TestStaticsExclude;
-import org.azeckoski.reflectutils.classes.TestStaticsInclude;
-import org.azeckoski.reflectutils.classes.TestTransientFinal;
-import org.azeckoski.reflectutils.classes.TestUltraNested;
 
 /**
  * Tests the various methods used to analyze a class and cache the information
@@ -238,7 +215,7 @@ public class ClassFieldsTest extends TestCase {
 
         cf = new ClassFields(TestEntity.class, FieldFindMode.HYBRID);
         assertNotNull(cf);
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
         assertTrue( cf.isFieldNameValid("id") );
         assertTrue( cf.isFieldNameValid("entityId") );
         assertTrue( cf.isFieldNameValid("extra") );
@@ -312,12 +289,13 @@ public class ClassFieldsTest extends TestCase {
 
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
         assertTrue( cf.isFieldNameValid("id") );
         assertTrue( cf.isFieldNameValid("entityId") );
         assertTrue( cf.isFieldNameValid("extra") );
         assertTrue( cf.isFieldNameValid("bool") );
         assertTrue( cf.isFieldNameValid("sArray") );
+        assertTrue( cf.isFieldNameValid("fieldOnly") );
 
         cf = new ClassFields(TestImplFour.class);
         assertNotNull(cf);
@@ -394,12 +372,13 @@ public class ClassFieldsTest extends TestCase {
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
         assertEquals(TestEntity.class, cf.getFieldClass());
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
         assertTrue( cf.isFieldNameValid("id") );
         assertTrue( cf.isFieldNameValid("entityId") );
         assertTrue( cf.isFieldNameValid("extra") );
         assertTrue( cf.isFieldNameValid("bool") );
         assertTrue( cf.isFieldNameValid("sArray") );
+        assertTrue( cf.isFieldNameValid("fieldOnly") );
     }
 
     /**
@@ -439,13 +418,14 @@ public class ClassFieldsTest extends TestCase {
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
         assertEquals(TestEntity.class, cf.getFieldClass());
-        assertEquals(5, cf.getFieldNames().size());
+        assertEquals(6, cf.getFieldNames().size());
         names = cf.getFieldNames();
         assertTrue( names.contains("id") );
         assertTrue( names.contains("entityId") );
         assertTrue( names.contains("extra") );
         assertTrue( names.contains("bool") );
         assertTrue( names.contains("sArray") );
+        assertTrue( names.contains("fieldOnly") );
 
         cf = new ClassFields(TestGettersOnly.class);
         assertNotNull(cf);
@@ -549,12 +529,13 @@ public class ClassFieldsTest extends TestCase {
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
         types = cf.getFieldTypes();
-        assertEquals(5, types.size());
+        assertEquals(6, types.size());
         assertEquals(Long.class, types.get("id"));
         assertEquals(String.class, types.get("entityId"));
         assertEquals(String.class, types.get("extra"));
         assertEquals(Boolean.class, types.get("bool"));
         assertEquals(String[].class, types.get("sArray"));
+        assertEquals(String.class, types.get("fieldOnly"));
 
         cf = new ClassFields(TestGettersOnly.class);
         assertNotNull(cf);
@@ -620,13 +601,14 @@ public class ClassFieldsTest extends TestCase {
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
         types = cf.getFieldTypes(FieldsFilter.WRITEABLE);
-        assertEquals(5, types.size());
+        assertEquals(6, types.size());
         types = cf.getFieldTypes(FieldsFilter.WRITEABLE);
         assertEquals(Long.class, types.get("id"));
         assertEquals(String.class, types.get("entityId"));
         assertEquals(String.class, types.get("extra"));
         assertEquals(Boolean.class, types.get("bool"));
         assertEquals(String[].class, types.get("sArray"));
+        assertEquals(String.class, types.get("fieldOnly"));
 
         cf = new ClassFields(TestGettersOnly.class);
         assertNotNull(cf);
@@ -697,13 +679,15 @@ public class ClassFieldsTest extends TestCase {
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
         types = cf.getFieldTypes(FieldsFilter.READABLE);
-        assertEquals(6, types.size());
+        assertEquals(8, types.size());
         assertEquals(Long.class, types.get("id"));
         assertEquals(String.class, types.get("entityId"));
         assertEquals(String.class, types.get("extra"));
         assertEquals(Boolean.class, types.get("bool"));
         assertEquals(String[].class, types.get("sArray"));
         assertEquals(String.class, types.get("prefix"));
+        assertEquals(String.class, types.get("fieldOnly"));
+        assertEquals(String.class, types.get("transStr"));
 
         cf = new ClassFields(TestGettersOnly.class);
         assertNotNull(cf);
@@ -805,7 +789,7 @@ public class ClassFieldsTest extends TestCase {
 
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
     }
 
     public void testSizeFilter() {
@@ -825,6 +809,7 @@ public class ClassFieldsTest extends TestCase {
         assertEquals(4, cf.size(FieldsFilter.COMPLETE));
         assertEquals(8, cf.size(FieldsFilter.READABLE));
         assertEquals(5, cf.size(FieldsFilter.SERIALIZABLE));
+        assertEquals(4, cf.size(FieldsFilter.SERIALIZABLE_FIELDS));
         assertEquals(4, cf.size(FieldsFilter.WRITEABLE));
 
         cf = new ClassFields(TestFilter.class);
@@ -833,6 +818,7 @@ public class ClassFieldsTest extends TestCase {
         assertEquals(3, cf.size(FieldsFilter.COMPLETE));
         assertEquals(5, cf.size(FieldsFilter.READABLE));
         assertEquals(4, cf.size(FieldsFilter.SERIALIZABLE));
+        assertEquals(5, cf.size(FieldsFilter.SERIALIZABLE_FIELDS));
         assertEquals(4, cf.size(FieldsFilter.WRITEABLE));
     }
 
@@ -928,7 +914,7 @@ public class ClassFieldsTest extends TestCase {
 
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
         assertTrue( cf.isFieldNameValid("id") );
         assertTrue( cf.isFieldNameValid("entityId") );
         assertTrue( cf.isFieldNameValid("extra") );
@@ -1007,7 +993,7 @@ public class ClassFieldsTest extends TestCase {
 
         cf = new ClassFields(TestEntity.class);
         assertNotNull(cf);
-        assertEquals(5, cf.size());
+        assertEquals(6, cf.size());
         assertTrue( cf.isFieldNameValid("id", FieldsFilter.ALL) );
         assertTrue( cf.isFieldNameValid("entityId", FieldsFilter.ALL) );
         assertTrue( cf.isFieldNameValid("extra", FieldsFilter.ALL) );

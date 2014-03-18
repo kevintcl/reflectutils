@@ -77,10 +77,14 @@ public class ClassFields<T> {
          */
         WRITEABLE, 
         /**
+         * all accessible serializable fields or getters (skips transients)
+         */
+        SERIALIZABLE,
+        /**
          * all accessible serializable fields (skips transient fields),
          * no virtual fields (getters only)
          */
-        SERIALIZABLE,
+        SERIALIZABLE_FIELDS,
         /**
          * all fields including ones that are virtual (read or write only)
          */
@@ -105,6 +109,10 @@ public class ClassFields<T> {
                 in = true;
             }
         } else if (FieldsFilter.SERIALIZABLE.equals(filter)) {
+            if ( isGettable(cp) && !cp.isTransient()) {
+                in = true;
+            }
+        } else if (FieldsFilter.SERIALIZABLE_FIELDS.equals(filter)) {
             if (cp.isField() && !cp.isTransient()) {
                 in = true;
             }
@@ -149,6 +157,20 @@ public class ClassFields<T> {
      */
     public Class<T> getFieldClass() {
         return getStoredClass();
+    }
+
+    /**
+     * @return the field find mode being used (cannot be changed)
+     */
+    public FieldFindMode getFieldFindMode() {
+        return fieldFindMode;
+    }
+
+    /**
+     * @return the list of fields we are explicitly skipping over
+     */
+    public Set<String> getIgnoredFieldNames() {
+        return ignoredFieldNames;
     }
 
     /**
@@ -666,20 +688,18 @@ public class ClassFields<T> {
 
         if (!useIntrospector) {
             // construct using pure reflection
-            if (FieldFindMode.ALL.equals(findMode)) {
-                if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.PROPERTY.equals(findMode)) {
-                    List<ClassProperty> properties = findProperties(true);
-                    for (ClassProperty property : properties) {
-                        String fieldName = property.getFieldName();
-                        namesToProperties.put(fieldName, property);
-                    }
+            if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.PROPERTY.equals(findMode) || FieldFindMode.ALL.equals(findMode)) {
+                List<ClassProperty> properties = findProperties(true);
+                for (ClassProperty property : properties) {
+                    String fieldName = property.getFieldName();
+                    namesToProperties.put(fieldName, property);
                 }
-                if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.FIELD.equals(findMode)) {
-                    if (FieldFindMode.FIELD.equals(findMode) || FieldFindMode.ALL.equals(findMode)) {
-                        populateFields(true);
-                    } else {
-                        populateFields(false);
-                    }
+            }
+            if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.FIELD.equals(findMode) || FieldFindMode.ALL.equals(findMode)) {
+                if (FieldFindMode.FIELD.equals(findMode) || FieldFindMode.ALL.equals(findMode)) {
+                    populateFields(true);
+                } else {
+                    populateFields(false);
                 }
             }
         }
