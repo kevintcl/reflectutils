@@ -14,6 +14,12 @@
 
 package org.azeckoski.reflectutils;
 
+import org.azeckoski.reflectutils.ClassFields.FieldFindMode;
+import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
+import org.azeckoski.reflectutils.beanutils.Resolver;
+import org.azeckoski.reflectutils.converters.api.Converter;
+import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
+
 import java.lang.annotation.Annotation;
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
@@ -21,12 +27,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import org.azeckoski.reflectutils.ClassFields.FieldFindMode;
-import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
-import org.azeckoski.reflectutils.beanutils.Resolver;
-import org.azeckoski.reflectutils.converters.api.Converter;
-import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 
 /**
  * Reflection utilities and utilities related to working with classes and their fields<br/>
@@ -349,7 +349,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if failures occur
      */
     public Map<String, Object> getObjectValues(Object object) {
-        return getObjectValues(object, FieldsFilter.READABLE, false);
+        return getObjectValues(object, FieldsFilter.READABLE, null, false);
     }
 
     /**
@@ -363,7 +363,26 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if failures occur
      */
     public Map<String, Object> getObjectValues(Object object, FieldsFilter filter, boolean includeClassField) {
-        return getFieldUtils().getFieldValues(object, filter, false);
+        return getObjectValues(object, filter, null, includeClassField);
+    }
+
+    /**
+     * Get a map of all fieldName -> value and all getterMethodName -> value without the word "get"
+     * where the method takes no arguments, in other words, all values available from an object (readable values)
+     * @param object any object
+     * @param filter (optional) indicates the fields to return the values for, can be null for defaults
+     * @param mode (optional) indicates the mode to find fields, null for the default
+     * @param includeClassField if true then the value from the "getClass()" method is returned as part of the
+     * set of object values with a type of {@link Class} and a field name of "class"
+     * @return a map of name -> value
+     * @throws IllegalArgumentException if failures occur
+     */
+    public Map<String, Object> getObjectValues(Object object, FieldsFilter filter, FieldFindMode mode, boolean includeClassField) {
+        FieldUtils fu = getFieldUtils();
+        if (mode != null) {
+            fu.getClassDataCacher().setFieldFindMode(mode);
+        }
+        return getFieldUtils().getFieldValues(object, filter, includeClassField);
     }
 
     /**
@@ -722,6 +741,9 @@ public class ReflectUtils {
         ReflectUtils.timesCreated++;
         instanceStorage = new SoftReference<ReflectUtils>(instance);
         return instance;
+    }
+    public static void clearInstance() {
+        instanceStorage.clear();
     }
 
     private static int timesCreated = 0;

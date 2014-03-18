@@ -14,14 +14,6 @@
 
 package org.azeckoski.reflectutils;
 
-import java.lang.ref.SoftReference;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.azeckoski.reflectutils.ClassFields.FieldsFilter;
 import org.azeckoski.reflectutils.ClassProperty.IndexedProperty;
 import org.azeckoski.reflectutils.ClassProperty.MappedProperty;
@@ -33,6 +25,14 @@ import org.azeckoski.reflectutils.exceptions.FieldGetValueException;
 import org.azeckoski.reflectutils.exceptions.FieldSetValueException;
 import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 import org.azeckoski.reflectutils.map.ArrayOrderedMap;
+
+import java.lang.ref.SoftReference;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Class which provides methods for dealing with the fields in objects and classes,
@@ -117,6 +117,11 @@ public class FieldUtils {
      * @throws IllegalArgumentException if class is null or primitive
      */
     public <T> ClassFields<T> analyzeClass(Class<T> cls) {
+        ClassFields<T> cf = getClassDataCacher().getClassFields(cls);
+        return cf;
+    }
+
+    public <T> ClassFields<T> analyzeClass(Class<T> cls, ClassFields.FieldFindMode mode) {
         ClassFields<T> cf = getClassDataCacher().getClassFields(cls);
         return cf;
     }
@@ -1299,6 +1304,9 @@ public class FieldUtils {
         FieldUtils.timesCreated++;
         instanceStorage = new SoftReference<FieldUtils>(instance);
         return instance;
+    }
+    public static void clearInstance() {
+        instanceStorage.clear();
     }
 
     private static int timesCreated = 0;

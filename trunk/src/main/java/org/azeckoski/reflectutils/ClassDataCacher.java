@@ -14,12 +14,12 @@
 
 package org.azeckoski.reflectutils;
 
-import java.lang.ref.SoftReference;
-import java.util.Map;
-
 import org.azeckoski.reflectutils.ClassFields.FieldFindMode;
 import org.azeckoski.reflectutils.refmap.ReferenceMap;
 import org.azeckoski.reflectutils.refmap.ReferenceType;
+
+import java.lang.ref.SoftReference;
+import java.util.Map;
 
 /**
  * Class which provides access to the analysis objects and the cached reflection data
@@ -152,14 +152,32 @@ public class ClassDataCacher {
      */
     @SuppressWarnings("unchecked")
     public <T> ClassFields<T> getClassFields(Class<T> cls) {
+        return getClassFields(cls, null);
+    }
+
+    /**
+     * Get the class fields analysis of a class which contains information about that class and its fields,
+     * includes annotations, fields/properties, etc. packaged in a way which makes the data easy to get to,
+     * use the {@link ClassData} object to get to the more raw data
+     *
+     * @param <T>
+     * @param cls any {@link Class}
+     * @param mode (optional) the field search mode, uses the default one if null
+     * @return the ClassFields analysis object which contains the information about this class
+     */
+    @SuppressWarnings("unchecked")
+    public <T> ClassFields<T> getClassFields(Class<T> cls, FieldFindMode mode) {
         if (cls == null) {
             throw new IllegalArgumentException("cls (type) cannot be null");
+        }
+        if (mode == null) {
+            mode = this.fieldFindMode;
         }
         lookups++;
         ClassFields<T> cf = getReflectionCache().get(cls);
         if (cf == null) {
             // make new and put in cache
-            cf = new ClassFields<T>(cls, FieldFindMode.HYBRID, false, includeClassField);
+            cf = new ClassFields<T>(cls, mode, false, includeClassField);
             getReflectionCache().put(cls, cf);
             cacheMisses++;
         } else {
@@ -254,7 +272,7 @@ public class ClassDataCacher {
     }
     /**
      * Set the singleton instance of the class which will be stored statically
-     * @param instance the instance to use as the singleton instance
+     * @param newInstance the instance to use as the singleton instance
      */
     public static ClassDataCacher setInstance(ClassDataCacher newInstance) {
         ClassDataCacher instance = newInstance;
@@ -265,6 +283,9 @@ public class ClassDataCacher {
         ClassDataCacher.timesCreated++;
         instanceStorage = new SoftReference<ClassDataCacher>(instance);
         return instance;
+    }
+    public static void clearInstance() {
+        instanceStorage.clear();
     }
 
     private static int timesCreated = 0;
