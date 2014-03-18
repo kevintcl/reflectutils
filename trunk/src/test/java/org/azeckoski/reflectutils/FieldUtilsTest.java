@@ -14,22 +14,15 @@
 
 package org.azeckoski.reflectutils;
 
+import junit.framework.TestCase;
+import org.azeckoski.reflectutils.classes.*;
+import org.azeckoski.reflectutils.exceptions.FieldSetValueException;
+import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import junit.framework.TestCase;
-
-import org.azeckoski.reflectutils.classes.TestBean;
-import org.azeckoski.reflectutils.classes.TestCollections;
-import org.azeckoski.reflectutils.classes.TestEntity;
-import org.azeckoski.reflectutils.classes.TestExtendBean;
-import org.azeckoski.reflectutils.classes.TestNesting;
-import org.azeckoski.reflectutils.classes.TestNone;
-import org.azeckoski.reflectutils.classes.TestPea;
-import org.azeckoski.reflectutils.exceptions.FieldSetValueException;
-import org.azeckoski.reflectutils.exceptions.FieldnameNotFoundException;
 
 /**
  * Testing the FieldUtils
@@ -43,7 +36,7 @@ public class FieldUtilsTest extends TestCase {
      */
     public void testAnalyzeClass() {
         FieldUtils fu = new FieldUtils();
-        ClassFields<?> cf = null;
+        ClassFields<?> cf;
 
         cf = fu.analyzeClass(TestBean.class);
         assertNotNull(cf);
@@ -63,7 +56,7 @@ public class FieldUtilsTest extends TestCase {
      */
     public void testAnalyzeObject() {
         FieldUtils fu = new FieldUtils();
-        ClassFields<?> cf = null;
+        ClassFields<?> cf;
 
         cf = fu.analyzeObject(new TestBean());
         assertNotNull(cf);
@@ -83,7 +76,7 @@ public class FieldUtilsTest extends TestCase {
      */
     public void testGetFieldNames() {
         FieldUtils fu = new FieldUtils();
-        List<String> names = null;
+        List<String> names;
 
         names = fu.getFieldNames(TestBean.class);
         assertEquals(2, names.size());
@@ -97,14 +90,14 @@ public class FieldUtilsTest extends TestCase {
     }
 
     /**
-     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#findFieldValue(java.lang.Object, java.lang.String, org.azeckoski.reflectutils.ClassFields.ClassProperty)}.
+     * Test method for findFieldValue
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "UnusedAssignment"})
     public void testFindFieldValue() {
         FieldUtils fu = new FieldUtils();
-        ClassFields<?> cf = null;
-        ClassProperty cp = null;
-        Object value = null;
+        ClassFields<?> cf;
+        ClassProperty cp;
+        Object value;
 
         TestBean tb = new TestBean();
         cf = new ClassFields(tb.getClass());
@@ -173,13 +166,13 @@ public class FieldUtilsTest extends TestCase {
     }
 
     /**
-     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#assignFieldValue(java.lang.Object, java.lang.String, java.lang.Object, org.azeckoski.reflectutils.ClassFields.ClassProperty)}.
+     * Test method for assignFieldValue
      */
     @SuppressWarnings("unchecked")
     public void testAssignFieldValue() {
         FieldUtils fu = new FieldUtils();
-        ClassFields<?> cf = null;
-        ClassProperty cp = null;
+        ClassFields<?> cf;
+        ClassProperty cp;
 
         TestBean tb = new TestBean();
         cf = new ClassFields(tb.getClass());
@@ -188,7 +181,7 @@ public class FieldUtilsTest extends TestCase {
         assertEquals(100, tb.getMyInt());
 
         cp = cf.getClassProperty("myInt");
-        fu.assignFieldValue(tb, cp, new Integer(50));
+        fu.assignFieldValue(tb, cp, 50);
         assertEquals(50, tb.getMyInt());
 
         cp = cf.getClassProperty("myString");
@@ -242,11 +235,11 @@ public class FieldUtilsTest extends TestCase {
     }
 
     /**
-     * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getSimpleValue(java.lang.Object, java.lang.String, boolean)}.
+     * Test method for getSimpleValue
      */
     public void testGetSimpleValue() {
         FieldUtils fu = new FieldUtils();
-        Object value = null;
+        Object value;
 
         TestBean tb = new TestBean();
         value = fu.getSimpleValue(tb, "myInt");
@@ -278,9 +271,10 @@ public class FieldUtilsTest extends TestCase {
     /**
      * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getIndexedValue(java.lang.Object, java.lang.String)}.
      */
+    @SuppressWarnings("UnusedAssignment")
     public void testGetIndexedValue() {
         FieldUtils fu = new FieldUtils();
-        Object value = null;
+        Object value;
 
         TestNesting tn = new TestNesting(8, "AZ", new String[] {"1", "two", "three"});
         value = fu.getIndexedValue(tn, "myArray[0]");
@@ -346,9 +340,10 @@ public class FieldUtilsTest extends TestCase {
     /**
      * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getMappedValue(java.lang.Object, java.lang.String)}.
      */
+    @SuppressWarnings("UnusedAssignment")
     public void testGetMappedValue() {
         FieldUtils fu = new FieldUtils();
-        Object value = null;
+        Object value;
 
         TestNesting tn = new TestNesting();
         value = fu.getMappedValue(tn, "sMap(A1)");
@@ -402,7 +397,7 @@ public class FieldUtilsTest extends TestCase {
      */
     public void testGetValueOfMap() {
         FieldUtils fu = new FieldUtils();
-        Object value = null;
+        Object value;
 
         Map<String, Integer> myMap = new HashMap<String, Integer>();
         myMap.put("A", 10);
@@ -516,6 +511,7 @@ public class FieldUtilsTest extends TestCase {
         myList.add(10);
         myList.add(20);
         fu.setIndexedValue(myList, "[1]", "BBB");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("BBB", myList.get(1));
     }
 
@@ -615,9 +611,11 @@ public class FieldUtilsTest extends TestCase {
         myMap.put("B", 2);
         myMap.put("C", 24);
         fu.setMappedValue(myMap, "(A)", "alpha");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("alpha", myMap.get("A"));
 
         fu.setMappedValue(myMap, "(D)", "delta");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("delta", myMap.get("D"));
     }
 
@@ -632,22 +630,25 @@ public class FieldUtilsTest extends TestCase {
         myMap.put("B", 2);
         myMap.put("C", 24);
         fu.setValueOfMap(myMap, "A", "alpha");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("alpha", myMap.get("A"));
 
         fu.setValueOfMap(myMap, "(B)", "beta");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("beta", myMap.get("B"));
 
         fu.setValueOfMap(myMap, "D", "delta");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("delta", myMap.get("D"));
     }
 
     /**
      * Test method for {@link org.azeckoski.reflectutils.FieldUtils#getFieldValue(java.lang.Object, java.lang.String)}.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "UnusedAssignment"})
     public void testGetFieldValue() {
         FieldUtils fu = new FieldUtils();
-        Object value = null;
+        Object value;
 
         TestNesting tn = new TestNesting(8, "AZ", new String[] {"1", "B", "three"});
         value = fu.getFieldValue(tn, "id");
@@ -663,7 +664,7 @@ public class FieldUtilsTest extends TestCase {
 
         value = fu.getFieldValue(tn, "testEntity.id");
         assertNotNull(value);
-        assertEquals(new Long(3), value);
+        assertEquals((long) 3, value);
 
         value = fu.getFieldValue(tn, "myArray");
         assertNotNull(value);
@@ -771,8 +772,8 @@ public class FieldUtilsTest extends TestCase {
 
     public void testGetFieldValueAsType() {
         FieldUtils fu = FieldUtils.getInstance();
-        Object value = null;
-        String sval = null;
+        Object value;
+        String sval;
 
         TestNesting tn = new TestNesting(8, "AZ", new String[] {"1", "B", "three"});
         value = fu.getFieldValue(tn, "id");
@@ -785,7 +786,7 @@ public class FieldUtilsTest extends TestCase {
 
         value = fu.getFieldValue(tn, "testEntity.id");
         assertNotNull(value);
-        assertEquals(new Long(3), value);
+        assertEquals((long) 3, value);
 
         sval = fu.getFieldValue(tn, "testEntity.id", String.class);
         assertNotNull(sval);
@@ -909,12 +910,15 @@ public class FieldUtilsTest extends TestCase {
         myMap.put("B", 2);
         myMap.put("C", 24);
         fu.setFieldValue(myMap, "A", "alpha");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("alpha", myMap.get("A"));
 
         fu.setFieldValue(myMap, "(B)", "beta");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("beta", myMap.get("B"));
 
         fu.setFieldValue(myMap, "D", "delta");
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("delta", myMap.get("D"));
     }
 
@@ -968,12 +972,15 @@ public class FieldUtilsTest extends TestCase {
         myMap.put("B", 2);
         myMap.put("C", 24);
         fu.setFieldValue(myMap, "A", "alpha", false);
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("alpha", myMap.get("A"));
 
         fu.setFieldValue(myMap, "(B)", "beta", false);
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("beta", myMap.get("B"));
 
         fu.setFieldValue(myMap, "D", "delta", false);
+        //noinspection AssertEqualsBetweenInconvertibleTypes
         assertEquals("delta", myMap.get("D"));
     }
 
@@ -982,7 +989,7 @@ public class FieldUtilsTest extends TestCase {
      */
     public void testGetFieldValues() {
         FieldUtils fu = new FieldUtils();
-        Map<String, Object> m = null;
+        Map<String, Object> m;
 
         m = fu.getFieldValues( new TestNone() );
         assertNotNull(m);
@@ -1012,7 +1019,7 @@ public class FieldUtilsTest extends TestCase {
         assertTrue(m.containsKey("extra"));
         assertTrue(m.containsKey("sArray"));
         assertTrue(m.containsKey("bool"));
-        assertEquals(new Long(3), m.get("id"));
+        assertEquals((long) 3, m.get("id"));
         assertEquals("33", m.get("entityId"));
         assertEquals(null, m.get("extra"));
         assertTrue(m.get("sArray").getClass().isArray());
@@ -1078,7 +1085,7 @@ public class FieldUtilsTest extends TestCase {
 
     public void testNonVisibleFields() {
         FieldUtils fu = FieldUtils.getInstance();
-        Object value = null;
+        Object value;
 
         TestPea tp = new TestPea();
         // test getting
