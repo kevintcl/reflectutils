@@ -1003,7 +1003,7 @@ public class FieldUtilsTest extends TestCase {
         assertTrue(m.containsKey("entityId"));
         assertEquals("EID", m.get("entityId"));
 
-        m = fu.getFieldValues( new TestBean() );
+        m = fu.getFieldValues( new TestBean() ); // READABLE
         assertNotNull(m);
         assertEquals(2, m.size());
         assertTrue(m.containsKey("myInt"));
@@ -1011,7 +1011,43 @@ public class FieldUtilsTest extends TestCase {
         assertEquals(0, m.get("myInt"));
         assertEquals("woot", m.get("myString"));
 
-        m = fu.getFieldValues( new TestEntity() );
+        m = fu.getFieldValues( new TestBean(), ClassFields.FieldsFilter.WRITEABLE, false );
+        assertNotNull(m);
+        assertEquals(0, m.size());
+
+        m = fu.getFieldValues( new TestBean(), ClassFields.FieldsFilter.COMPLETE, false );
+        assertNotNull(m);
+        assertEquals(2, m.size());
+
+        m = fu.getFieldValues( new TestBean(), ClassFields.FieldsFilter.SERIALIZABLE, false );
+        assertNotNull(m);
+        assertEquals(2, m.size());
+
+        m = fu.getFieldValues( new TestBean(), ClassFields.FieldsFilter.ALL, false );
+        assertNotNull(m);
+        assertEquals(2, m.size());
+
+        m = fu.getFieldValues( new TestEntity() ); // READABLE
+        assertNotNull(m);
+        assertEquals(8, m.size());
+        assertTrue(m.containsKey("id"));
+        assertTrue(m.containsKey("entityId"));
+        assertTrue(m.containsKey("extra"));
+        assertTrue(m.containsKey("sArray"));
+        assertTrue(m.containsKey("bool"));
+        assertTrue(m.containsKey("fieldOnly"));
+        assertTrue(m.containsKey("transStr"));
+        assertTrue(m.containsKey("prefix"));
+        assertEquals((long) 3, m.get("id"));
+        assertEquals("33", m.get("entityId"));
+        assertEquals(null, m.get("extra"));
+        assertTrue(m.get("sArray").getClass().isArray());
+
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.WRITEABLE, false );
+        assertNotNull(m);
+        assertEquals(0, m.size());
+
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.COMPLETE, false );
         assertNotNull(m);
         assertEquals(6, m.size());
         assertTrue(m.containsKey("id"));
@@ -1019,10 +1055,30 @@ public class FieldUtilsTest extends TestCase {
         assertTrue(m.containsKey("extra"));
         assertTrue(m.containsKey("sArray"));
         assertTrue(m.containsKey("bool"));
-        assertEquals((long) 3, m.get("id"));
-        assertEquals("33", m.get("entityId"));
-        assertEquals(null, m.get("extra"));
-        assertTrue(m.get("sArray").getClass().isArray());
+        assertTrue(m.containsKey("fieldOnly"));
+
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.SERIALIZABLE, false );
+        assertNotNull(m);
+        assertEquals(7, m.size());
+        assertTrue(m.containsKey("id"));
+        assertTrue(m.containsKey("entityId"));
+        assertTrue(m.containsKey("extra"));
+        assertTrue(m.containsKey("sArray"));
+        assertTrue(m.containsKey("bool"));
+        assertTrue(m.containsKey("fieldOnly"));
+        assertTrue(m.containsKey("privateFieldOnly"));
+
+        m = fu.getFieldValues( new TestEntity(), ClassFields.FieldsFilter.ALL, false );
+        assertNotNull(m);
+        assertEquals(8, m.size());
+        assertTrue(m.containsKey("id"));
+        assertTrue(m.containsKey("entityId"));
+        assertTrue(m.containsKey("extra"));
+        assertTrue(m.containsKey("sArray"));
+        assertTrue(m.containsKey("bool"));
+        assertTrue(m.containsKey("fieldOnly"));
+        assertTrue(m.containsKey("transStr"));
+        assertTrue(m.containsKey("prefix"));
 
         TestNesting tn = new TestNesting();
         tn.setTestBean( new TestBean() );

@@ -62,6 +62,7 @@ public class FieldUtils {
      * 
      * @param resolver controls the resolution of indexed, nested, and mapped field paths
      */
+    @SuppressWarnings("SameParameterValue")
     public FieldUtils(Resolver resolver) {
         setResolver(resolver);
 
@@ -122,7 +123,7 @@ public class FieldUtils {
     }
 
     public <T> ClassFields<T> analyzeClass(Class<T> cls, ClassFields.FieldFindMode mode) {
-        ClassFields<T> cf = getClassDataCacher().getClassFields(cls);
+        ClassFields<T> cf = getClassDataCacher().getClassFields(cls, mode);
         return cf;
     }
 
@@ -158,7 +159,7 @@ public class FieldUtils {
         // get the nested class or return Object.class as a cop out
         while (getResolver().hasNested(name)) {
             String next = getResolver().next(name);
-            Class<?> nestedClass = null;
+            Class<?> nestedClass;
             if (Object.class.equals(type)
                     || Map.class.isAssignableFrom(type)
                     || getResolver().isMapped(next)
@@ -175,7 +176,7 @@ public class FieldUtils {
         }
         String targetName = getResolver().getProperty(name); // simple name of target field
         // get the type
-        Class<?> fieldType = null;
+        Class<?> fieldType;
         if ( ConstructorUtils.isClassObjectHolder(type) 
                 || Object.class.equals(type) ) {
             // special handling for the holder types, needed because attempting to analyze a map or other container will cause a failure
@@ -231,7 +232,7 @@ public class FieldUtils {
         // get the nested object or die
         while (getResolver().hasNested(name)) {
             String next = getResolver().next(name);
-            Object nestedBean = null;
+            Object nestedBean;
             if (Map.class.isAssignableFrom(obj.getClass())) {
                 nestedBean = getValueOfMap((Map) obj, next);
             } else if (getResolver().isMapped(next)) {
@@ -251,7 +252,7 @@ public class FieldUtils {
         }
         String targetName = getResolver().getProperty(name); // simple name of target field
         // get the type
-        Class<?> fieldType = null;
+        Class<?> fieldType;
         if (fieldAdapterManager.isAdaptableObject(obj)) {
             fieldType = fieldAdapterManager.getFieldAdapter().getFieldType(obj, targetName);
         } else if ( ConstructorUtils.isClassObjectHolder(obj.getClass()) 
@@ -295,9 +296,17 @@ public class FieldUtils {
      * @return a map of field name -> class type
      */
     public Map<String, Class<?>> getFieldTypes(Class<?> type, FieldsFilter filter) {
-        ClassFields<?> cf = analyzeClass(type);
+        ClassFields<?> cf = analyzeClass(type, findFieldFindMode(filter));
         Map<String, Class<?>> types = cf.getFieldTypes(filter);
         return types;
+    }
+
+    private ClassFields.FieldFindMode findFieldFindMode(FieldsFilter filter) {
+        ClassFields.FieldFindMode mode = ClassFields.FieldFindMode.HYBRID; // default
+        if (FieldsFilter.ALL.equals(filter) || FieldsFilter.SERIALIZABLE.equals(filter)) {
+            mode = ClassFields.FieldFindMode.FIELD;
+        }
+        return mode;
     }
 
     /**
@@ -310,13 +319,8 @@ public class FieldUtils {
         return cf.getFieldNames();
     }
 
-    public <T> List<String> getFieldNames(Class<T> cls, ClassFields.FieldFindMode mode) {
-        ClassFields<T> cf = analyzeClass(cls, mode);
-        return cf.getFieldNames();
-    }
-
     public <T> List<String> getFieldNames(Class<T> cls, FieldsFilter filter) {
-        ClassFields<T> cf = analyzeClass(cls);
+        ClassFields<T> cf = analyzeClass(cls, findFieldFindMode(filter));
         return cf.getFieldNames();
     }
 
@@ -327,7 +331,7 @@ public class FieldUtils {
      * @throws IllegalArgumentException if the obj is null
      */
     public Map<String, Object> getFieldValues(Object obj) {
-        return getFieldValues(obj, FieldsFilter.READABLE, null, false);
+        return getFieldValues(obj, FieldsFilter.READABLE, false);
     }
 
     /**
@@ -341,21 +345,6 @@ public class FieldUtils {
      * @throws IllegalArgumentException if the obj is null
      */
     public Map<String, Object> getFieldValues(Object obj, FieldsFilter filter, boolean includeClassField) {
-        return getFieldValues(obj, filter, null, false);
-    }
-
-    /**
-     * Get the values of all fields on an object but optionally filter the fields used
-     * @param obj any object
-     * @param filter (optional) indicates the fields to return the values for, can be null for defaults <br/>
-     * WARNING: getting the field values from settable only fields works as expected (i.e. you will an empty map)
-     * @param mode (optional) the mode for finding fields to return values for, can be null for default
-     * @param includeClassField if true then the value from the "getClass()" method is returned as part of the
-     * set of object values with a type of {@link Class} and a field name of "class"
-     * @return a map of field name -> value
-     * @throws IllegalArgumentException if the obj is null
-     */
-    public Map<String, Object> getFieldValues(Object obj, FieldsFilter filter, ClassFields.FieldFindMode mode, boolean includeClassField) {
         if (obj == null) {
             throw new IllegalArgumentException("obj cannot be null");
         }
@@ -408,7 +397,7 @@ public class FieldUtils {
         name = holder.getName();
         obj = holder.getObject();
 
-        Object value = null;
+        Object value;
         if (Map.class.isAssignableFrom(obj.getClass())) {
             value = getValueOfMap((Map) obj, name);
         } else if (getResolver().isMapped(name)) {
@@ -552,7 +541,8 @@ public class FieldUtils {
             }
         } else {
             // invalid
-            throw new IllegalArgumentException("Object does not appear to be indexed (not an array or a list): " 
+            //noinspection ConstantConditions
+            throw new IllegalArgumentException("Object does not appear to be indexed (not an array or a list): "
                     + (indexedObject == null ? "NULL" : indexedObject.getClass()) );
         }
     }
@@ -578,7 +568,7 @@ public class FieldUtils {
             // Resolve nested references
             while (getResolver().hasNested(name)) {
                 String next = getResolver().next(name);
-                Object nestedBean = null;
+                Object nestedBean;
                 if (Map.class.isAssignableFrom(obj.getClass())) {
                     nestedBean = getValueOfMap((Map) obj, next);
                 } else if (getResolver().isMapped(next)) {
@@ -636,7 +626,7 @@ public class FieldUtils {
             throw new IllegalArgumentException("field name cannot be null or blank");
         }
 
-        Object value = null;
+        Object value;
         // Handle DynaBean instances specially
         if (fieldAdapterManager.isAdaptableObject(obj)) {
             value = fieldAdapterManager.getFieldAdapter().getSimpleValue(obj, name);
@@ -689,7 +679,7 @@ public class FieldUtils {
         Resolver resolver = getResolver();
 
         // get the index from the indexed name
-        int index = -1;
+        int index;
         try {
             index = resolver.getIndex(name);
             if (index < 0) {
@@ -727,6 +717,7 @@ public class FieldUtils {
                     IndexedProperty icp = (IndexedProperty) cp;
                     try {
                         Method getter = icp.getIndexGetter();
+                        //noinspection RedundantArrayCreation
                         value = getter.invoke(obj, new Object[] {index});
                     } catch (Exception e) {
                         // catching the general exception is correct here, translate the exception
@@ -746,7 +737,7 @@ public class FieldUtils {
                             // get value from array
                             value = Array.get(indexedObject, index);
                         } catch (ArrayIndexOutOfBoundsException e) {
-                            throw new IllegalArgumentException("Index ("+index+") is out of bounds ("+Array.getLength(indexedObject)+") for the array: " + value, e);
+                            throw new IllegalArgumentException("Index ("+index+") is out of bounds ("+Array.getLength(indexedObject)+") for the array: " + indexedObject, e);
                         }
                     } else {
                         // this better be a list
@@ -757,7 +748,7 @@ public class FieldUtils {
                             try {
                                 value = ((List)indexedObject).get(index);
                             } catch (IndexOutOfBoundsException e) {
-                                throw new IllegalArgumentException("Index ("+index+") is out of bounds ("+((List)indexedObject).size()+") for the list: " + value, e);                     
+                                throw new IllegalArgumentException("Index ("+index+") is out of bounds ("+((List)indexedObject).size()+") for the list: " + indexedObject, e);
                             }
                         }
                     }
@@ -791,7 +782,7 @@ public class FieldUtils {
         Resolver resolver = getResolver();
 
         // get the key from the mapped name
-        String key = null;
+        String key;
         try {
             key = resolver.getKey(name);
             if (key == null) {
@@ -824,6 +815,7 @@ public class FieldUtils {
                     MappedProperty mcp = (MappedProperty) cp;
                     try {
                         Method getter = mcp.getMapGetter();
+                        //noinspection RedundantArrayCreation
                         value = getter.invoke(obj, new Object[] {key});
                     } catch (Exception e) {
                         // catching the general exception is correct here, translate the exception
@@ -894,7 +886,7 @@ public class FieldUtils {
             throw new IllegalArgumentException("ClassProperty cannot be null");
         }
 
-        Object value = null;
+        Object value;
         if (cp.isPublicField()) {
             Field field = cp.getField();
             try {
@@ -907,6 +899,7 @@ public class FieldUtils {
             // must be a property then
             Method getter = cp.getGetter();
             try {
+                //noinspection RedundantArrayCreation
                 value = getter.invoke(obj, new Object[0]);
             } catch (Exception e) {
                 // catching the general exception is correct here, translate the exception
@@ -980,7 +973,7 @@ public class FieldUtils {
 
         Resolver resolver = getResolver();
         // get the index from the indexed name
-        int index = -1;
+        int index;
         try {
             index = resolver.getIndex(name);
             if (index < 0) {
@@ -1018,6 +1011,7 @@ public class FieldUtils {
                     IndexedProperty icp = (IndexedProperty) cp;
                     try {
                         Method setter = icp.getIndexSetter();
+                        //noinspection RedundantArrayCreation
                         setter.invoke(obj, new Object[] {index, value});
                     } catch (Exception e) {
                         // catching the general exception is correct here, translate the exception
@@ -1122,7 +1116,7 @@ public class FieldUtils {
 
         Resolver resolver = getResolver();
         // get the key from the mapped name
-        String key = null;
+        String key;
         try {
             key = resolver.getKey(name);
             if (key == null) {
@@ -1155,6 +1149,7 @@ public class FieldUtils {
                     MappedProperty mcp = (MappedProperty) cp;
                     try {
                         Method setter = mcp.getMapSetter();
+                        //noinspection RedundantArrayCreation
                         value = setter.invoke(obj, new Object[] {key, value});
                     } catch (Exception e) {
                         // catching the general exception is correct here, translate the exception
@@ -1250,6 +1245,7 @@ public class FieldUtils {
             // must be a property then
             Method setter = cp.getSetter();
             try {
+                //noinspection RedundantArrayCreation
                 setter.invoke(obj, new Object[] {value});
             } catch (Exception e) {
                 throw new FieldSetValueException("Setter method failure setting value ("+value+") for name ("+cp.getFieldName()+") on: " + obj, 
@@ -1313,7 +1309,7 @@ public class FieldUtils {
     }
     /**
      * Set the singleton instance of the class which will be stored statically
-     * @param instance the instance to use as the singleton instance
+     * @param newInstance the instance to use as the singleton instance
      */
     public static FieldUtils setInstance(FieldUtils newInstance) {
         FieldUtils instance = newInstance;
