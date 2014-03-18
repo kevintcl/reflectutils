@@ -90,7 +90,7 @@ public class ReflectUtils {
      * @param resolver (optional) the field path name resolver to use when resolving EL style paths, null for default
      * @param converters (optional) a map of converters to add to the default set, null to use the default set
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SameParameterValue"})
     public ReflectUtils(FieldFindMode fieldFindMode, Map<Class<?>, ClassFields> reflectionCache, Resolver resolver, Map<Class<?>, Converter<?>> converters) {
         setFieldFindMode(fieldFindMode);
         setReflectionCache(reflectionCache);
@@ -230,7 +230,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if a failure occurs while getting the field value
      */
     public Object getFieldValue(Object object, String fieldName, Class<? extends Annotation> annotationClass) {
-        Object value = null;
+        Object value;
         Class<?> elementClass = object.getClass();
         if (annotationClass != null) {
             // try to find annotation first
@@ -325,6 +325,7 @@ public class ReflectUtils {
      * @param filter (optional) indicates the fields to return the types for, can be null for defaults
      * @return a map of field name -> class type
      */
+    @SuppressWarnings("SameParameterValue")
     public Map<String, Class<?>> getFieldTypes(Class<?> type, FieldsFilter filter) {
         Map<String, Class<?>> types = getFieldUtils().getFieldTypes(type, filter);
         return types;
@@ -349,7 +350,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if failures occur
      */
     public Map<String, Object> getObjectValues(Object object) {
-        return getObjectValues(object, FieldsFilter.READABLE, null, false);
+        return getObjectValues(object, FieldsFilter.READABLE, false);
     }
 
     /**
@@ -363,22 +364,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if failures occur
      */
     public Map<String, Object> getObjectValues(Object object, FieldsFilter filter, boolean includeClassField) {
-        return getObjectValues(object, filter, null, includeClassField);
-    }
-
-    /**
-     * Get a map of all fieldName -> value and all getterMethodName -> value without the word "get"
-     * where the method takes no arguments, in other words, all values available from an object (readable values)
-     * @param object any object
-     * @param filter (optional) indicates the fields to return the values for, can be null for defaults
-     * @param mode (optional) indicates the mode to find fields, null for the default
-     * @param includeClassField if true then the value from the "getClass()" method is returned as part of the
-     * set of object values with a type of {@link Class} and a field name of "class"
-     * @return a map of name -> value
-     * @throws IllegalArgumentException if failures occur
-     */
-    public Map<String, Object> getObjectValues(Object object, FieldsFilter filter, FieldFindMode mode, boolean includeClassField) {
-        return getFieldUtils().getFieldValues(object, filter, mode, includeClassField);
+        return getFieldUtils().getFieldValues(object, filter, includeClassField);
     }
 
     /**
@@ -389,7 +375,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if the annotation class is null
      */
     public String getFieldNameWithAnnotation(Class<?> elementClass, Class<? extends Annotation> annotationClass) {
-        String fieldName = null;
+        String fieldName;
         if (annotationClass == null) {
             throw new IllegalArgumentException("the annotationClass must not be null");
         }
@@ -449,7 +435,7 @@ public class ReflectUtils {
      * in the returned map, "data" will be used as the key<br/>
      * NOTE: Nulls are allowed to pass through this method (i.e. passing in a null object results in a null output)
      * 
-     * @param bean any java object
+     * @param object any java object
      * @param maxDepth the number of objects to follow when traveling through the object and copying
      * the values from it, 0 means to only copy the simple values in the object, any objects will
      * be ignored and will end up as nulls, 1 means to follow the first objects found and copy all
@@ -630,17 +616,17 @@ public class ReflectUtils {
         StringBuilder sb = new StringBuilder();
         byte[] b_arr = md.digest();
 
-        for (int i = 0; i < b_arr.length; i++) {
+        for (byte aB_arr : b_arr) {
             // convert the high nibble
-            byte b = b_arr[i];
+            byte b = aB_arr;
             b >>>= 4;
             b &= 0x0f; // this clears the top half of the byte (intentional)
-            sb.append( Integer.toHexString(b) );
+            sb.append(Integer.toHexString(b));
 
             // convert the low nibble
-            b = b_arr[i];
+            b = aB_arr;
             b &= 0x0F;
-            sb.append( Integer.toHexString(b) );
+            sb.append(Integer.toHexString(b));
         }
         String md5 = sb.toString();
         if (maxLength > 0 && md5.length() > maxLength) {
@@ -661,8 +647,7 @@ public class ReflectUtils {
         }
         String value = null;
         try {
-            for (int i = 0; i < keys.length; i++) {
-                String key = keys[i];
+            for (String key : keys) {
                 if (map.containsKey(key)) {
                     Object oVal = map.get(key);
                     if (oVal != null) {
@@ -726,7 +711,7 @@ public class ReflectUtils {
     }
     /**
      * Set the singleton instance of the class which will be stored statically
-     * @param instance the instance to use as the singleton instance
+     * @param newInstance the instance to use as the singleton instance
      */
     public static ReflectUtils setInstance(ReflectUtils newInstance) {
         ReflectUtils instance = newInstance;

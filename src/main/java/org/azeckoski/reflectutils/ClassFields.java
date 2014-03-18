@@ -61,23 +61,28 @@ public class ClassFields<T> {
      */
     public static enum FieldsFilter {
         /**
-         * (default) all complete (read and write) fields
+         * all complete (read and write) fields,
+         * getters and setters included
          */
         COMPLETE, 
         /**
-         * all readable fields (may not be writeable), includes transient fields
+         * (default)
+         * all readable fields (may not be writeable),
+         * includes transient and virtual (getter only) fields
          */
         READABLE, 
         /**
-         * all writeable fields (may not be readable)
+         * all writeable fields (may not be readable),
+         * public and setters
          */
         WRITEABLE, 
         /**
-         * all serializable fields (readable fields but skips transient fields)
+         * all accessible serializable fields (skips transient fields),
+         * no virtual fields (getters only)
          */
-        SERIALIZABLE, 
+        SERIALIZABLE,
         /**
-         * all fields including ones that are partial (read or write only)
+         * all fields including ones that are virtual (read or write only)
          */
         ALL
     }
@@ -100,10 +105,8 @@ public class ClassFields<T> {
                 in = true;
             }
         } else if (FieldsFilter.SERIALIZABLE.equals(filter)) {
-            if ( isGettable(cp) ) {
-                if (!cp.isTransient()) {
-                    in = true;
-                }
+            if (cp.isField() && !cp.isTransient()) {
+                in = true;
             }
         } else {
             // return complete
@@ -130,7 +133,11 @@ public class ClassFields<T> {
         /**
          * find all matched getters and setters only, ignores fields
          */
-        PROPERTY
+        PROPERTY,
+        /**
+         * finds all possible fields including matched getter/setter
+         */
+        ALL
     }
 
     // PUBLIC access methods
@@ -659,18 +666,20 @@ public class ClassFields<T> {
 
         if (!useIntrospector) {
             // construct using pure reflection
-            if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.PROPERTY.equals(findMode)) {
-                List<ClassProperty> properties = findProperties(true);
-                for (ClassProperty property : properties) {
-                    String fieldName = property.getFieldName();
-                    namesToProperties.put(fieldName, property);
+            if (FieldFindMode.ALL.equals(findMode)) {
+                if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.PROPERTY.equals(findMode)) {
+                    List<ClassProperty> properties = findProperties(true);
+                    for (ClassProperty property : properties) {
+                        String fieldName = property.getFieldName();
+                        namesToProperties.put(fieldName, property);
+                    }
                 }
-            }
-            if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.FIELD.equals(findMode)) {
-                if (FieldFindMode.FIELD.equals(findMode)) {
-                    populateFields(true);
-                } else {
-                    populateFields(false);
+                if (FieldFindMode.HYBRID.equals(findMode) || FieldFindMode.FIELD.equals(findMode)) {
+                    if (FieldFindMode.FIELD.equals(findMode) || FieldFindMode.ALL.equals(findMode)) {
+                        populateFields(true);
+                    } else {
+                        populateFields(false);
+                    }
                 }
             }
         }

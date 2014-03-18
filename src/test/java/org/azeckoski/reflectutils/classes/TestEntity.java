@@ -24,15 +24,21 @@ import org.azeckoski.reflectutils.annotations.TestAnnoteField2;
  * String extra = null (all 3 test annotations, field, getter, setter) <br/>
  * Boolean bool = null <br/>
  * String[] sArray = {"1","2"} <br/>
+ * transient String transStr = "transient" (only getter) <br/>
+ * public String fieldOnly (no getters or setters) <br/>
+ * private String privateFieldOnly (no getters or setters) <br/>
+ * String prefix - getter without fields <br/>
  */
 public class TestEntity {
-   private Long id = new Long(3);
+   private Long id = (long) 3;
    private String entityId = "33";
    @TestAnnote
    private String extra = null;
    private Boolean bool = null;
    private String[] sArray = {"1","2"};
-
+   private transient String transStr = "transient";
+   public String fieldOnly = "fieldOnly";
+   private String privateFieldOnly = "privateFieldOnly";
    public String getPrefix() {
       return "crud";
    }
@@ -71,5 +77,8 @@ public class TestEntity {
    }
    public void setBool(Boolean bool) {
       this.bool = bool;
+   }
+   public String getTransStr() {
+      return transStr;
    }
 }
