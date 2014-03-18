@@ -310,6 +310,11 @@ public class FieldUtils {
         return cf.getFieldNames();
     }
 
+    public <T> List<String> getFieldNames(Class<T> cls, ClassFields.FieldFindMode mode) {
+        ClassFields<T> cf = analyzeClass(cls, mode);
+        return cf.getFieldNames();
+    }
+
     public <T> List<String> getFieldNames(Class<T> cls, FieldsFilter filter) {
         ClassFields<T> cf = analyzeClass(cls);
         return cf.getFieldNames();
@@ -322,7 +327,7 @@ public class FieldUtils {
      * @throws IllegalArgumentException if the obj is null
      */
     public Map<String, Object> getFieldValues(Object obj) {
-        return getFieldValues(obj, FieldsFilter.READABLE, false);
+        return getFieldValues(obj, FieldsFilter.READABLE, null, false);
     }
 
     /**
@@ -336,6 +341,21 @@ public class FieldUtils {
      * @throws IllegalArgumentException if the obj is null
      */
     public Map<String, Object> getFieldValues(Object obj, FieldsFilter filter, boolean includeClassField) {
+        return getFieldValues(obj, filter, null, false);
+    }
+
+    /**
+     * Get the values of all fields on an object but optionally filter the fields used
+     * @param obj any object
+     * @param filter (optional) indicates the fields to return the values for, can be null for defaults <br/>
+     * WARNING: getting the field values from settable only fields works as expected (i.e. you will an empty map)
+     * @param mode (optional) the mode for finding fields to return values for, can be null for default
+     * @param includeClassField if true then the value from the "getClass()" method is returned as part of the
+     * set of object values with a type of {@link Class} and a field name of "class"
+     * @return a map of field name -> value
+     * @throws IllegalArgumentException if the obj is null
+     */
+    public Map<String, Object> getFieldValues(Object obj, FieldsFilter filter, ClassFields.FieldFindMode mode, boolean includeClassField) {
         if (obj == null) {
             throw new IllegalArgumentException("obj cannot be null");
         }

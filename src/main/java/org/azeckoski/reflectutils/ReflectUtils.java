@@ -378,11 +378,7 @@ public class ReflectUtils {
      * @throws IllegalArgumentException if failures occur
      */
     public Map<String, Object> getObjectValues(Object object, FieldsFilter filter, FieldFindMode mode, boolean includeClassField) {
-        FieldUtils fu = getFieldUtils();
-        if (mode != null) {
-            fu.getClassDataCacher().setFieldFindMode(mode);
-        }
-        return getFieldUtils().getFieldValues(object, filter, includeClassField);
+        return getFieldUtils().getFieldValues(object, filter, mode, includeClassField);
     }
 
     /**

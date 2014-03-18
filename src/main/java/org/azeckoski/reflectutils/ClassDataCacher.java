@@ -152,32 +152,14 @@ public class ClassDataCacher {
      */
     @SuppressWarnings("unchecked")
     public <T> ClassFields<T> getClassFields(Class<T> cls) {
-        return getClassFields(cls, null);
-    }
-
-    /**
-     * Get the class fields analysis of a class which contains information about that class and its fields,
-     * includes annotations, fields/properties, etc. packaged in a way which makes the data easy to get to,
-     * use the {@link ClassData} object to get to the more raw data
-     *
-     * @param <T>
-     * @param cls any {@link Class}
-     * @param mode (optional) the field search mode, uses the default one if null
-     * @return the ClassFields analysis object which contains the information about this class
-     */
-    @SuppressWarnings("unchecked")
-    public <T> ClassFields<T> getClassFields(Class<T> cls, FieldFindMode mode) {
         if (cls == null) {
             throw new IllegalArgumentException("cls (type) cannot be null");
-        }
-        if (mode == null) {
-            mode = this.fieldFindMode;
         }
         lookups++;
         ClassFields<T> cf = getReflectionCache().get(cls);
         if (cf == null) {
             // make new and put in cache
-            cf = new ClassFields<T>(cls, mode, false, includeClassField);
+            cf = new ClassFields<T>(cls, this.fieldFindMode, false, this.includeClassField);
             getReflectionCache().put(cls, cf);
             cacheMisses++;
         } else {
